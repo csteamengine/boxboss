@@ -1,0 +1,3 @@
+# Box boss
+This is a project to allow users to sign up, join gyms, host 
+gyms, post WODs, post times, etc...
