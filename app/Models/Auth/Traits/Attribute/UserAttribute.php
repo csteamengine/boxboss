@@ -2,6 +2,7 @@
 
 namespace App\Models\Auth\Traits\Attribute;
 
+use App\Models\Box;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -12,7 +13,7 @@ trait UserAttribute
     /**
      * @param $password
      */
-    public function setPasswordAttribute($password) : void
+    public function setPasswordAttribute($password): void
     {
         // If password was accidentally passed in already hashed, try not to double hash it
         if (
@@ -26,6 +27,11 @@ trait UserAttribute
 
         // Note: Password Histories are logged from the \App\Observer\User\UserObserver class
         $this->attributes['password'] = $hash;
+    }
+
+    public function getBoxes()
+    {
+        return $this->isAdmin() ? Box::all() : $this->boxes()->get();
     }
 
     /**
