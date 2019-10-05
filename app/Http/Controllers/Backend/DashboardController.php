@@ -14,6 +14,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard')->with(['boxes' => auth()->user()->getBoxes()]);
+        return view('backend.dashboard');
     }
 }

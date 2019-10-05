@@ -28,6 +28,8 @@ return [
 
         'owner_role' => 'owner',
 
+        'box_admin_role' => 'box_admin',
+
         'coach_role' => 'coach',
 
         /*

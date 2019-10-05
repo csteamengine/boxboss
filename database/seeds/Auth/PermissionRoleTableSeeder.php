@@ -21,6 +21,7 @@ class PermissionRoleTableSeeder extends Seeder
         // Create Roles
         $admin = Role::create(['name' => config('access.users.admin_role')]);
         $owner = Role::create(['name' => config('access.users.owner_role')]);
+        $boxAdmin = Role::create(['name' => config('access.users.box_admin_role')]);
         $coach = Role::create(['name' => config('access.users.coach_role')]);
         $user = Role::create(['name' => config('access.users.user_role')]);
 
@@ -34,6 +35,8 @@ class PermissionRoleTableSeeder extends Seeder
         $owner->givePermissionTo($updateBox);
         $coach->givePermissionTo($viewBackend);
         $coach->givePermissionTo($viewBox);
+        $boxAdmin->givePermissionTo($viewBackend);
+        $boxAdmin->givePermissionTo($updateBox);
 
 
         // Assign Permissions to other Roles
