@@ -36,68 +36,68 @@ class UserTableSeeder extends Seeder
             'confirmed' => true,
         ]);
 
-//        User::create([
-//            'first_name' => 'Owner',
-//            'last_name' => 'User',
-//            'email' => 'owner@owner.com',
-//            'password' => 'secret',
-//            'confirmation_code' => md5(uniqid(mt_rand(), true)),
-//            'confirmed' => true,
-//        ]);
-//
-//        User::create([
-//            'first_name' => 'Owner2',
-//            'last_name' => 'User',
-//            'email' => 'owner2@owner.com',
-//            'password' => 'secret',
-//            'confirmation_code' => md5(uniqid(mt_rand(), true)),
-//            'confirmed' => true,
-//        ]);
-//
-//        User::create([
-//            'first_name' => 'Owner3',
-//            'last_name' => 'User',
-//            'email' => 'owner3@owner.com',
-//            'password' => 'secret',
-//            'confirmation_code' => md5(uniqid(mt_rand(), true)),
-//            'confirmed' => true,
-//        ]);
-//
-//        User::create([
-//            'first_name' => 'Box',
-//            'last_name' => 'Admin',
-//            'email' => 'boxadmin@box.com',
-//            'password' => 'secret',
-//            'confirmation_code' => md5(uniqid(mt_rand(), true)),
-//            'confirmed' => true,
-//        ]);
-//
-//        User::create([
-//            'first_name' => 'Coach',
-//            'last_name' => 'A',
-//            'email' => 'coacha@coach.com',
-//            'password' => 'secret',
-//            'confirmation_code' => md5(uniqid(mt_rand(), true)),
-//            'confirmed' => true,
-//        ]);
-//
-//        User::create([
-//            'first_name' => 'Coach',
-//            'last_name' => 'B',
-//            'email' => 'coachb@coach.com',
-//            'password' => 'secret',
-//            'confirmation_code' => md5(uniqid(mt_rand(), true)),
-//            'confirmed' => true,
-//        ]);
-//
-//        User::create([
-//            'first_name' => 'Coach',
-//            'last_name' => 'C',
-//            'email' => 'coachc@coach.com',
-//            'password' => 'secret',
-//            'confirmation_code' => md5(uniqid(mt_rand(), true)),
-//            'confirmed' => true,
-//        ]);
+        User::create([
+            'first_name' => 'Owner',
+            'last_name' => 'User',
+            'email' => 'owner@owner.com',
+            'password' => 'secret',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
+            'confirmed' => true,
+        ]);
+
+        User::create([
+            'first_name' => 'Owner2',
+            'last_name' => 'User',
+            'email' => 'owner2@owner.com',
+            'password' => 'secret',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
+            'confirmed' => true,
+        ]);
+
+        User::create([
+            'first_name' => 'Owner3',
+            'last_name' => 'User',
+            'email' => 'owner3@owner.com',
+            'password' => 'secret',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
+            'confirmed' => true,
+        ]);
+
+        User::create([
+            'first_name' => 'Box',
+            'last_name' => 'Admin',
+            'email' => 'boxadmin@box.com',
+            'password' => 'secret',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
+            'confirmed' => true,
+        ]);
+
+        User::create([
+            'first_name' => 'Coach',
+            'last_name' => 'A',
+            'email' => 'coacha@coach.com',
+            'password' => 'secret',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
+            'confirmed' => true,
+        ]);
+
+        User::create([
+            'first_name' => 'Coach',
+            'last_name' => 'B',
+            'email' => 'coachb@coach.com',
+            'password' => 'secret',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
+            'confirmed' => true,
+        ]);
+
+        User::create([
+            'first_name' => 'Coach',
+            'last_name' => 'C',
+            'email' => 'coachc@coach.com',
+            'password' => 'secret',
+            'confirmation_code' => md5(uniqid(mt_rand(), true)),
+            'confirmed' => true,
+        ]);
 
         $this->enableForeignKeys();
     }
