@@ -17,10 +17,7 @@
                     {{$user->boxesCoached()->get()}}
 
                     <h1>Boxes as Admin</h1>
-                    {{$user->boxesAdmined()->get()}}
-
-                    <h1>All Boxes</h1>
-                    {{$user->allBoxes()}}
+                    {{$user->boxesAdmined()}}
                 </div><!--card-body-->
             </div><!--card-->
         </div><!--col-->

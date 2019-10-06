@@ -46,6 +46,6 @@ trait UserRelationship
 
     public function boxesAdmined()
     {
-        return $this->belongsToMany(Box::class, 'box_admins', 'user_id', 'box_id');
+        return $this->isAdmin() ? Box::all() : $this->belongsToMany(Box::class, 'box_admins', 'user_id', 'box_id')->get();
     }
 }
