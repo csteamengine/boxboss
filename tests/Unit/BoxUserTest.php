@@ -15,7 +15,7 @@ class BoxUserTest extends TestCase
      */
     public function testExample()
     {
-        $response = $this->get('homestead.wodboss');
+        $response = $this->get('/');
 
         $response->assertStatus(200);
     }
