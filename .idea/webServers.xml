@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="22168fd3-9790-429f-992c-b4ffc2bbe74b" name="Vagrant" url="http://homestead.wodboss">
-        <fileTransfer host="homestead.wodboss" port="22" rootFolder="/home/vagrant" accessType="SFTP">
+      <webServer id="723a876e-eef1-4c97-87ca-f655f7b9cdf0" name="Vagrant" url="http://homestead.wodboss">
+        <fileTransfer host="homestead.wodboss" port="22" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
