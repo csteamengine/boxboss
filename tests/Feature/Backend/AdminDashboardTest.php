@@ -26,6 +26,8 @@ class AdminDashboardTest extends TestCase
 
         $response = $this->get('/admin/dashboard');
 
+        dump($response);
+
         $response->assertRedirect('/dashboard');
     }
 

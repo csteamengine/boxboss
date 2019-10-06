@@ -29,7 +29,7 @@ trait UserRelationship
     }
 
     public function allBoxes(){
-        return $this->isActive() ? Box::all() : $this->boxesOwned()
+        return $this->isAdmin() ? Box::all() : $this->boxesOwned()
             ->union($this->boxesCoached()->toBase())
             ->union($this->boxesAdmined()->toBase());
     }
@@ -41,11 +41,11 @@ trait UserRelationship
 
     public function boxesCoached()
     {
-        return $this->belongsToMany(Box::class, 'box_coaches', 'id', 'box_id');
+        return $this->belongsToMany(Box::class, 'box_coaches', 'user_id', 'box_id');
     }
 
     public function boxesAdmined()
     {
-        return $this->belongsToMany(Box::class, 'box_admins', 'id', 'box_id');
+        return $this->belongsToMany(Box::class, 'box_admins', 'user_id', 'box_id');
     }
 }
