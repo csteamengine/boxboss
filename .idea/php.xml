@@ -143,6 +143,7 @@
       <path value="$PROJECT_DIR$/vendor/psr/container" />
       <path value="$PROJECT_DIR$/vendor/2bj/phanybar" />
       <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/snapappointments/bootstrap-select" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
