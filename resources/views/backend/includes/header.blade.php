@@ -29,8 +29,26 @@
             </li>
         @endif
     </ul>
-
     <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item d-md-down-none">
+            <select class="box-select show-tick" title="Active Box" data-live-search="true" data-width="fit">
+                <optgroup label="Owner">
+                    @foreach($user->boxesOwned()->get() as $box)
+                        <option data-tokens="{{$box['name']}}">{{$box['name']}}</option>
+                    @endforeach
+                </optgroup>
+                <optgroup label="Coach">
+                    @foreach($user->boxesCoached()->get() as $box)
+                        <option data-tokens="{{$box['name']}}">{{$box['name']}}</option>
+                    @endforeach
+                </optgroup>
+                <optgroup label="Admin">
+                    @foreach($user->boxesAdmined() as $box)
+                        <option data-tokens="{{$box['name']}}">{{$box['name']}}</option>
+                    @endforeach
+                </optgroup>
+            </select>
+        </li>
         <li class="nav-item d-md-down-none">
             <a class="nav-link" href="#">
                 <i class="fas fa-bell"></i>
