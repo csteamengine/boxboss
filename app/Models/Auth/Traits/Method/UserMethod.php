@@ -7,6 +7,14 @@ namespace App\Models\Auth\Traits\Method;
  */
 trait UserMethod
 {
+    public function getActiveBox(){
+        //TODO get the box that the user is currently viewing on the backend
+    }
+
+    public function updateActiveBox(){
+        //TODO update the box that the user wants to edit on the backend
+    }
+
     /**
      * @return mixed
      */
