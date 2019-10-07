@@ -6,6 +6,7 @@ use App\Models\Auth\SocialAccount;
 use App\Models\Auth\PasswordHistory;
 use App\Models\Box;
 use App\Models\BoxCoach;
+use Spatie\Html\Helpers\Arr;
 
 /**
  * Class UserRelationship.
@@ -28,10 +29,38 @@ trait UserRelationship
         return $this->hasMany(PasswordHistory::class);
     }
 
+    public function getAllBoxes(){
+        $oldArr = $this->allBoxes();
+
+        $owned = $this->boxesOwned()->get();
+        $coached = $this->boxesCoached()->get();
+        $admin = $this->boxesAdmined()->get();
+
+        $boxes = array();
+        foreach($oldArr as $box){
+            $permissions = array();
+            if($owned->contains('id', $box->id)){
+                array_push($permissions, "Owner");
+            }
+            if($coached->contains('id', $box->id)){
+                array_push($permissions, "Coach");
+            }
+            if($admin->contains('id', $box->id)){
+                array_push($permissions, "Admin");
+            }
+            $box->permissions = implode(", ", $permissions);
+            array_push($boxes, $box);
+        }
+
+        return $this->isAdmin() ? Box::all() : $boxes;
+    }
+
     public function allBoxes(){
-        return $this->isAdmin() ? Box::all() : $this->boxesOwned()
-            ->union($this->boxesCoached()->toBase())
-            ->union($this->boxesAdmined()->toBase());
+        $owned = $this->boxesOwned()->get();
+        $coached = $this->boxesCoached()->get();
+        $admin = $this->boxesAdmined()->get();
+
+        return $this->isAdmin() ? Box::all() : $owned->merge($coached->merge($admin));
     }
 
     public function boxesOwned()
@@ -46,6 +75,6 @@ trait UserRelationship
 
     public function boxesAdmined()
     {
-        return $this->isAdmin() ? Box::all() : $this->belongsToMany(Box::class, 'box_admins', 'user_id', 'box_id')->get();
+        return $this->isAdmin() ? Box::all() : $this->belongsToMany(Box::class, 'box_admins', 'user_id', 'box_id');
     }
 }

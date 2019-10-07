@@ -15,14 +15,7 @@
                     <strong>@lang('strings.backend.dashboard.welcome') {{ $logged_in_user->name }}!</strong>
                 </div><!--card-header-->
                 <div class="card-body">
-                    <h1>Boxes Owned</h1>
-                    {{$user->boxesOwned()->get()}}
-
-                    <h1>Boxes Coached at</h1>
-                    {{$user->boxesCoached()->get()}}
-
-                    <h1>Boxes as Admin</h1>
-                    {{$user->boxesAdmined()}}
+                    Welcome!
                 </div><!--card-body-->
             </div><!--card-->
         </div><!--col-->
@@ -36,6 +29,14 @@
     <script>
         // To style only selects with the my-select class
         $('.box-select').selectpicker();
+        $('.box-select-aside').selectpicker();
+
+        $('.box-select').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+            $('#box_selection_form').submit();
+        });
+        $('.box-select-aside').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+            $('#box_selection_form_aside').submit();
+        });
     </script>
 
 @endpush

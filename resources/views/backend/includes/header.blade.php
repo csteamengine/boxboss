@@ -9,7 +9,24 @@
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
         <span class="navbar-toggler-icon"></span>
     </button>
-
+    <ul class="nav">
+        <li class="nav-item d-md-down-none">
+            <form id="box_selection_form" action="{{route('admin.updateActiveBox')}}" method="POST">
+                @csrf
+                <select class="box-select show-tick" title="Active Box" data-live-search="true" data-width="fit" name="active-box">
+                    @foreach($user->getAllBoxes() as $box)
+                        <option data-tokens="{{$box['name']}}"
+                                data-subtext="{{$box->permissions}}"
+                                value="{{$box->id}}"
+                            {{session('active_box')->id == $box->id ? "selected" : ""}}>
+                            {{$box->name}}
+                        </option>
+                    @endforeach
+                </select>
+                {{--                <submit type="hidden"></submit>--}}
+            </form>
+        </li>
+    </ul>
     <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item px-3">
             <a class="nav-link" href="{{ route('frontend.index') }}"><i class="fas fa-home"></i></a>
@@ -30,25 +47,6 @@
         @endif
     </ul>
     <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item d-md-down-none">
-            <select class="box-select show-tick" title="Active Box" data-live-search="true" data-width="fit">
-                <optgroup label="Owner">
-                    @foreach($user->boxesOwned()->get() as $box)
-                        <option data-tokens="{{$box['name']}}">{{$box['name']}}</option>
-                    @endforeach
-                </optgroup>
-                <optgroup label="Coach">
-                    @foreach($user->boxesCoached()->get() as $box)
-                        <option data-tokens="{{$box['name']}}">{{$box['name']}}</option>
-                    @endforeach
-                </optgroup>
-                <optgroup label="Admin">
-                    @foreach($user->boxesAdmined() as $box)
-                        <option data-tokens="{{$box['name']}}">{{$box['name']}}</option>
-                    @endforeach
-                </optgroup>
-            </select>
-        </li>
         <li class="nav-item d-md-down-none">
             <a class="nav-link" href="#">
                 <i class="fas fa-bell"></i>

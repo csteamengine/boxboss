@@ -51,5 +51,15 @@ class BoxesTableSeeder extends Seeder
             'user_id' => 9,
             'box_id' => 3
         ]);
+
+        DB::table('box_admins')->insert([
+            'user_id' => 7,
+            'box_id' => 2
+        ]);
+
+        DB::table('box_admins')->insert([
+            'user_id' => 7,
+            'box_id' => 3
+        ]);
     }
 }
