@@ -107,8 +107,6 @@ class ActiveBoxTest extends TestCase
         $coached = $user->boxesCoached()->get();
         $allBoxes = $user->getAllBoxes();
 
-        dump($allBoxes);
-
         $this->assertEquals($expectedAdmin, sizeof($admined));
         $this->assertEquals($expectedCoached, sizeof($coached));
         $this->assertEquals($expectedAll, sizeof($allBoxes));
@@ -136,8 +134,73 @@ class ActiveBoxTest extends TestCase
 
         $allBoxes = $user->getAllBoxes();
 
-        dump($allBoxes);
-
         $this->assertEquals($expectedAll, sizeof($allBoxes));
+    }
+
+    public function user_can_set_active_box(){
+        $this->loginAsBoxAdmin();
+        $numBoxes = 3;
+
+        $boxes = factory(Box::class, $numBoxes)->create();
+        $user = auth()->user();
+
+        DB::table('box_admins')->insert([
+            'user_id' => $user->id,
+            'box_id' => 1
+        ]);
+
+        DB::table('box_coaches')->insert([
+            'user_id' => $user->id,
+            'box_id' => 2
+        ]);
+
+        $admined = $user->boxesAdmined();
+        $coached = $user->boxesCoached()->get();
+        $allBoxes = $user->getAllBoxes();
+
+        session(['active_box' => null]);
+
+        $this->assertNull(session('active_box'));
+
+        $response = $this->get(route('admin.updateActiveBox', ['active-box' => 1]));
+
+        $response->assertStatus(200);
+        $response->assertSessionHas(['flash_success' => 'Updated Active Box']);
+
+        $this->assertEquals(1, session('active_box')->id);
+
+    }
+
+    public function user_cant_set_not_their_box(){
+        $this->loginAsBoxAdmin();
+        $numBoxes = 3;
+
+        $boxes = factory(Box::class, $numBoxes)->create();
+        $user = auth()->user();
+
+        DB::table('box_admins')->insert([
+            'user_id' => 4,
+            'box_id' => 1
+        ]);
+
+        DB::table('box_coaches')->insert([
+            'user_id' => 4,
+            'box_id' => 2
+        ]);
+
+        $admined = $user->boxesAdmined();
+        $coached = $user->boxesCoached()->get();
+        $allBoxes = $user->getAllBoxes();
+
+        session(['active_box' => null]);
+
+        $this->assertNull(session('active_box'));
+
+        $response = $this->get(route('admin.updateActiveBox', ['active-box' => 1]));
+
+        $response->assertStatus(200);
+        $response->assertSessionHas(['flash_error' => 'You don\'t have permission to do that.']);
+
+        $this->assertNull(session('active_box'));
     }
 }

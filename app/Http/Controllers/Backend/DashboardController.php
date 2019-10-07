@@ -27,6 +27,6 @@ class DashboardController extends Controller
             session(['active_box' => $box]);
             return redirect()->route("admin.dashboard")->withFlashSuccess("Updated Active Box");
         }
-        return redirect()->route("admin.dashboard")->withFlashError("Failed to Updated Active Box");
+        return redirect()->route("admin.dashboard")->withFlashError("You don\'t have permission to do that.");
     }
 }
