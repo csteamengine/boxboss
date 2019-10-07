@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Box extends Model
 {
+    protected $fillable = ['name', 'owner_id'];
     //
 }

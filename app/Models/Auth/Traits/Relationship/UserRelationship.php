@@ -30,6 +30,11 @@ trait UserRelationship
     }
 
     public function getAllBoxes(){
+
+        if($this->isAdmin()){
+            return Box::all();
+        }
+
         $oldArr = $this->allBoxes();
 
         $owned = $this->boxesOwned()->get();
@@ -52,7 +57,7 @@ trait UserRelationship
             array_push($boxes, $box);
         }
 
-        return $this->isAdmin() ? Box::all() : $boxes;
+        return $boxes;
     }
 
     public function allBoxes(){
