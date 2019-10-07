@@ -16,6 +16,11 @@ class GlobalComposer
      */
     public function compose(View $view)
     {
+        if(!session()->has('active_box') && auth()->user())
+        {
+            session(['active_box' => auth()->user()->allBoxes()->first()]);
+        }
+
         $view->with('logged_in_user', auth()->user());
     }
 }

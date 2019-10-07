@@ -16,11 +16,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        if(!session()->has('active_box'))
-        {
-            session(['active_box' => auth()->user()->allBoxes()->first()]);
-        }
-        return view('backend.dashboard')->with(['user' => auth()->user()]);
+        return view('backend.dashboard');
     }
 
     public function updateActiveBox(Request $request){

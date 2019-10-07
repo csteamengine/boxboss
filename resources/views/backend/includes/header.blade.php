@@ -35,7 +35,7 @@
             <form id="box_selection_form" action="{{route('admin.updateActiveBox')}}" method="POST">
                 @csrf
                 <select class="box-select show-tick" title="Active Box" data-live-search="true" data-width="fit" name="active-box">
-                    @foreach($user->getAllBoxes() as $box)
+                    @foreach($logged_in_user->getAllBoxes() as $box)
                         <option data-tokens="{{$box->name}} {{$box->permissions}}"
                                 data-subtext="{{$box->permissions}}"
                                 value="{{$box->id}}"

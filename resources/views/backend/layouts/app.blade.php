@@ -20,6 +20,8 @@
     <!-- Otherwise apply the normal LTR layouts -->
     {{ style(mix('css/backend.css')) }}
 
+    <!-- Latest compiled and minified CSS -->
+    {{style(mix('/css/snapappointments/bootstrap-select.css'))}}
     @stack('after-styles')
 </head>
 
@@ -79,6 +81,17 @@
     {!! script(mix('js/manifest.js')) !!}
     {!! script(mix('js/vendor.js')) !!}
     {!! script(mix('js/backend.js')) !!}
+    <!-- Latest compiled and minified JavaScript -->
+    {!! script(asset('/js/snapappointments/bootstrap-select.min.js')) !!}
+
+    <script>
+        // To style only selects with the my-select class
+        $('.box-select').selectpicker();
+
+        $('.box-select').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+            $('#box_selection_form').submit();
+        });
+    </script>
     @stack('after-scripts')
 </body>
 </html>
