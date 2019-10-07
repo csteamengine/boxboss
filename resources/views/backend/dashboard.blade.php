@@ -29,14 +29,9 @@
     <script>
         // To style only selects with the my-select class
         $('.box-select').selectpicker();
-        $('.box-select-aside').selectpicker();
 
         $('.box-select').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
             $('#box_selection_form').submit();
         });
-        $('.box-select-aside').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-            $('#box_selection_form_aside').submit();
-        });
     </script>
-
 @endpush
