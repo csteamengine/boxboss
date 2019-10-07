@@ -3,7 +3,8 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full d-md-down-none" src="{{ asset('img/backend/brand/logo.svg') }}" width="89" height="25" alt="CoreUI Logo">
+        <h3 class="navbar-brand-full d-md-down-none">WodBoss</h3>
+{{--        <img class="navbar-brand-full d-md-down-none" src="{{ asset('img/backend/brand/logo.svg') }}" width="89" height="25" alt="CoreUI Logo">--}}
 {{--        <img class="navbar-brand-minimized" src="{{ asset('img/backend/brand/sygnet.svg') }}" width="30" height="30" alt="CoreUI Logo">--}}
     </a>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
@@ -29,7 +30,7 @@
             </li>
         @endif
     </ul>
-    <ul class="nav ml-md-auto mr-4">
+    <ul class="nav ml-md-auto mr-4 mr-lg-0">
         <li class="nav-item">
             <form id="box_selection_form" action="{{route('admin.updateActiveBox')}}" method="POST">
                 @csrf

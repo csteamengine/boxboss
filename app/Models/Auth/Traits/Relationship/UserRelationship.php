@@ -34,7 +34,7 @@ trait UserRelationship
 
         $owned = $this->boxesOwned()->get();
         $coached = $this->boxesCoached()->get();
-        $admin = $this->boxesAdmined()->get();
+        $admin = $this->boxesAdmined();
 
         $boxes = array();
         foreach($oldArr as $box){
@@ -58,7 +58,7 @@ trait UserRelationship
     public function allBoxes(){
         $owned = $this->boxesOwned()->get();
         $coached = $this->boxesCoached()->get();
-        $admin = $this->boxesAdmined()->get();
+        $admin = $this->boxesAdmined();
 
         return $this->isAdmin() ? Box::all() : $owned->merge($coached->merge($admin));
     }
@@ -75,6 +75,6 @@ trait UserRelationship
 
     public function boxesAdmined()
     {
-        return $this->isAdmin() ? Box::all() : $this->belongsToMany(Box::class, 'box_admins', 'user_id', 'box_id');
+        return $this->isAdmin() ? Box::all() : $this->belongsToMany(Box::class, 'box_admins', 'user_id', 'box_id')->get();
     }
 }
