@@ -24,7 +24,7 @@
                 @if($feature->isActive('user_login'))
                     <li class="nav-item"><a href="{{route('frontend.auth.login')}}" class="nav-link {{ active_class(Route::is('frontend.auth.login')) }}">@lang('navs.frontend.login')</a></li>
                 @endif
-                @if(config('access.registration'))
+                @if(config('access.registration') && $feature->isActive('user_register'))
                     <li class="nav-item"><a href="{{route('frontend.auth.register')}}" class="nav-link {{ active_class(Route::is('frontend.auth.register')) }}">@lang('navs.frontend.register')</a></li>
                 @endif
             @else
