@@ -14,6 +14,14 @@ return [
 
     'backend' => [
         'access' => [
+            'features' => [
+                'already_exists' => 'That feature already exists. Please choose a different name.',
+                'cant_delete_admin' => 'You can not delete that feature.',
+                'create_error' => 'There was a problem creating this feature. Please try again.',
+                'delete_error' => 'There was a problem deleting this feature. Please try again.',
+                'not_found' => 'That feature does not exist.',
+                'update_error' => 'There was a problem updating this feature. Please try again.',
+            ],
             'roles' => [
                 'already_exists' => 'That role already exists. Please choose a different name.',
                 'cant_delete_admin' => 'You can not delete the Administrator role.',

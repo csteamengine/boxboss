@@ -16,6 +16,14 @@ return [
         'access' => [
             'title' => 'Access',
 
+            'features' => [
+                'all' => 'All Features',
+                'create' => 'Create Features',
+                'edit' => 'Edit Features',
+                'flags' => 'Features Flags',
+                'main' => 'Features',
+            ],
+
             'roles' => [
                 'all' => 'All Roles',
                 'create' => 'Create Role',

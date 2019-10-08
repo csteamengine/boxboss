@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.0.4 on 2019-10-07 23:50:55.
+ * Generated for Laravel 6.0.4 on 2019-10-08 16:34:01.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14660,6 +14660,18 @@ namespace Illuminate\Support {
  
 }
 
+namespace App\Models { 
+
+    /**
+     * 
+     *
+     */ 
+    class Feature {
+         
+    }
+ 
+}
+
 namespace Barryvdh\Debugbar { 
 
     /**
@@ -19361,6 +19373,8 @@ namespace  {
         }
 
     class Event extends \Illuminate\Support\Facades\Event {}
+
+    class Feature extends \App\Models\Feature {}
 
     class File extends \Illuminate\Support\Facades\File {}
 

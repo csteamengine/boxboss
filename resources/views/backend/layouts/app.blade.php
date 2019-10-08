@@ -60,7 +60,7 @@
             {!! Breadcrumbs::render() !!}
 
             <div class="container-fluid">
-                <div class="animated fadeIn">
+                <div class="animated fadeIn" id="mainContainer">
                     <div class="content-header">
                         @yield('page-header')
                     </div><!--content-header-->

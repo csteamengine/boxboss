@@ -20,6 +20,7 @@ mix.setPublicPath('public')
     .sass('resources/sass/backend/app.scss', 'css/backend.css')
     .styles(['vendor/snapappointments/bootstrap-select/dist/css/bootstrap-select.css'], 'public/css/snapappointments/bootstrap-select.css')
     .js('resources/js/frontend/app.js', 'js/frontend.js')
+    .js('resources/js/backend/features/features.js', 'js/backend/features/features.js')
     .js('vendor/snapappointments/bootstrap-select/dist/js/bootstrap-select.min.js', 'js/snapappointments/bootstrap-select.min.js')
     .js([
         'resources/js/backend/before.js',

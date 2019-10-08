@@ -164,6 +164,10 @@ return [
                     'system' => 'System',
                 ],
 
+                'features' => [
+                    'name' => 'Name',
+                ],
+
                 'roles' => [
                     'associated_permissions' => 'Associated Permissions',
                     'name' => 'Name',

@@ -51,6 +51,13 @@
                                 @lang('labels.backend.access.roles.management')
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/auth/features*'))
+                            }}" href="{{ route('admin.auth.features.index') }}">
+                                @lang('labels.backend.access.features.flags')
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Auth\Feature\FeatureController;
 use App\Http\Controllers\Backend\Auth\Role\RoleController;
 use App\Http\Controllers\Backend\Auth\User\UserController;
 use App\Http\Controllers\Backend\Auth\User\UserSocialController;
@@ -70,6 +71,20 @@ Route::group([
             Route::get('edit', [RoleController::class, 'edit'])->name('role.edit');
             Route::patch('/', [RoleController::class, 'update'])->name('role.update');
             Route::delete('/', [RoleController::class, 'destroy'])->name('role.destroy');
+        });
+    });
+
+    // Feature Management
+    Route::group(['namespace' => 'Features'], function () {
+        Route::get('features', [FeatureController::class, 'index'])->name('features.index');
+        Route::post('features/{id}', [FeatureController::class, 'toggle'])->name('features.toggle');
+        Route::get('feature/create', [FeatureController::class, 'create'])->name('features.create');
+        Route::post('feature', [FeatureController::class, 'store'])->name('features.store');
+
+        Route::group(['prefix' => 'features/{feature}'], function () {
+            Route::get('edit', [FeatureController::class, 'edit'])->name('features.edit');
+            Route::patch('/', [FeatureController::class, 'update'])->name('features.update');
+            Route::delete('/', [FeatureController::class, 'destroy'])->name('features.destroy');
         });
     });
 });

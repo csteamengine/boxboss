@@ -36,6 +36,16 @@ return [
 
     'backend' => [
         'access' => [
+            'features' => [
+                'create' => 'Create Feature',
+                'edit' => 'Edit Feature',
+                'flags' => 'Feature Flags',
+                'table' => [
+                    'name' => 'Feature Name',
+                    'status' => 'Status',
+                    'total' => 'feature total|features total',
+                ],
+            ],
             'roles' => [
                 'create' => 'Create Role',
                 'edit' => 'Edit Role',
