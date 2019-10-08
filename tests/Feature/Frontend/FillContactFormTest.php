@@ -2,12 +2,15 @@
 
 namespace Tests\Feature\Frontend;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Frontend\Contact\SendContact;
 
 class FillContactFormTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     public function the_contact_route_exists()
     {
