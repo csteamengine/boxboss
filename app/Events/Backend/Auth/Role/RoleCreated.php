@@ -5,7 +5,7 @@ namespace App\Events\Backend\Auth\Role;
 use Illuminate\Queue\SerializesModels;
 
 /**
- * Class RoleCreated.
+ * Class FeatureCreated.
  */
 class RoleCreated
 {

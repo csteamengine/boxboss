@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Backend\Auth\Role;
+namespace App\Http\Requests\Backend\Auth\Feature;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ManageFeatureRequest.
+ * Class UpdateFeatureRequest.
  */
-class ManageRoleRequest extends FormRequest
+class UpdateFeatureRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,7 +27,7 @@ class ManageRoleRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required'],
         ];
     }
 }

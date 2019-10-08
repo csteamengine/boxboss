@@ -5,7 +5,7 @@ namespace Tests\Feature\Backend\Role;
 use Tests\TestCase;
 use App\Models\Auth\Role;
 use Illuminate\Support\Facades\Event;
-use App\Events\Backend\Auth\Role\RoleDeleted;
+use App\Events\Backend\Auth\Role\FeatureDeleted;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DeleteRoleTest extends TestCase
@@ -44,6 +44,6 @@ class DeleteRoleTest extends TestCase
 
         $this->delete("/admin/auth/role/{$role->id}");
 
-        Event::assertDispatched(RoleDeleted::class);
+        Event::assertDispatched(FeatureDeleted::class);
     }
 }

@@ -6,8 +6,8 @@ use App\Models\Feature;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
-use App\Events\Backend\Auth\Role\RoleCreated;
-use App\Events\Backend\Auth\Role\RoleUpdated;
+use App\Events\Backend\Auth\Role\FeatureCreated;
+use App\Events\Backend\Auth\Role\FeatureUpdated;
 
 /**
  * Class RoleRepository.
@@ -43,7 +43,7 @@ class FeatureRepository extends BaseRepository
 
             if ($feature) {
 
-//                event(new RoleCreated($role));
+//                event(new FeatureCreated($role));
 
                 return $feature;
             }

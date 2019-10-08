@@ -9,7 +9,7 @@ $(document).ready(function() {
             try {
                 var route = $(this).data('url');
                 var csrf_token = $('#featureTableCSRF').val();
-                console.log(csrf_token);
+                console.log(route);
                 var button = $(this);
                 $.ajax({
                     /* the route pointing to the post function */

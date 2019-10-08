@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Backend\Auth\Feature;
 
+use App\Http\Requests\Backend\Auth\Feature\ManageFeatureRequest;
+use App\Http\Requests\Backend\Auth\Feature\StoreFeatureRequest;
+use App\Http\Requests\Backend\Auth\Feature\UpdateFeatureRequest;
 use App\Models\Feature;
 use App\Repositories\Backend\Auth\FeatureRepository;
-use App\Repositories\Backend\Auth\PermissionRepository;
-use App\Repositories\Backend\Auth\RoleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -36,7 +37,8 @@ class FeatureController extends Controller
     }
 
     public function toggle($id){
-        $feature = Feature::find($id)->first();
+        $feature = Feature::where('id', $id)->first();
+
         if(!is_null($feature)){
             if($feature->is_active){
                 $feature->toggleOff($feature->name);
@@ -62,62 +64,60 @@ class FeatureController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.auth.features.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param  StoreFeatureRequest  $request
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return mixed
+     * @throws \App\Exceptions\GeneralException
+     * @throws \Throwable
      */
-    public function store(Request $request)
+    public function store(StoreFeatureRequest $request)
     {
-        //
+        $this->featureRepository->create($request->only('name', 'associated-permissions', 'permissions', 'sort'));
+
+        return redirect()->route('admin.auth.features.index')->withFlashSuccess(__('alerts.backend.features.created'));
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param ManageFeatureRequest $request
+     * @param Feature $feature
+     * @return mixed
      */
-    public function show($id)
+    public function edit(ManageFeatureRequest $request, Feature $feature)
     {
-        //
+        return view('backend.auth.features.edit')
+            ->withFeature($feature);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @param  UpdateFeatureRequest  $request
+     * @param  Feature  $feature
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return mixed
+     * @throws \App\Exceptions\GeneralException
+     * @throws \Throwable
      */
-    public function edit($id)
+    public function update(UpdateFeatureRequest $request, Feature $feature)
     {
-        //
+        $this->featureRepository->update($feature, $request->only('name', 'permissions'));
+
+        return redirect()->route('admin.auth.features.index')->withFlashSuccess(__('alerts.backend.features.updated'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param ManageFeatureRequest $request
+     * @param Feature              $feature
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @throws \Exception
+     * @return mixed
      */
-    public function update(Request $request, $id)
+    public function destroy(ManageFeatureRequest $request, Feature $feature)
     {
-        //
-    }
+        $this->featureRepository->deleteById($feature->id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return redirect()->route('admin.auth.features.index')->withFlashSuccess(__('alerts.backend.features.deleted'));
     }
 }

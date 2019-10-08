@@ -112,8 +112,8 @@ class RoleController extends Controller
      * @param ManageRoleRequest $request
      * @param Role              $role
      *
-     * @throws \Exception
      * @return mixed
+     *@throws \Exception
      */
     public function destroy(ManageRoleRequest $request, Role $role)
     {

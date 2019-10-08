@@ -77,7 +77,7 @@ Route::group([
     // Feature Management
     Route::group(['namespace' => 'Features'], function () {
         Route::get('features', [FeatureController::class, 'index'])->name('features.index');
-        Route::post('features/{id}', [FeatureController::class, 'toggle'])->name('features.toggle');
+        Route::post('features/toggle/{id}', [FeatureController::class, 'toggle'])->name('features.toggle');
         Route::get('feature/create', [FeatureController::class, 'create'])->name('features.create');
         Route::post('feature', [FeatureController::class, 'store'])->name('features.store');
 

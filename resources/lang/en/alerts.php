@@ -13,6 +13,12 @@ return [
     */
 
     'backend' => [
+        'features' => [
+            'created' => 'The feature was successfully created.',
+            'deleted' => 'The feature was successfully deleted.',
+            'updated' => 'The feature was successfully updated.'
+        ],
+
         'roles' => [
             'created' => 'The role was successfully created.',
             'deleted' => 'The role was successfully deleted.',
