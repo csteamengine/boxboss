@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Feature extends Model
 {
     public function isActive($featureName){
+        if(auth()->user() != null && auth()->user()->isAdmin()){
+            return true;
+        }
+
         $feature = Feature::where('name', $featureName)->first();
 
         if(!is_null($feature)){
