@@ -11,11 +11,6 @@ class ActiveBoxTest extends TestCase
 {
     use RefreshDatabase;
 
-    //Test Admin - no owned, or coached, but access to all
-    //Test owner
-    //test box admin
-    //test coach
-    //test regular user
     /** @test */
     public function admin_can_view_all_boxes(){
         $this->loginAsAdmin();
@@ -103,11 +98,11 @@ class ActiveBoxTest extends TestCase
             'box_id' => 2
         ]);
 
-        $admined = $user->boxesAdmined();
+        $admin = $user->boxesAdmined();
         $coached = $user->boxesCoached()->get();
         $allBoxes = $user->getAllBoxes();
 
-        $this->assertEquals($expectedAdmin, sizeof($admined));
+        $this->assertEquals($expectedAdmin, sizeof($admin));
         $this->assertEquals($expectedCoached, sizeof($coached));
         $this->assertEquals($expectedAll, sizeof($allBoxes));
     }
@@ -116,8 +111,7 @@ class ActiveBoxTest extends TestCase
     public function get_all_boxes_no_duplicates(){
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
-        $expectedAdmin = 1;
-        $expectedCoached = 1;
+
         $expectedAll = 1;
         $boxes = factory(Box::class, $numBoxes)->create();
         $user = auth()->user();
@@ -154,10 +148,6 @@ class ActiveBoxTest extends TestCase
             'box_id' => 2
         ]);
 
-        $admined = $user->boxesAdmined();
-        $coached = $user->boxesCoached()->get();
-        $allBoxes = $user->getAllBoxes();
-
         session(['active_box' => null]);
 
         $this->assertNull(session('active_box'));
@@ -167,7 +157,7 @@ class ActiveBoxTest extends TestCase
         $response->assertStatus(200);
         $response->assertSessionHas(['flash_success' => 'Updated Active Box']);
 
-        $this->assertEquals(1, session('active_box')->id);
+        $this->assertEquals(1, session('active_box')['id']);
 
     }
 
@@ -187,10 +177,6 @@ class ActiveBoxTest extends TestCase
             'user_id' => 4,
             'box_id' => 2
         ]);
-
-        $admined = $user->boxesAdmined();
-        $coached = $user->boxesCoached()->get();
-        $allBoxes = $user->getAllBoxes();
 
         session(['active_box' => null]);
 
