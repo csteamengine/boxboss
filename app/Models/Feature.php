@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Feature extends Model
 {
+    protected $fillable = ['name', 'is_active'];
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
     public function isActive($featureName){
         if(auth()->user() != null && auth()->user()->isAdmin()){
             return true;
