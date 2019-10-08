@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $('#featuresTable').DataTable();
     var reset = false;
-    $('.custom-control-input').on('click', function(event) {
+    $('.switch-input').on('click', function(event) {
         if(reset){
             reset = false;
         }else{
