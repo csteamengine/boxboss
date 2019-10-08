@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Box;
+use App\Models\Facades\Feature;
 use Illuminate\Http\Request;
 
 /**
