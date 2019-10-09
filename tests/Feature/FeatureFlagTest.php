@@ -1,8 +1,8 @@
 <?php
 
-//namespace Tests\Feature;
+//namespace Tests\FeatureFlag;
 
-use App\Models\Facades\Feature;
+use App\Models\Facades\FeatureFlag;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -19,7 +19,7 @@ class FeatureFlagTest extends TestCase
      */
     public function test_fake_feature_returns_false()
     {
-        $this->assertFalse(Feature::isActive('fake_feature'));
+        $this->assertFalse(FeatureFlag::isActive('fake_feature'));
     }
 
 
@@ -28,12 +28,12 @@ class FeatureFlagTest extends TestCase
      */
     public function test_active_feature_returns_true()
     {
-        $feature = Feature::create([
+        $feature = FeatureFlag::create([
             'name' => 'test_feature',
             'is_active' => true
         ]);
 
-        $this->assertTrue(Feature::isActive($feature->name));
+        $this->assertTrue(FeatureFlag::isActive($feature->name));
     }
 
     /**
@@ -41,39 +41,39 @@ class FeatureFlagTest extends TestCase
      */
     public function test_inactive_feature_returns_false()
     {
-        $feature = Feature::create([
+        $feature = FeatureFlag::create([
             'name' => 'test_feature',
             'is_active' => false
         ]);
 
-        $this->assertFalse(Feature::isActive($feature->name));
+        $this->assertFalse(FeatureFlag::isActive($feature->name));
     }
 
     public function test_feature_toggle_off()
     {
-        $feature = Feature::create([
+        $feature = FeatureFlag::create([
             'name' => 'test_feature',
             'is_active' => true
         ]);
-        $this->assertTrue(Feature::isActive($feature->name));
+        $this->assertTrue(FeatureFlag::isActive($feature->name));
 
-        Feature::toggleOff($feature->name);
+        FeatureFlag::toggleOff($feature->name);
 
-        $this->assertFalse(Feature::isActive($feature->name));
+        $this->assertFalse(FeatureFlag::isActive($feature->name));
 
     }
 
     public function test_feature_toggle_on()
     {
-        $feature = Feature::create([
+        $feature = FeatureFlag::create([
             'name' => 'test_feature',
             'is_active' => false
         ]);
-        $this->assertFalse(Feature::isActive($feature->name));
+        $this->assertFalse(FeatureFlag::isActive($feature->name));
 
-        Feature::toggleOn($feature->name);
+        FeatureFlag::toggleOn($feature->name);
 
-        $this->assertTrue(Feature::isActive($feature->name));
+        $this->assertTrue(FeatureFlag::isActive($feature->name));
 
     }
 }

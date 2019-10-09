@@ -30,25 +30,29 @@
             </li>
         @endif
     </ul>
-    <ul class="nav ml-md-auto mr-4 mr-lg-0">
-        <li class="nav-item">
-            <form id="box_selection_form" action="{{route('admin.updateActiveBox')}}" method="POST">
-                @csrf
-                <select class="box-select show-tick" title="Active Box" data-live-search="true" data-width="fit" name="active-box">
-                    @foreach($logged_in_user->getAllBoxes() as $box)
-                        <option data-tokens="{{$box->name}} {{$box->permissions}}"
-                                data-subtext="{{$box->permissions}}"
-                                value="{{$box->id}}"
-                            {{session('active_box')->id == $box->id ? "selected" : ""}}>
-                            {{$box->name}}
-                        </option>
-                    @endforeach
-                </select>
-                {{--                <submit type="hidden"></submit>--}}
-            </form>
-        </li>
-    </ul>
-    <ul class="nav navbar-nav">
+
+    @if(FeatureFlag::isActive('active_box'))
+        <ul class="nav ml-md-auto mr-4 mr-lg-0">
+            <li class="nav-item">
+                <form id="box_selection_form" action="{{route('admin.updateActiveBox')}}" method="POST">
+                    @csrf
+                    <select class="box-select show-tick" title="Active Box" data-live-search="true" data-width="fit" name="active-box">
+                        @foreach($logged_in_user->getAllBoxes() as $box)
+                            <option data-tokens="{{$box->name}} {{$box->permissions}}"
+                                    data-subtext="{{$box->permissions}}"
+                                    value="{{$box->id}}"
+                                {{session('active_box')->id == $box->id ? "selected" : ""}}>
+                                {{$box->name}}
+                            </option>
+                        @endforeach
+                    </select>
+{{--                                    <submit type="hidden"></submit>--}}
+                </form>
+            </li>
+        </ul>
+    @endif
+
+    <ul class="nav navbar-nav {{!FeatureFlag::isActive('active_box') ? "ml-auto" : ""}}">
         <li class="nav-item d-md-down-none">
             <a class="nav-link" href="#">
                 <i class="fas fa-bell"></i>

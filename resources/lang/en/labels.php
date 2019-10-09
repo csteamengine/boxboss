@@ -37,11 +37,11 @@ return [
     'backend' => [
         'access' => [
             'features' => [
-                'create' => 'Create Feature',
-                'edit' => 'Edit Feature',
-                'flags' => 'Feature Flags',
+                'create' => 'Create FeatureFlag',
+                'edit' => 'Edit FeatureFlag',
+                'flags' => 'FeatureFlag Flags',
                 'table' => [
-                    'name' => 'Feature Name',
+                    'name' => 'FeatureFlag Name',
                     'status' => 'Status',
                     'total' => 'feature total|features total',
                 ],

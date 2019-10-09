@@ -8,7 +8,6 @@ use App\Http\Controllers\Frontend\Auth\ConfirmAccountController;
 use App\Http\Controllers\Frontend\Auth\ForgotPasswordController;
 use App\Http\Controllers\Frontend\Auth\UpdatePasswordController;
 use App\Http\Controllers\Frontend\Auth\PasswordExpiredController;
-use App\Models\Facades\Feature;
 /*
  * Frontend Access Controllers
  * All route names are prefixed with 'frontend.auth'.
@@ -31,7 +30,7 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
 
     // These routes require no user to be logged in
     Route::group(['middleware' => 'guest'], function () {
-        if(Feature::isActive('user_login')) {
+        if(FeatureFlag::isActive('user_login')) {
             // Authentication Routes
             Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
             Route::post('login', [LoginController::class, 'login'])->name('login.post');
@@ -41,7 +40,7 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
             Route::get('login/{provider}/callback', [SocialLoginController::class, 'login']);
         }
 
-        if(Feature::isActive('user_register')) {
+        if(FeatureFlag::isActive('user_register')) {
             // Registration Routes
             Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
             Route::post('register', [RegisterController::class, 'register'])->name('register.post');

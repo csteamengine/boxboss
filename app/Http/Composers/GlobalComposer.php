@@ -2,7 +2,6 @@
 
 namespace App\Http\Composers;
 
-use App\Models\Feature;
 use Illuminate\View\View;
 
 /**
@@ -23,6 +22,5 @@ class GlobalComposer
         }
 
         $view->with('logged_in_user', auth()->user());
-        $view->with('feature', new Feature());
     }
 }

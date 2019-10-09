@@ -62,7 +62,7 @@ class SecureHeaders
         $response->headers->set('Content-Security-Policy', "default-src 'self'");
 
         // Info: https://scotthelme.co.uk/a-new-security-header-feature-policy/
-        $response->headers->set('Feature-Policy', "geolocation 'none'; midi 'none'; sync-xhr 'none'; microphone 'none'; camera 'none'; magnetometer 'none'; gyroscope 'none'; speaker 'self'; fullscreen 'self'; payment 'none'");
+        $response->headers->set('FeatureFlag-Policy', "geolocation 'none'; midi 'none'; sync-xhr 'none'; microphone 'none'; camera 'none'; magnetometer 'none'; gyroscope 'none'; speaker 'self'; fullscreen 'self'; payment 'none'");
 
         return $response;
     }

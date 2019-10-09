@@ -2,10 +2,9 @@
 
 namespace App\Models\Facades;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Facade;
 
-class Feature extends Facade
+class FeatureFlag extends Facade
 {
     protected static function getFacadeAccessor() { return 'feature'; }
 }

@@ -74,7 +74,7 @@ Route::group([
         });
     });
 
-    // Feature Management
+    // FeatureFlag Management
     Route::group(['namespace' => 'Features'], function () {
         Route::get('features', [FeatureController::class, 'index'])->name('features.index');
         Route::post('features/toggle/{id}', [FeatureController::class, 'toggle'])->name('features.toggle');
