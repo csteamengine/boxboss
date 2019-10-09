@@ -10,7 +10,7 @@ use App\Events\Backend\Box\BoxCreated;
 use App\Events\Backend\Box\BoxUpdated;
 
 /**
- * Class RoleRepository.
+ * Class BoxRepository.
  */
 class BoxRepository extends BaseRepository
 {

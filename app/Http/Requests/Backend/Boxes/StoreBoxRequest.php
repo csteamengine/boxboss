@@ -28,7 +28,7 @@ class StoreBoxRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', Rule::unique('boxs')],
+            'name' => ['required', Rule::unique('boxes')],
         ];
     }
 }
