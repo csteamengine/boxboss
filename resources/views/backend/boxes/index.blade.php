@@ -3,7 +3,6 @@
 @section('title', app_name() . ' | '. __('labels.backend.boxes.main'))
 
 @push('after-styles')
-    {!! style('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css') !!}
     {!! style('https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css') !!}
 @endpush
 
@@ -30,7 +29,8 @@
                         <thead>
                             <tr>
                                 <th>@lang('labels.backend.boxes.table.name')</th>
-                                <th>@lang('labels.backend.boxes.table.status')</th>
+                                <th>@lang('labels.backend.boxes.table.permissions')</th>
+                                <th>@lang('labels.backend.boxes.table.owner')</th>
                                 <th>@lang('labels.general.actions')</th>
                             </tr>
                         </thead>

@@ -12,14 +12,14 @@
                     @lang('menus.backend.sidebar.dashboard')
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{
-                    active_class(Route::is('admin/boxes'))
-                }}" href="{{ route('admin.boxes.index') }}">
-                    <i class="nav-icon fas fa-building -alt"></i>
-                    @lang('menus.backend.sidebar.boxes')
-                </a>
-            </li>
+            @if(FeatureFlag::isActive('box_management'))
+                <li class="nav-item">
+                    <a class="nav-link {{active_class(Route::is('admin/boxes'))}}" href="{{ route('admin.boxes.index') }}">
+                        <i class="nav-icon fas fa-building -alt"></i>
+                        @lang('menus.backend.sidebar.boxes')
+                    </a>
+                </li>
+            @endif
 
             @if ($logged_in_user->isAdmin())
                 <li class="nav-title">

@@ -3,7 +3,6 @@
 @section('title', app_name() . ' | '. __('labels.backend.access.features.flags'))
 
 @push('after-styles')
-    {!! style('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css') !!}
     {!! style('https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css') !!}
 @endpush
 
@@ -49,6 +48,6 @@
 @push('after-scripts')
     {!! script('https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js') !!}
     {!! script('https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js') !!}
-    {!! script(mix('boxes.js !!}
+    {!! script(mix('js/backend/features/features.js')) !!}
 
 @endpush

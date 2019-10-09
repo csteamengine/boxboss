@@ -23,6 +23,7 @@ class CreateBoxesTable extends Migration
             $table->string('zip')->nullable();
             $table->string('country')->nullable();
             $table->integer('owner_id')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

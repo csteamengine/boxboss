@@ -5,7 +5,6 @@ namespace App\Models\Auth\Traits\Relationship;
 use App\Models\Auth\SocialAccount;
 use App\Models\Auth\PasswordHistory;
 use App\Models\Box;
-use App\Models\BoxCoach;
 use Spatie\Html\Helpers\Arr;
 
 /**
@@ -80,6 +79,6 @@ trait UserRelationship
 
     public function boxesAdmined()
     {
-        return $this->isAdmin() ? Box::all() : $this->belongsToMany(Box::class, 'box_admins', 'user_id', 'box_id')->get();
+        return $this->isAdmin() ? Box::with('owner') : $this->belongsToMany(Box::class, 'box_admins', 'user_id', 'box_id')->get();
     }
 }

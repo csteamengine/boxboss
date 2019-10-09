@@ -31,9 +31,7 @@ class BoxController extends Controller
     public function index()
     {
         return view('backend.boxes.index')
-            ->withBoxes($this->boxRepository
-                ->orderBy('id')
-                ->paginate());
+            ->withBoxes(auth()->user()->getAllBoxes());
     }
 
     /**

@@ -126,9 +126,11 @@ return [
             'create' => 'Create Box',
             'edit' => 'Edit Box',
             'main' => 'Boxes',
+            'box_actions' => 'Actions',
             'table' => [
-                'name' => 'Box Name',
-                'status' => 'Status',
+                'name' => 'Box',
+                'permissions' => 'Permissions',
+                'owner' => 'Owner',
                 'total' => 'box total|boxes total',
             ],
         ],

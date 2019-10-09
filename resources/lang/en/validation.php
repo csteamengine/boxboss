@@ -190,6 +190,9 @@ return [
                     'language' => 'Language',
                 ],
             ],
+            'boxes' => [
+                'name' => 'Box Name',
+            ],
         ],
 
         'frontend' => [
