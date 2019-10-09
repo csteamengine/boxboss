@@ -2,6 +2,11 @@
 
 @section('title', app_name() . ' | '. __('labels.backend.access.roles.management'))
 
+@push('after-styles')
+    {!! style('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css') !!}
+    {!! style('https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css') !!}
+@endpush
+
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -20,7 +25,7 @@
         <div class="row mt-4">
             <div class="col">
                 <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" id="roleTable">
                         <thead>
                         <tr>
                             <th>@lang('labels.backend.access.roles.table.role')</th>
@@ -55,19 +60,14 @@
                 </div>
             </div><!--col-->
         </div><!--row-->
-        <div class="row">
-            <div class="col-7">
-                <div class="float-left">
-                    {!! $roles->total() !!} {{ trans_choice('labels.backend.access.roles.table.total', $roles->total()) }}
-                </div>
-            </div><!--col-->
-
-            <div class="col-5">
-                <div class="float-right">
-                    {!! $roles->render() !!}
-                </div>
-            </div><!--col-->
-        </div><!--row-->
     </div><!--card-body-->
 </div><!--card-->
 @endsection
+
+@push('after-scripts')
+    {!! script('https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js') !!}
+    {!! script('https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js') !!}
+    <script>
+        $('#roleTable').DataTable();
+    </script>
+@endpush

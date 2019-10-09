@@ -24,7 +24,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(AuthTableSeeder::class);
         $this->call(BoxesTableSeeder::class);
-        $this->call(FeaturesTableSeeder::class);
 
         Model::reguard();
     }
