@@ -27,12 +27,14 @@ class PermissionRoleTableSeeder extends Seeder
 
         // Create Permissions
         $update = Permission::create(['name' => 'update backend']);
+        $adminBox = Permission::create(['name' => 'admin box']);
         $updateBox = Permission::create(['name' => 'update box']);
         $viewBackend = Permission::create(['name' => 'view backend']);
         $viewBox = Permission::create(['name' => 'view box']);
 
         // Owner Permissions
         $owner->givePermissionTo($viewBackend);
+        $owner->givePermissionTo($adminBox);
         $owner->givePermissionTo($updateBox);
 
         //Coach Permissions

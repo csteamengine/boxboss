@@ -17,7 +17,7 @@ class StoreBoxRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->isAdmin();
+        return true;
     }
 
     /**

@@ -16,7 +16,7 @@ class UpdateBoxRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->user()->isAdmin();
+        return true;
     }
 
     /**

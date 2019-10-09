@@ -1,7 +1,9 @@
 <div class="btn-group btn-group-sm" role="group" aria-label="@lang('labels.backend.boxes.actions')">
-    <a href="{{ route('admin.boxes.edit', $box) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')">
-        <i class="fas fa-edit"></i>
-    </a>
+    @if($logged_in_user->can('view', $box))
+        <a href="{{ route('admin.boxes.edit', $box) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')">
+            <i class="fas fa-edit"></i>
+        </a>
+    @endif
 {{--TODO add a view button to view the box on the front end/view the boxes dashboard--}}
     <a href="{{ route('admin.boxes.destroy', $box) }}"
        data-method="delete"

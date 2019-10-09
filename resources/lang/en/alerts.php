@@ -13,6 +13,12 @@ return [
     */
 
     'backend' => [
+        'boxes' => [
+            'created' => 'The box was successfully created.',
+            'deleted' => 'The box was successfully deleted.',
+            'updated' => 'The box was successfully updated.'
+        ],
+
         'features' => [
             'created' => 'The feature was successfully created.',
             'deleted' => 'The feature was successfully deleted.',
