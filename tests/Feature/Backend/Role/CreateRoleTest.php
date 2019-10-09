@@ -5,7 +5,7 @@ namespace Tests\Feature\Backend\Role;
 use Tests\TestCase;
 use App\Models\Auth\Role;
 use Illuminate\Support\Facades\Event;
-use App\Events\Backend\Auth\Role\FeatureCreated;
+use App\Events\Backend\Auth\Role\RoleCreated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CreateRoleTest extends TestCase
@@ -70,6 +70,6 @@ class CreateRoleTest extends TestCase
 
         $this->post('/admin/auth/role', ['name' => 'new role', 'permissions' => ['view backend']]);
 
-        Event::assertDispatched(FeatureCreated::class);
+        Event::assertDispatched(RoleCreated::class);
     }
 }

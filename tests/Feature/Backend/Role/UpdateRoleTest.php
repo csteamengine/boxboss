@@ -5,7 +5,7 @@ namespace Tests\Feature\Backend\Role;
 use Tests\TestCase;
 use App\Models\Auth\Role;
 use Illuminate\Support\Facades\Event;
-use App\Events\Backend\Auth\Role\FeatureUpdated;
+use App\Events\Backend\Auth\Role\RoleUpdated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UpdateRoleTest extends TestCase
@@ -63,6 +63,6 @@ class UpdateRoleTest extends TestCase
 
         $this->patch("/admin/auth/role/{$role->id}", ['name' => 'new name', 'permissions' => ['view backend']]);
 
-        Event::assertDispatched(FeatureUpdated::class);
+        Event::assertDispatched(RoleUpdated::class);
     }
 }

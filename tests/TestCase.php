@@ -14,6 +14,12 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    protected function setUp() : void
+    {
+        parent::setup();
+        $this->artisan("db:seed --class=FeaturesTableSeeder");
+    }
+
     /**
      * Assigns the array of permissions to the role given
      *

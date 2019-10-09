@@ -5,7 +5,7 @@ namespace App\Http\Requests\Backend\Auth\Role;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class ManageFeatureRequest.
+ * Class ManageRoleRequest.
  */
 class ManageRoleRequest extends FormRequest
 {

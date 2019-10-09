@@ -16,12 +16,12 @@ class ActiveBoxTest extends TestCase
         $this->loginAsAdmin();
         $numBoxes = 3;
         $boxes = factory(Box::class, $numBoxes)->create();
-
+        $expected = Box::all()->count();
         $user = auth()->user();
 
         $allBoxes = $user->getAllBoxes();
 
-        $this->assertEquals($numBoxes, sizeof($allBoxes));
+        $this->assertEquals($expected, sizeof($allBoxes));
     }
 
     /** @test */

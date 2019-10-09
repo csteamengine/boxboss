@@ -5,7 +5,7 @@ namespace App\Events\Backend\Auth\Role;
 use Illuminate\Queue\SerializesModels;
 
 /**
- * Class FeatureDeleted.
+ * Class RoleDeleted.
  */
 class RoleDeleted
 {

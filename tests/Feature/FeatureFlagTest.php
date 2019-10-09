@@ -76,4 +76,29 @@ class FeatureFlagTest extends TestCase
         $this->assertTrue(FeatureFlag::isActive($feature->name));
 
     }
+
+    public function test_admin_user_can_access_inactive_feature(){
+        $feature = FeatureFlag::create([
+            'name' => 'test_feature',
+            'is_active' => false
+        ]);
+        $this->assertFalse(FeatureFlag::isActive($feature->name));
+        $this->loginAsAdmin();
+        $this->assertTrue(FeatureFlag::isActive($feature->name));
+
+    }
+
+//    public function test_backend_user_redirected_to_dashboard(){
+//        $feature = FeatureFlag::create([
+//            'name' => 'test_feature',
+//            'is_active' => false
+//        ]);
+//        $this->assertFalse(FeatureFlag::isActive($feature->name));
+//        $this->loginAsCoach();
+//        $this->assertTrue(FeatureFlag::isActive($feature->name));
+//    }
+//
+//    public function test_guest_and_regular_user_redirected_to_frontend(){
+//
+//    }
 }

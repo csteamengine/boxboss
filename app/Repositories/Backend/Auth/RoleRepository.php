@@ -6,8 +6,8 @@ use App\Models\Auth\Role;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
-use App\Events\Backend\Auth\Role\FeatureCreated;
-use App\Events\Backend\Auth\Role\FeatureUpdated;
+use App\Events\Backend\Auth\Role\RoleCreated;
+use App\Events\Backend\Auth\Role\RoleUpdated;
 
 /**
  * Class RoleRepository.
@@ -53,7 +53,7 @@ class RoleRepository extends BaseRepository
             if ($role) {
                 $role->givePermissionTo($data['permissions']);
 
-                event(new FeatureCreated($role));
+                event(new RoleCreated($role));
 
                 return $role;
             }
@@ -98,7 +98,7 @@ class RoleRepository extends BaseRepository
             ])) {
                 $role->syncPermissions($data['permissions']);
 
-                event(new FeatureUpdated($role));
+                event(new RoleUpdated($role));
 
                 return $role;
             }
