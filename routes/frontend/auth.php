@@ -29,22 +29,21 @@ Route::group(['namespace' => 'Auth', 'as' => 'auth.'], function () {
     });
 
     // These routes require no user to be logged in
-    Route::group(['middleware' => 'guest'], function () {
-        if(FeatureFlag::isActive('user_login')) {
-            // Authentication Routes
-            Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
-            Route::post('login', [LoginController::class, 'login'])->name('login.post');
+    Route::group(['middleware' => ['guest', 'featureflags:user_login']], function () {
+        // Authentication Routes
+        Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+        Route::post('login', [LoginController::class, 'login'])->name('login.post');
 
-            // Socialite Routes
-            Route::get('login/{provider}', [SocialLoginController::class, 'login'])->name('social.login');
-            Route::get('login/{provider}/callback', [SocialLoginController::class, 'login']);
-        }
+        // Socialite Routes
+        Route::get('login/{provider}', [SocialLoginController::class, 'login'])->name('social.login');
+        Route::get('login/{provider}/callback', [SocialLoginController::class, 'login']);
 
-        if(FeatureFlag::isActive('user_register')) {
+        Route::group(['middleware' => 'featureflags:user_register'], function(){
             // Registration Routes
             Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
             Route::post('register', [RegisterController::class, 'register'])->name('register.post');
-        }
+        });
+
         // Confirm Account Routes
         Route::get('account/confirm/{token}', [ConfirmAccountController::class, 'confirm'])->name('account.confirm');
         Route::get('account/confirm/resend/{uuid}', [ConfirmAccountController::class, 'sendConfirmationEmail'])->name('account.confirm.resend');

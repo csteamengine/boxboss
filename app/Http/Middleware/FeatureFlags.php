@@ -16,12 +16,14 @@ class FeatureFlags
      */
     public function handle($request, Closure $next, $featureName)
     {
-        if(auth()->user() == null && !FeatureFlag::isActive($featureName)){
-            return redirect()->route('frontend.index')->withFlashError('You do not have access to that feature.');
+        if(!FeatureFlag::isActive($featureName)){
+            if(auth()->user() != null && auth()->user()->can('view backend')){
+                return redirect()->route('admin.dashboard')->withFlashError('You do not have access to that feature.');
+            }else{
+                return redirect()->route('frontend.index')->withFlashError('You do not have access to that feature.');
+            }
         }
-        if(!auth()->user()->isAdmin() && !FeatureFlag::isActive($featureName)){
-            return redirect()->route('admin.dashboard')->withFlashWarning('You do not have access to that feature.');
-        }
+
         return $next($request);
     }
 }
