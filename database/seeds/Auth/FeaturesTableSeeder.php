@@ -36,5 +36,13 @@ class FeaturesTableSeeder extends Seeder
             'is_active' => true
         ]);
 
+        //Box Management
+        Feature::create([
+            'name' => 'box_management',
+            'short_description' => 'Toggle the ability to manage boxes',
+            'description' => 'This will allow admin users, box owners and coaches to update box information.',
+            'is_active' => true
+        ]);
+
     }
 }

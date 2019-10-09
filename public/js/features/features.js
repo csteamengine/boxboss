@@ -2,7 +2,7 @@
 
 /***/ "./resources/js/backend/features/features.js":
 /*!***************************************************!*\
-  !*** ./resources/js/backend/features/features.js ***!
+  !*** ./resources/js/backend/features/boxes.js ***!
   \***************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -54,12 +54,12 @@ $(document).ready(function () {
 
 /***/ 1:
 /*!*********************************************************!*\
-  !*** multi ./resources/js/backend/features/features.js ***!
+  !*** multi ./resources/js/backend/features/boxes.js ***!
   \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/gregorysteenhagen/Desktop/Projects/wodboss/resources/js/backend/features/features.js */"./resources/js/backend/features/features.js");
+module.exports = __webpack_require__(/*! /Users/gregorysteenhagen/Desktop/Projects/wodboss/resources/js/backend/features/boxes.js */"./resources/js/backend/features/features.js");
 
 
 /***/ })

@@ -37,11 +37,11 @@ return [
     'backend' => [
         'access' => [
             'features' => [
-                'create' => 'Create FeatureFlag',
-                'edit' => 'Edit FeatureFlag',
-                'flags' => 'FeatureFlag Flags',
+                'create' => 'Create Feature Flag',
+                'edit' => 'Edit Feature Flag',
+                'flags' => 'Feature Flags',
                 'table' => [
-                    'name' => 'FeatureFlag Name',
+                    'name' => 'Feature Flag Name',
                     'status' => 'Status',
                     'total' => 'feature total|features total',
                 ],
@@ -120,6 +120,16 @@ return [
                 ],
 
                 'view' => 'View User',
+            ],
+        ],
+        'boxes' => [
+            'create' => 'Create Box',
+            'edit' => 'Edit Box',
+            'main' => 'Boxes',
+            'table' => [
+                'name' => 'Box Name',
+                'status' => 'Status',
+                'total' => 'box total|boxes total',
             ],
         ],
     ],

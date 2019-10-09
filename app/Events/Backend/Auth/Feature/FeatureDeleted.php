@@ -5,7 +5,7 @@ namespace App\Events\Backend\Auth\Feature;
 use Illuminate\Queue\SerializesModels;
 
 /**
- * Class FeatureDeleted.
+ * Class BoxDeleted.
  */
 class FeatureDeleted
 {

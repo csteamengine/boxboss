@@ -18,9 +18,9 @@ class FeatureFlags
     {
         if(!FeatureFlag::isActive($featureName)){
             if(auth()->user() != null && auth()->user()->can('view backend')){
-                return redirect()->route('admin.dashboard')->withFlashError('You do not have access to that feature.');
+                return redirect()->route('admin.dashboard')->withFlashWarning('You do not have access to that feature.');
             }else{
-                return redirect()->route('frontend.index')->withFlashError('You do not have access to that feature.');
+                return redirect()->route('frontend.index')->withFlashWarning('You do not have access to that feature.');
             }
         }
 

@@ -44,6 +44,14 @@ return [
             ],
         ],
 
+        'boxes' => [
+            'all' => 'All Boxes',
+            'create' => 'Create Box',
+            'edit' => 'Edit Box',
+            'boxes' => 'Boxes',
+            'main' => 'Boxes',
+        ],
+
         'log-viewer' => [
             'main' => 'Log Viewer',
             'dashboard' => 'Dashboard',
@@ -52,6 +60,7 @@ return [
 
         'sidebar' => [
             'dashboard' => 'Dashboard',
+            'boxes' => 'Boxes',
             'general' => 'General',
             'history' => 'History',
             'system' => 'System',

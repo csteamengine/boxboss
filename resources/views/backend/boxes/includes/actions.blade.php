@@ -3,7 +3,7 @@
 {{--            <i class="fas fa-edit"></i>--}}
 {{--        </a>--}}
 
-    <a href="{{ route('admin.auth.features.destroy', $feature) }}"
+    <a href="{{ route('admin.boxes.destroy', $box) }}"
        data-method="delete"
        data-trans-button-cancel="@lang('buttons.general.cancel')"
        data-trans-button-confirm="@lang('buttons.general.crud.delete')"

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#featuresTable').DataTable();
+    $('#boxesTable').DataTable();
     var reset = false;
     $('.switch-input').on('click', function(event) {
         if(reset){
@@ -8,7 +8,7 @@ $(document).ready(function() {
             event.preventDefault();
             try {
                 var route = $(this).data('url');
-                var csrf_token = $('#featureTableCSRF').val();
+                var csrf_token = $('#boxTableCSRF').val();
 
                 var button = $(this);
                 $.ajax({
