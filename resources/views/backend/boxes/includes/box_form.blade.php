@@ -15,19 +15,7 @@
         <div class="row mt-4">
             <div class="col">
                 <div class="form-group row">
-                    <div class="col-md-8">
-                    {{ html()->label(__('validation.attributes.backend.boxes.name'))
-                        ->class('form-control-label')
-                        ->for('name') }}
-
-                        {{ html()->text('name')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.boxes.name'))
-                            ->attribute('maxlength', 191)
-                            ->required()
-                            ->autofocus() }}
-                    </div><!--col-->
-                    <div class="col-md-4">
+                    <div class="col-md-1">
                         {{ html()->label(__('validation.attributes.backend.boxes.is_active'))
                             ->class('form-control-label')
                             ->for('is_active') }}
@@ -41,6 +29,18 @@
                                }}
                             <span class="switch-slider"></span>
                         </label>
+                    </div><!--col-->
+                    <div class="col-md-11">
+                        {{ html()->label(__('validation.attributes.backend.boxes.name'))
+                            ->class('form-control-label')
+                            ->for('name') }}
+
+                        {{ html()->text('name')
+                            ->class('form-control')
+                            ->placeholder(__('validation.attributes.backend.boxes.name'))
+                            ->attribute('maxlength', 191)
+                            ->required()
+                            ->autofocus() }}
                     </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
