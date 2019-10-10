@@ -192,6 +192,15 @@ return [
             ],
             'boxes' => [
                 'name' => 'Box Name',
+                'short_description' => 'Short Description',
+                'long_description' => 'Long Description',
+                'address_line_1' => 'Address Line 1',
+                'address_line_2' => 'Address Line 2',
+                'city' => 'City',
+                'state' => 'State',
+                'zip' => 'Zip',
+                'country' => 'Country',
+                'is_active' => 'Status',
             ],
         ],
 

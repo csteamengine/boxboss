@@ -38,8 +38,7 @@
                             ->class('form-control')
                             ->placeholder(__('validation.attributes.backend.boxes.short_description'))
                             ->attribute('maxlength', 250)
-                            ->required()
-                            ->autofocus() }}
+                            }}
                     </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
@@ -48,12 +47,10 @@
                         ->for('long_description') }}
 
                     <div class="col-md-10">
-                        {{ html()->text('address_line_1')
+                        {{ html()->text('long_description')
                             ->class('form-control')
                             ->placeholder(__('validation.attributes.backend.boxes.long_description'))
-                            ->attribute('maxlength', 250)
-                            ->required()
-                            ->autofocus() }}
+                            }}
                     </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
@@ -66,8 +63,7 @@
                             ->class('form-control')
                             ->placeholder(__('validation.attributes.backend.boxes.address_line_1'))
                             ->attribute('maxlength', 250)
-                            ->required()
-                            ->autofocus() }}
+                            }}
                     </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
@@ -76,12 +72,11 @@
                         ->for('address_line_2') }}
 
                     <div class="col-md-10">
-                        {{ html()->text('address_line_1')
+                        {{ html()->text('address_line_2')
                             ->class('form-control')
                             ->placeholder(__('validation.attributes.backend.boxes.address_line_2'))
                             ->attribute('maxlength', 250)
-                            ->required()
-                            ->autofocus() }}
+                            }}
                     </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
@@ -94,8 +89,7 @@
                             ->class('form-control')
                             ->placeholder(__('validation.attributes.backend.boxes.city'))
                             ->attribute('maxlength', 250)
-                            ->required()
-                            ->autofocus() }}
+                            }}
                     </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
@@ -107,9 +101,8 @@
                         {{ html()->text('state')
                             ->class('form-control')
                             ->placeholder(__('validation.attributes.backend.boxes.state'))
-                            ->attribute('maxlength', 250)
-                            ->required()
-                            ->autofocus() }}
+                            ->attribute('maxlength', 2)
+                             }}
                     </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
@@ -122,8 +115,7 @@
                             ->class('form-control')
                             ->placeholder(__('validation.attributes.backend.boxes.zip'))
                             ->attribute('maxlength', 250)
-                            ->required()
-                            ->autofocus() }}
+                            }}
                     </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
@@ -136,8 +128,7 @@
                             ->class('form-control')
                             ->placeholder(__('validation.attributes.backend.boxes.country'))
                             ->attribute('maxlength', 250)
-                            ->required()
-                            ->autofocus() }}
+                            }}
                     </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
@@ -154,8 +145,7 @@
                                     ->placeholder(__('validation.attributes.backend.boxes.is_active'))
                                     ->attribute('maxlength', 250)
                                     ->attribute($box->is_active ? "checked" : "")
-                                    ->required()
-                                    ->autofocus()}}
+                                   }}
                                 <span class="switch-slider"></span>
                             </label>
                         </td>
