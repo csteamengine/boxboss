@@ -9,6 +9,7 @@ use App\Http\Requests\Backend\Boxes\UpdateBoxRequest;
 use App\Models\Box;
 use App\Repositories\Backend\BoxRepository;
 use Illuminate\Http\Request;
+use PragmaRX\Countries\Package\Countries;
 
 class BoxController extends Controller
 {
@@ -53,7 +54,17 @@ class BoxController extends Controller
      */
     public function store(StoreBoxRequest $request)
     {
-        $this->boxRepository->create($request->only('name'));
+        $this->boxRepository->create($request->only('name',
+            'short_description',
+            'long_description',
+            'address_line_1',
+            'address_line_2',
+            'city',
+            'state',
+            'zip',
+            'country',
+            'is_active'
+        ));
 
         return redirect()->route('admin.boxes.index')->withFlashSuccess(__('alerts.backend.boxes.created'));
     }
@@ -79,7 +90,20 @@ class BoxController extends Controller
      */
     public function update(UpdateBoxRequest $request, Box $box)
     {
-        $this->boxRepository->update($box, $request->only('name', 'permissions'));
+
+        $request['is_active'] = isset($request['is_active']) ? $request['is_active'] : false;
+
+        $this->boxRepository->update($box, $request->only(
+            'name',
+            'short_description',
+            'long_description',
+            'address_line_1',
+            'address_line_2',
+            'city',
+            'state',
+            'zip',
+            'country',
+            'is_active'));
 
         return redirect()->route('admin.boxes.index')->withFlashSuccess(__('alerts.backend.boxes.updated'));
     }

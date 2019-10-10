@@ -129,7 +129,7 @@ return [
             'box_actions' => 'Actions',
             'table' => [
                 'name' => 'Box',
-                'permissions' => 'Permissions',
+                'status' => 'Status',
                 'owner' => 'Owner',
                 'short_description' => 'Description',
                 'total' => 'box total|boxes total',

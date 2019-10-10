@@ -27,8 +27,8 @@ class DashboardController extends Controller
 
         if(auth()->user()->getAllBoxes()->contains('id', $box->id)){
             session(['active_box' => $box]);
-            return redirect()->route("admin.dashboard")->withFlashSuccess("Updated Active Box");
+            return redirect()->back()->withFlashSuccess("Updated Active Box");
         }
-        return redirect()->route("admin.dashboard")->withFlashWarning("You don\'t have permission to do that.");
+        return redirect()->back()->withFlashWarning("You don\'t have permission to do that.");
     }
 }

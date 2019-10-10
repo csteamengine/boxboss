@@ -98,9 +98,9 @@ abstract class TestCase extends BaseTestCase
     {
         $coachRole = $this->getRole('coach_role');
 
-        $this->assignPermissions($coachRole, ['view backend', 'view box']);
-
         $coach = factory(User::class)->create($attributes);
+
+        $this->assignPermissions($coachRole, ['view backend', 'view box']);
 
         $coach->assignRole($coachRole);
 
@@ -110,10 +110,9 @@ abstract class TestCase extends BaseTestCase
     protected function createBoxAdmin(array $attributes = [])
     {
         $boxAdminRole = $this->getRole('box_admin_role');
-
-        $this->assignPermissions($boxAdminRole, ['view backend', 'update box', 'admin box', 'update backend']);
-
         $boxAdmin = factory(User::class)->create($attributes);
+
+        $this->assignPermissions($boxAdminRole, ['view backend', 'update box', 'admin box']);
 
         $boxAdmin->assignRole($boxAdminRole);
 

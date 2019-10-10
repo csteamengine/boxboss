@@ -8,7 +8,14 @@ use Faker\Generator as Faker;
 $factory->define(Box::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
-        'address_line_1' => $faker->address,
+        'short_description' => $faker->text($maxNbChars = 100),
+        'long_description' => $faker->text($maxNbChars = 1000),
+        'address_line_1' => $faker->streetAddress,
         'city' => $faker->city,
+        'state' => $faker->stateAbbr,
+        'country' => $faker->country,
+        'zip' => $faker->postcode,
+        'phone_1' => $faker->phoneNumber,
+        'phone_2' => $faker->phoneNumber
     ];
 });

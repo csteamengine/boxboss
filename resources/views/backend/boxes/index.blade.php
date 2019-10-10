@@ -34,8 +34,8 @@
                         <thead>
                             <tr>
                                 <th>@lang('labels.backend.boxes.table.name')</th>
-                                <th>@lang('labels.backend.boxes.table.permissions')</th>
-                                <th>@lang('labels.backend.boxes.table.short_description')</th>
+                                <th>@lang('labels.backend.boxes.table.status')</th>
+                                <th>@lang('labels.backend.boxes.table.owner')</th>
                                 <th>@lang('labels.general.actions')</th>
                             </tr>
                         </thead>

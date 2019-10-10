@@ -144,6 +144,15 @@
       <path value="$PROJECT_DIR$/vendor/2bj/phanybar" />
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/snapappointments/bootstrap-select" />
+      <path value="$PROJECT_DIR$/vendor/nette/utils" />
+      <path value="$PROJECT_DIR$/vendor/nette/caching" />
+      <path value="$PROJECT_DIR$/vendor/nette/finder" />
+      <path value="$PROJECT_DIR$/vendor/colinodell/json5" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/ia-arr" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/coollection" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/ia-str" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/ia-collection" />
+      <path value="$PROJECT_DIR$/vendor/pragmarx/countries" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

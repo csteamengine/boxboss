@@ -18,6 +18,8 @@ class CreateBoxesTable extends Migration
             $table->string('name');
             $table->string('short_description')->nullable();
             $table->text('long_description')->nullable();
+            $table->string('phone_1')->nullable();
+            $table->string('phone_2')->nullable();
             $table->string('address_line_1')->nullable();
             $table->string('address_line_2')->nullable();
             $table->string('city')->nullable();
@@ -25,6 +27,7 @@ class CreateBoxesTable extends Migration
             $table->string('zip')->nullable();
             $table->string('country')->nullable();
             $table->boolean('is_active')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

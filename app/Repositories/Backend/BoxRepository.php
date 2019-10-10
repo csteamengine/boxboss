@@ -39,7 +39,18 @@ class BoxRepository extends BaseRepository
         }
 
         return DB::transaction(function () use ($data) {
-            $box = $this->model::create(['name' => $data['name'], 'is_active' => true]);
+            $box = $this->model::create([
+                'name' => $data['name'],
+                'short_description' => $data['short_description'],
+                'long_description' => $data['long_description'],
+                'address_line_1' => $data['address_line_1'],
+                'address_line_2' => $data['address_line_2'],
+                'city' => $data['city'],
+                'state' => $data['state'],
+                'zip' => $data['zip'],
+                'country' => $data['country'],
+                'is_active' => $data['is_active']
+            ]);
 
             if ($box) {
 
@@ -72,8 +83,16 @@ class BoxRepository extends BaseRepository
         return DB::transaction(function () use ($box, $data) {
             if ($box->update([
                 'name' => $data['name'],
+                'short_description' => $data['short_description'],
+                'long_description' => $data['long_description'],
+                'address_line_1' => $data['address_line_1'],
+                'address_line_2' => $data['address_line_2'],
+                'city' => $data['city'],
+                'state' => $data['state'],
+                'zip' => $data['zip'],
+                'country' => $data['country'],
+                'is_active' => $data['is_active']
             ])) {
-
                 event(new BoxUpdated($box));
 
                 return $box;

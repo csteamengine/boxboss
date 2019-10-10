@@ -5,3 +5,9 @@
 @section('content')
     @include('backend.boxes.includes.box_form', ['box' => $box, 'action' => 'edit', 'method' => 'PATCH', 'route' => route('admin.boxes.update', $box)])
 @endsection
+
+@push('after-scripts')
+    <script>
+        $('.selectpicker').selectpicker();
+    </script>
+@endpush

@@ -21,6 +21,7 @@
         "langleyfoxall/laravel-nist-password-rules": "^4.0",
         "laravel/framework": "^6.0",
         "laravel/socialite": "^4.2",
+        "pragmarx/countries": "^0.7.0",
         "snapappointments/bootstrap-select": "^1.13",
         "spatie/laravel-html": "^2.22",
         "spatie/laravel-permission": "^3.0",

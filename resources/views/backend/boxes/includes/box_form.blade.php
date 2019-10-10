@@ -15,11 +15,11 @@
         <div class="row mt-4">
             <div class="col">
                 <div class="form-group row">
+                    <div class="col-md-8">
                     {{ html()->label(__('validation.attributes.backend.boxes.name'))
-                        ->class('col-md-2 form-control-label')
+                        ->class('form-control-label')
                         ->for('name') }}
 
-                    <div class="col-md-10">
                         {{ html()->text('name')
                             ->class('form-control')
                             ->placeholder(__('validation.attributes.backend.boxes.name'))
@@ -27,13 +27,106 @@
                             ->required()
                             ->autofocus() }}
                     </div><!--col-->
+                    <div class="col-md-4">
+                        {{ html()->label(__('validation.attributes.backend.boxes.is_active'))
+                            ->class('form-control-label')
+                            ->for('is_active') }}
+
+                        <br>
+                        <label class="switch switch-success m-0 pb-0 pt-1">
+                            {{html()->checkbox('is_active', $checked = $box->is_active)
+                                ->id("customSwitch".$box->id)
+                                ->class('form-control switch-input')
+                                ->attribute('maxlength', 250)
+                               }}
+                            <span class="switch-slider"></span>
+                        </label>
+                    </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.boxes.short_description'))
-                        ->class('col-md-2 form-control-label')
-                        ->for('short_description') }}
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                {{ html()->label(__('validation.attributes.backend.boxes.address_line_1'))
+                                ->class('form-control-label')
+                                ->for('address_line_1') }}
 
-                    <div class="col-md-10">
+                                {{ html()->text('address_line_1')
+                                    ->class('form-control')
+                                    ->placeholder(__('validation.attributes.backend.boxes.address_line_1'))
+                                    ->attribute('maxlength', 250)
+                                    }}
+                            </div>
+                            <div class="form-group col-md-12">
+                                {{ html()->label(__('validation.attributes.backend.boxes.address_line_2'))
+                                    ->class('form-control-label')
+                                    ->for('address_line_2') }}
+
+                                {{ html()->text('address_line_2')
+                                    ->class('form-control')
+                                    ->placeholder(__('validation.attributes.backend.boxes.address_line_2'))
+                                    ->attribute('maxlength', 250)
+                                    }}
+                            </div>
+                        </div>
+                    </div><!--col-->
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                {{ html()->label(__('validation.attributes.backend.boxes.city'))
+                                    ->class('form-control-label')
+                                    ->for('city') }}
+
+                                {{ html()->text('city')
+                                    ->class('form-control')
+                                    ->placeholder(__('validation.attributes.backend.boxes.city'))
+                                    ->attribute('maxlength', 250)
+                                    }}
+                            </div><!--col-->
+                            <div class="form-group col-md-6">
+                                {{ html()->label(__('validation.attributes.backend.boxes.state'))
+                                    ->class('form-control-label')
+                                    ->for('state') }}
+
+                                {{ html()->text('state')
+                                    ->class('form-control')
+                                    ->placeholder(__('validation.attributes.backend.boxes.state'))
+                                    ->attribute('maxlength', 2)
+                                     }}
+                            </div><!--col-->
+                            <div class="form-group col-md-6">
+                                {{ html()->label(__('validation.attributes.backend.boxes.zip'))
+                                    ->class('form-control-label')
+                                    ->for('zip') }}
+
+                                {{ html()->text('zip')
+                                    ->class('form-control')
+                                    ->placeholder(__('validation.attributes.backend.boxes.zip'))
+                                    ->attribute('maxlength', 250)
+                                    }}
+                            </div><!--col-->
+                            <div class="col-md-6">
+                                {{ html()->label(__('validation.attributes.backend.boxes.country'))
+                                    ->class('form-control-label')
+                                    ->for('country') }}
+
+                                {{ html()->select('country', PragmaRX\Countries\Package\Countries::all()->pluck('name.common', 'name.common'))
+                                    ->class('form-control selectpicker')
+                                    ->placeholder(__('validation.attributes.backend.boxes.country'))
+                                    ->attribute('maxlength', 250)
+                                    ->attribute('data-live-search', "true")
+                                    ->attribute('data-default', $box->country)
+                                    }}
+                            </div><!--col-->
+                        </div>
+                    </div>
+                </div><!--form-group-->
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        {{ html()->label(__('validation.attributes.backend.boxes.short_description'))
+                            ->class('form-control-label')
+                            ->for('short_description') }}
+
                         {{ html()->text('short_description')
                             ->class('form-control')
                             ->placeholder(__('validation.attributes.backend.boxes.short_description'))
@@ -42,113 +135,16 @@
                     </div><!--col-->
                 </div><!--form-group-->
                 <div class="form-group row">
+                    <div class="col-md-12">
                     {{ html()->label(__('validation.attributes.backend.boxes.long_description'))
-                        ->class('col-md-2 form-control-label')
+                        ->class('form-control-label')
                         ->for('long_description') }}
 
-                    <div class="col-md-10">
-                        {{ html()->text('long_description')
+                        {{ html()->textarea('long_description')
                             ->class('form-control')
+                            ->attribute('rows', 10)
                             ->placeholder(__('validation.attributes.backend.boxes.long_description'))
                             }}
-                    </div><!--col-->
-                </div><!--form-group-->
-                <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.boxes.address_line_1'))
-                        ->class('col-md-2 form-control-label')
-                        ->for('address_line_1') }}
-
-                    <div class="col-md-10">
-                        {{ html()->text('address_line_1')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.boxes.address_line_1'))
-                            ->attribute('maxlength', 250)
-                            }}
-                    </div><!--col-->
-                </div><!--form-group-->
-                <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.boxes.address_line_2'))
-                        ->class('col-md-2 form-control-label')
-                        ->for('address_line_2') }}
-
-                    <div class="col-md-10">
-                        {{ html()->text('address_line_2')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.boxes.address_line_2'))
-                            ->attribute('maxlength', 250)
-                            }}
-                    </div><!--col-->
-                </div><!--form-group-->
-                <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.boxes.city'))
-                        ->class('col-md-2 form-control-label')
-                        ->for('city') }}
-
-                    <div class="col-md-10">
-                        {{ html()->text('city')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.boxes.city'))
-                            ->attribute('maxlength', 250)
-                            }}
-                    </div><!--col-->
-                </div><!--form-group-->
-                <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.boxes.state'))
-                        ->class('col-md-2 form-control-label')
-                        ->for('state') }}
-
-                    <div class="col-md-10">
-                        {{ html()->text('state')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.boxes.state'))
-                            ->attribute('maxlength', 2)
-                             }}
-                    </div><!--col-->
-                </div><!--form-group-->
-                <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.boxes.zip'))
-                        ->class('col-md-2 form-control-label')
-                        ->for('zip') }}
-
-                    <div class="col-md-10">
-                        {{ html()->text('zip')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.boxes.zip'))
-                            ->attribute('maxlength', 250)
-                            }}
-                    </div><!--col-->
-                </div><!--form-group-->
-                <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.boxes.country'))
-                        ->class('col-md-2 form-control-label')
-                        ->for('country') }}
-
-                    <div class="col-md-10">
-                        {{ html()->text('country')
-                            ->class('form-control')
-                            ->placeholder(__('validation.attributes.backend.boxes.country'))
-                            ->attribute('maxlength', 250)
-                            }}
-                    </div><!--col-->
-                </div><!--form-group-->
-                <div class="form-group row">
-                    {{ html()->label(__('validation.attributes.backend.boxes.is_active'))
-                        ->class('col-md-2 form-control-label')
-                        ->for('is_active') }}
-
-                    <div class="col-md-10">
-                        <td class="text-center">
-                            <label class="switch switch-success m-0 pb-0 pt-1">
-                                {{html()->checkbox('is_active', array('data-id' => $box->id))
-                                    ->id("customSwitch".$box->id)
-                                    ->class('form-control switch-input')
-                                    ->placeholder(__('validation.attributes.backend.boxes.is_active'))
-                                    ->attribute('maxlength', 250)
-                                    ->attribute($box->is_active ? "checked" : "")
-                                   }}
-                                <span class="switch-slider"></span>
-                            </label>
-                        </td>
                     </div><!--col-->
                 </div><!--form-group-->
             </div><!--col-->

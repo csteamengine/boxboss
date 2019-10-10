@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 6.0.4 on 2019-10-09 22:08:58.
+ * Generated for Laravel 6.2.0 on 2019-10-10 14:31:40.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1792,6 +1792,18 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Auth\AuthManager $instance */
                         return $instance->provider($name, $callback);
+        }
+        
+        /**
+         * Determines if any guards have already been resolved.
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasResolvedGuards()
+        {
+                        /** @var \Illuminate\Auth\AuthManager $instance */
+                        return $instance->hasResolvedGuards();
         }
         
         /**
@@ -6560,6 +6572,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * 
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getChannels()
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        return $instance->getChannels();
+        }
+        
+        /**
          * Get the default log driver name.
          *
          * @return string 
@@ -6596,6 +6620,19 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Log\LogManager $instance */
                         return $instance->extend($driver, $callback);
+        }
+        
+        /**
+         * Unset the given channel instance.
+         *
+         * @param string|null $name
+         * @return \Illuminate\Log\LogManager 
+         * @static 
+         */ 
+        public static function forgetChannel($driver = null)
+        {
+                        /** @var \Illuminate\Log\LogManager $instance */
+                        return $instance->forgetChannel($driver);
         }
         
         /**
@@ -11429,6 +11466,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Register the typical confirm password routes for an application.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function confirmPassword()
+        {
+                        /** @var \Illuminate\Routing\Router $instance */
+                        $instance->confirmPassword();
+        }
+        
+        /**
          * Register the typical email verification routes for an application.
          *
          * @return void 
@@ -13298,6 +13347,33 @@ namespace Illuminate\Support\Facades {
         {
                         /** @var \Illuminate\Routing\UrlGenerator $instance */
                         return $instance->hasValidSignature($request, $absolute);
+        }
+        
+        /**
+         * Determine if the signature from the given request matches the URL.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @param bool $absolute
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasCorrectSignature($request, $absolute = true)
+        {
+                        /** @var \Illuminate\Routing\UrlGenerator $instance */
+                        return $instance->hasCorrectSignature($request, $absolute);
+        }
+        
+        /**
+         * Determine if the expires timestamp from the given request is not from the past.
+         *
+         * @param \Illuminate\Http\Request $request
+         * @return bool 
+         * @static 
+         */ 
+        public static function signatureHasNotExpired($request)
+        {
+                        /** @var \Illuminate\Routing\UrlGenerator $instance */
+                        return $instance->signatureHasNotExpired($request);
         }
         
         /**
@@ -18132,238 +18208,6 @@ namespace DaveJamesMiller\Breadcrumbs\Facades {
  
 }
 
-namespace Facade\Ignition\Facades { 
-
-    /**
-     * Class Flare.
-     *
-     * @see \Facade\FlareClient\Flare
-     */ 
-    class Flare {
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function register($apiKey, $apiSecret = null, $contextDetector = null, $container = null)
-        {
-                        return \Facade\FlareClient\Flare::register($apiKey, $apiSecret, $contextDetector, $container);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getMiddleware()
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->getMiddleware();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function registerExceptionHandler()
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->registerExceptionHandler();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function registerMiddleware($callable)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->registerMiddleware($callable);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getMiddlewares()
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->getMiddlewares();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function glow($name, $messageLevel = 'info', $metaData = array())
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->glow($name, $messageLevel, $metaData);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function handleException($throwable)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->handleException($throwable);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function applicationPath($applicationPath)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->applicationPath($applicationPath);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function report($throwable, $callback = null)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->report($throwable, $callback);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function reportMessage($message, $logLevel, $callback = null)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->reportMessage($message, $logLevel, $callback);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function sendTestReport($throwable)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->sendTestReport($throwable);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function reset()
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->reset();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function anonymizeIp()
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->anonymizeIp();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function createReport($throwable)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->createReport($throwable);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function createReportFromMessage($message, $logLevel)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->createReportFromMessage($message, $logLevel);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function stage($stage)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->stage($stage);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function messageLevel($messageLevel)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->messageLevel($messageLevel);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getGroup($groupName = 'context', $default = array())
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->getGroup($groupName, $default);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function context($key, $value)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->context($key, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function group($groupName, $properties)
-        {
-                        /** @var \Facade\FlareClient\Flare $instance */
-                        return $instance->group($groupName, $properties);
-        }
-         
-    }
- 
-}
-
 namespace Laravel\Socialite\Facades { 
 
     /**
@@ -19138,6 +18982,238 @@ namespace Torann\GeoIP\Facades {
         {
                         /** @var \Torann\GeoIP\GeoIP $instance */
                         return $instance->config($key, $default);
+        }
+         
+    }
+ 
+}
+
+namespace Facade\Ignition\Facades { 
+
+    /**
+     * Class Flare.
+     *
+     * @see \Facade\FlareClient\Flare
+     */ 
+    class Flare {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function register($apiKey, $apiSecret = null, $contextDetector = null, $container = null)
+        {
+                        return \Facade\FlareClient\Flare::register($apiKey, $apiSecret, $contextDetector, $container);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMiddleware()
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->getMiddleware();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function registerExceptionHandler()
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->registerExceptionHandler();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function registerMiddleware($callable)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->registerMiddleware($callable);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getMiddlewares()
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->getMiddlewares();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function glow($name, $messageLevel = 'info', $metaData = array())
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->glow($name, $messageLevel, $metaData);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function handleException($throwable)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->handleException($throwable);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function applicationPath($applicationPath)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->applicationPath($applicationPath);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function report($throwable, $callback = null)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->report($throwable, $callback);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function reportMessage($message, $logLevel, $callback = null)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->reportMessage($message, $logLevel, $callback);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function sendTestReport($throwable)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->sendTestReport($throwable);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function reset()
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->reset();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function anonymizeIp()
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->anonymizeIp();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function createReport($throwable)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->createReport($throwable);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function createReportFromMessage($message, $logLevel)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->createReportFromMessage($message, $logLevel);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function stage($stage)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->stage($stage);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function messageLevel($messageLevel)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->messageLevel($messageLevel);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getGroup($groupName = 'context', $default = array())
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->getGroup($groupName, $default);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function context($key, $value)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->context($key, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function group($groupName, $properties)
+        {
+                        /** @var \Facade\FlareClient\Flare $instance */
+                        return $instance->group($groupName, $properties);
         }
          
     }
@@ -21988,13 +22064,13 @@ namespace  {
 
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
 
-    class Flare extends \Facade\Ignition\Facades\Flare {}
-
     class Socialite extends \Laravel\Socialite\Facades\Socialite {}
 
     class Html extends \Spatie\Html\Facades\Html {}
 
     class GeoIP extends \Torann\GeoIP\Facades\GeoIP {}
+
+    class Flare extends \Facade\Ignition\Facades\Flare {}
  
 }
 
