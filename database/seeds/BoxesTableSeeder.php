@@ -16,15 +16,30 @@ class BoxesTableSeeder extends Seeder
         // Add the master administrator, user id of 1
         Box::create([
             'name' => 'First Gym',
-            'owner_id' => 3
+            'short_description' => 'The First gym that I created'
         ]);
         Box::create([
             'name' => 'Second Gym',
-            'owner_id' => 4
+            'short_description' => 'The Second gym that I created'
         ]);
         Box::create([
             'name' => 'Third Gym',
-            'owner_id' => 3
+            'short_description' => 'The Third gym that I created'
+        ]);
+
+        DB::table('box_owners')->insert([
+            'user_id' => 3,
+            'box_id' => 1
+        ]);
+
+        DB::table('box_owners')->insert([
+            'user_id' => 4,
+            'box_id' => 2
+        ]);
+
+        DB::table('box_owners')->insert([
+            'user_id' => 3,
+            'box_id' => 3
         ]);
 
         DB::table('box_coaches')->insert([
@@ -53,7 +68,7 @@ class BoxesTableSeeder extends Seeder
         ]);
 
         DB::table('box_admins')->insert([
-            'user_id' => 7,
+            'user_id' => 6,
             'box_id' => 2
         ]);
 

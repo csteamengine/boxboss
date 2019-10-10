@@ -5,6 +5,7 @@ namespace App\Models\Auth\Traits\Relationship;
 use App\Models\Auth\SocialAccount;
 use App\Models\Auth\PasswordHistory;
 use App\Models\Box;
+use Illuminate\Support\Collection;
 use Spatie\Html\Helpers\Arr;
 
 /**
@@ -40,7 +41,7 @@ trait UserRelationship
         $coached = $this->boxesCoached()->get();
         $admin = $this->boxesAdmined();
 
-        $boxes = array();
+        $boxes = collect();
         foreach($oldArr as $box){
             $permissions = array();
             if($owned->contains('id', $box->id)){
@@ -53,7 +54,7 @@ trait UserRelationship
                 array_push($permissions, "Admin");
             }
             $box->permissions = implode(", ", $permissions);
-            array_push($boxes, $box);
+            $boxes->push($box);
         }
 
         return $boxes;
@@ -69,7 +70,7 @@ trait UserRelationship
 
     public function boxesOwned()
     {
-        return $this->hasMany(Box::class, 'owner_id');
+        return $this->belongsToMany(Box::class, 'box_owners', 'user_id', 'box_id');
     }
 
     public function boxesCoached()

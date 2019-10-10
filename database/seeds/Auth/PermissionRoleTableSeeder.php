@@ -43,6 +43,7 @@ class PermissionRoleTableSeeder extends Seeder
 
         //Box Admin Permissions
         $boxAdmin->givePermissionTo($viewBackend);
+        $boxAdmin->givePermissionTo($adminBox);
         $boxAdmin->givePermissionTo($updateBox);
 
 

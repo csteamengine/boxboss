@@ -131,6 +131,7 @@ return [
                 'name' => 'Box',
                 'permissions' => 'Permissions',
                 'owner' => 'Owner',
+                'short_description' => 'Description',
                 'total' => 'box total|boxes total',
             ],
         ],

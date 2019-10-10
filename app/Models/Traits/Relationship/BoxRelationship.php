@@ -10,8 +10,8 @@ use App\Models\Box;
  */
 trait BoxRelationship
 {
-    public function owner()
+    public function owners()
     {
-        return $this->hasOne(User::class, 'id', 'owner_id');
+        return $this->belongsToMany(User::class, 'box_owners', 'user_id', 'box_id');
     }
 }

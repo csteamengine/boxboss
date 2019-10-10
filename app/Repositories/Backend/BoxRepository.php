@@ -39,7 +39,7 @@ class BoxRepository extends BaseRepository
         }
 
         return DB::transaction(function () use ($data) {
-            $box = $this->model::create(['name' => strtolower($data['name']), 'is_active' => true]);
+            $box = $this->model::create(['name' => $data['name'], 'is_active' => true]);
 
             if ($box) {
 
@@ -63,7 +63,7 @@ class BoxRepository extends BaseRepository
     public function update(Box $box, array $data)
     {
         // If the name is changing make sure it doesn't already exist
-        if ($box->name !== strtolower($data['name'])) {
+        if (strtolower($box->name) !== strtolower($data['name'])) {
             if ($this->boxExists($data['name'])) {
                 throw new GeneralException('A box already exists with the name '.$data['name']);
             }
@@ -71,7 +71,7 @@ class BoxRepository extends BaseRepository
 
         return DB::transaction(function () use ($box, $data) {
             if ($box->update([
-                'name' => strtolower($data['name']),
+                'name' => $data['name'],
             ])) {
 
                 event(new BoxUpdated($box));
@@ -91,7 +91,7 @@ class BoxRepository extends BaseRepository
     protected function boxExists($name) : bool
     {
         return $this->model
-            ->where('name', strtolower($name))
+            ->where('name', $name)
             ->count() > 0;
     }
 }

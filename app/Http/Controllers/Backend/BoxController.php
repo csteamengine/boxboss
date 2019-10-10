@@ -53,7 +53,7 @@ class BoxController extends Controller
      */
     public function store(StoreBoxRequest $request)
     {
-        $this->boxRepository->create($request->only('name', 'associated-permissions', 'permissions', 'sort'));
+        $this->boxRepository->create($request->only('name'));
 
         return redirect()->route('admin.boxes.index')->withFlashSuccess(__('alerts.backend.boxes.created'));
     }

@@ -16,9 +16,14 @@
                 </h4>
             </div><!--col-->
 
-            <div class="col-sm-7 pull-right">
-                @include('backend.boxes.includes.header-buttons')
-            </div><!--col-->
+            @if($logged_in_user->isAdmin())
+                <div class="col-sm-7 pull-right">
+                    @include('backend.boxes.includes.header-buttons')
+                </div><!--col-->
+            @else
+{{--                TODO Request to create a new gym--}}
+{{--                TODO Request to coach at a new gym--}}
+            @endif
         </div><!--row-->
 
         <div class="row mt-4">
@@ -30,7 +35,7 @@
                             <tr>
                                 <th>@lang('labels.backend.boxes.table.name')</th>
                                 <th>@lang('labels.backend.boxes.table.permissions')</th>
-                                <th>@lang('labels.backend.boxes.table.owner')</th>
+                                <th>@lang('labels.backend.boxes.table.short_description')</th>
                                 <th>@lang('labels.general.actions')</th>
                             </tr>
                         </thead>

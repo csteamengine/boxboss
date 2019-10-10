@@ -21,10 +21,11 @@ class DashboardController extends Controller
     }
 
     public function updateActiveBox(Request $request){
+
         $boxID = $request->input('active-box');
         $box = Box::find($boxID);
 
-        if(auth()->user()->allBoxes()->contains('id', $box->id)){
+        if(auth()->user()->getAllBoxes()->contains('id', $box->id)){
             session(['active_box' => $box]);
             return redirect()->route("admin.dashboard")->withFlashSuccess("Updated Active Box");
         }
