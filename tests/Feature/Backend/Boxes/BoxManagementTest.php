@@ -155,7 +155,7 @@ class BoxManagementTest extends TestCase
 
         $this->assertEquals($expectedAll, sizeof($allBoxes));
     }
-//
+
 //    /**
 //     * @test
 //     */
@@ -175,10 +175,9 @@ class BoxManagementTest extends TestCase
 //
 //        $this->assertNull(session('active_box'));
 //
-//        $response = $this->post(route('admin.updateActiveBox', ['active-box' => $boxes->first()->id]));
+//        $response = $this->post('admin/updateActiveBox', ['active-box' => $boxes->first()->id]);
 //
-//
-//        $response->assertStatus(200);
+//        $response->assertStatus(302);
 //        $response->assertSessionHas(['flash_success' => 'Updated Active Box']);
 //
 //        $this->assertEquals(1, session('active_box')['id']);
@@ -206,9 +205,9 @@ class BoxManagementTest extends TestCase
 //
 //        $this->assertNull(session('active_box'));
 //
-//        $response = $this->post(route('admin.updateActiveBox', ['active-box' => 1]));
+//        $response = $this->post(route('admin.updateActiveBox'), ['active-box' => 1]);
 //
-//        $response->assertStatus(200);
+//        $response->assertStatus(302);
 //        $response->assertSessionHas(['flash_error' => 'You don\'t have permission to do that.']);
 //
 //        $this->assertNull(session('active_box'));
