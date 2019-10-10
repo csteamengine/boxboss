@@ -32,8 +32,8 @@
     </ul>
 
     @if(FeatureFlag::isActive('active_box'))
-        <ul class="nav ml-md-auto mr-4 mr-lg-0">
-            <li class="nav-item">
+        <ul class="nav ml-md-auto">
+            <li class="nav-item ">
                 <form id="box_selection_form" action="{{route('admin.updateActiveBox')}}" method="POST">
                     @csrf
                     <select class="box-select show-tick" title="Active Box" data-live-search="true" data-width="fit" name="active-box">
@@ -49,13 +49,11 @@
 {{--                                    <submit type="hidden"></submit>--}}
                 </form>
             </li>
-            @if($logged_in_user->can('view', session('active_box')))
-                <li class="nav-item m-auto">
-                    <a class="nav-link" href="{{ route('admin.boxes.view', session('active_box')) }}" data-toggle="tooltip" data-placement="top" title="Manage Box">
-                        <i class="fas fa-tasks"></i>
-                    </a>
-                </li>
-            @endif
+            <li class="nav-item m-auto d-none d-sm-block">
+                <a class="nav-link" href="{{ route('admin.boxes.view', session('active_box')) }}" data-toggle="tooltip" data-placement="top" title="Manage Box">
+                    <i class="fas fa-tasks"></i>
+                </a>
+            </li>
         </ul>
     @endif
 
