@@ -12,6 +12,6 @@ trait BoxRelationship
 {
     public function owners()
     {
-        return $this->belongsToMany(User::class, 'box_owners', 'user_id', 'box_id');
+        return $this->belongsToMany(User::class, 'box_owners', 'box_id', 'user_id');
     }
 }

@@ -25,6 +25,9 @@ class BoxController extends Controller
     public function __construct(BoxRepository $boxRepository)
     {
         $this->boxRepository = $boxRepository;
+//        $this->middleware('permission:view box', ['only' => ['view', 'manage', 'index','updateActiveBox']]);
+//        $this->middleware('role:'.config('access.users.box_admin_role'), ['only' => 'destroy']);
+//        $this->middleware('permission:update box|edit box', ['only' => ['create', 'store', 'edit', 'update']]);
     }
 
     /**
@@ -106,6 +109,7 @@ class BoxController extends Controller
      * @param EditBoxRequest $request
      * @param Box $box
      * @return mixed
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function edit(EditBoxRequest $request, Box $box)
     {

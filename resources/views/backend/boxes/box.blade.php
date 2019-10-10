@@ -7,15 +7,14 @@
 @endpush
 
 @section('content')
-<div class="card">
-    <div class="card-body">
-        {{$box}}
-    </div><!--card-body-->
-</div><!--card-->
+    <div class="card">
+        <div class="card-body">
+            {{$box}}
+        </div><!--card-body-->
+    </div><!--card-->
 @endsection
 @push('after-scripts')
     {!! script('https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js') !!}
     {!! script('https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js') !!}
     {!! script(mix('js/backend/boxes/boxes.js')) !!}
-
 @endpush

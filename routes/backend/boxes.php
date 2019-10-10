@@ -4,17 +4,17 @@ use App\Http\Controllers\Backend\BoxController;
 
 Route::group([
     'namespace' => 'Boxes',
-    'middleware' => 'featureflags:box_management'], function () {
+    'middleware' => ['featureflags:box_management']], function () {
 
     Route::get('boxes', [BoxController::class, 'index'])->name('boxes.index');
-    Route::get('boxes/create', [BoxController::class, 'create'])->name('boxes.create');
-    Route::post('boxes', [BoxController::class, 'store'])->name('boxes.store');
+    Route::get('boxes/create', [BoxController::class, 'create'])->name('boxes.create')->middleware('can:create');
+    Route::post('boxes', [BoxController::class, 'store'])->name('boxes.store')->middleware('can:create');
 
     Route::group(['prefix' => 'boxes/{box}'], function () {
-        Route::get('view', [BoxController::class, 'view'])->name('boxes.view');
-        Route::get('edit', [BoxController::class, 'edit'])->name('boxes.edit');
-        Route::patch('/', [BoxController::class, 'update'])->name('boxes.update');
-        Route::delete('/', [BoxController::class, 'destroy'])->name('boxes.destroy');
+        Route::get('view', [BoxController::class, 'view'])->name('boxes.view')->middleware('can:view,box');
+        Route::get('edit', [BoxController::class, 'edit'])->name('boxes.edit')->middleware('can:edit,box');
+        Route::patch('/', [BoxController::class, 'update'])->name('boxes.update')->middleware('can:update,box');
+        Route::delete('/', [BoxController::class, 'destroy'])->name('boxes.destroy')->middleware('can:destroy,box');
     });
 });
 

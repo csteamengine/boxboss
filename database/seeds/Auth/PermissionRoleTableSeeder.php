@@ -26,25 +26,35 @@ class PermissionRoleTableSeeder extends Seeder
         $user = Role::create(['name' => config('access.users.user_role')]);
 
         // Create Permissions
-        $update = Permission::create(['name' => 'update backend']);
+        $updateBackend = Permission::create(['name' => 'update backend']);
+        $viewBackend = Permission::create(['name' => 'view backend']);
         $adminBox = Permission::create(['name' => 'admin box']);
         $updateBox = Permission::create(['name' => 'update box']);
-        $viewBackend = Permission::create(['name' => 'view backend']);
+        $destroyBox = Permission::create(['name' => 'destroy box']);
         $viewBox = Permission::create(['name' => 'view box']);
 
-        // Owner Permissions
+        // Super Admin
+        $admin->givePermissionTo($updateBackend);
+        $admin->givePermissionTo($viewBackend);
+        $admin->givePermissionTo($adminBox);
+        $admin->givePermissionTo($updateBox);
+        $admin->givePermissionTo($destroyBox);
+        $admin->givePermissionTo($viewBox);
+
+        // Owner Permissions -- Backend / Admin Box / Update Box / Destroy Box
         $owner->givePermissionTo($viewBackend);
         $owner->givePermissionTo($adminBox);
         $owner->givePermissionTo($updateBox);
-
-        //Coach Permissions
-        $coach->givePermissionTo($viewBackend);
-        $coach->givePermissionTo($viewBox);
+        $owner->givePermissionTo($destroyBox);
 
         //Box Admin Permissions
         $boxAdmin->givePermissionTo($viewBackend);
         $boxAdmin->givePermissionTo($adminBox);
         $boxAdmin->givePermissionTo($updateBox);
+
+        //Coach Permissions
+        $coach->givePermissionTo($viewBackend);
+        $coach->givePermissionTo($viewBox);
 
 
         // Assign Permissions to other Roles

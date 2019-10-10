@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\AuthenticationException;
 use Spatie\Permission\Exceptions\UnauthorizedException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -53,7 +54,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof UnauthorizedException) {
+        if ($exception instanceof UnauthorizedException || $exception instanceof AuthorizationException) {
             return redirect()
                 ->route(home_route())
                 ->withFlashDanger(__('auth.general_error'));
