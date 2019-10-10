@@ -48,7 +48,8 @@ return [
             'all' => 'All Boxes',
             'create' => 'Create Box',
             'edit' => 'Edit Box',
-            'boxes' => 'Boxes',
+            'boxes' => 'All Boxes',
+            'manage' => 'Manage Box',
             'main' => 'Boxes',
         ],
 

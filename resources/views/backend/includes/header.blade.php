@@ -49,6 +49,13 @@
 {{--                                    <submit type="hidden"></submit>--}}
                 </form>
             </li>
+            @if($logged_in_user->can('view', session('active_box')))
+                <li class="nav-item m-auto">
+                    <a class="nav-link" href="{{ route('admin.boxes.view', session('active_box')) }}" data-toggle="tooltip" data-placement="top" title="Manage Box">
+                        <i class="fas fa-tasks"></i>
+                    </a>
+                </li>
+            @endif
         </ul>
     @endif
 
@@ -56,16 +63,6 @@
         <li class="nav-item d-md-down-none">
             <a class="nav-link" href="#">
                 <i class="fas fa-bell"></i>
-            </a>
-        </li>
-        <li class="nav-item d-md-down-none">
-            <a class="nav-link" href="#">
-                <i class="fas fa-list"></i>
-            </a>
-        </li>
-        <li class="nav-item d-md-down-none">
-            <a class="nav-link" href="#">
-                <i class="fas fa-map-marker-alt"></i>
             </a>
         </li>
         <li class="nav-item dropdown">

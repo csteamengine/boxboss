@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\Boxes\EditBoxRequest;
 use App\Http\Requests\Backend\Boxes\ManageBoxRequest;
 use App\Http\Requests\Backend\Boxes\StoreBoxRequest;
 use App\Http\Requests\Backend\Boxes\UpdateBoxRequest;
@@ -25,6 +26,26 @@ class BoxController extends Controller
     {
         $this->boxRepository = $boxRepository;
     }
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function updateActiveBox(Request $request){
+
+        $boxID = $request->input('active-box');
+        $box = Box::find($boxID);
+
+        if(auth()->user()->getAllBoxes()->contains('id', $box->id)){
+            session(['active_box' => $box]);
+            if(fnmatch("*/admin/boxes/*/view",$request->headers->get('referer'))){
+                return redirect()->route('admin.boxes.view', $box)->withFlashSuccess("Updated Active Box");
+            }
+            return redirect()->back()->withFlashSuccess("Updated Active Box");
+        }
+        return redirect()->back()->withFlashWarning("You don\'t have permission to do that.");
+    }
+
     /**
      *
      * @return mixed
@@ -33,6 +54,18 @@ class BoxController extends Controller
     {
         return view('backend.boxes.index')
             ->withBoxes(auth()->user()->getAllBoxes());
+    }
+
+    /**
+     * Show the page of a specific
+     *
+     * @param ManageBoxRequest $request
+     * @param Box $box
+     * @return \Illuminate\Http\Response
+     */
+    public function view(ManageBoxRequest $request, Box $box)
+    {
+        return view('backend.boxes.box')->withBox($box);
     }
 
     /**
@@ -70,11 +103,11 @@ class BoxController extends Controller
     }
 
     /**
-     * @param ManageBoxRequest $request
+     * @param EditBoxRequest $request
      * @param Box $box
      * @return mixed
      */
-    public function edit(ManageBoxRequest $request, Box $box)
+    public function edit(EditBoxRequest $request, Box $box)
     {
         return view('backend.boxes.edit')
             ->withBox($box);

@@ -13,11 +13,34 @@
                 </a>
             </li>
             @if(FeatureFlag::isActive('box_management'))
-                <li class="nav-item">
-                    <a class="nav-link {{active_class(Route::is('admin/boxes'))}}" href="{{ route('admin.boxes.index') }}">
-                        <i class="nav-icon fas fa-building -alt"></i>
-                        @lang('menus.backend.sidebar.boxes')
+                <li class="nav-item nav-dropdown {{active_class(Route::is('admin/boxes*'), 'open')}}">
+                    <a class="nav-link nav-dropdown-toggle {{
+                        active_class(Route::is('admin/boxes*'))
+                    }}" href="#">
+                        <i class="nav-icon fas fa-building fa-building-alt"></i>
+                        @lang('menus.backend.boxes.main')
+
+                        @if ($pending_approval > 0)
+                            <span class="badge badge-danger">{{ $pending_approval }}</span>
+                        @endif
                     </a>
+
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/boxes'))
+                            }}" href="{{ route('admin.boxes.index') }}">
+                                @lang('menus.backend.boxes.boxes')
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/boxes/*'))
+                            }}" href="{{ route('admin.boxes.view', session('active_box'))}}">
+                                @lang('menus.backend.boxes.manage')
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             @endif
 
