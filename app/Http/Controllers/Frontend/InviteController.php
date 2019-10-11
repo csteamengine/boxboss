@@ -42,8 +42,6 @@ class InviteController extends Controller
         $role = $invite->role;
         $box = $invite->box_id;
 
-
-
         $success = DB::table(__('validation.attributes.backend.invites.table.'.$role))->insert([
             'user_id' => auth()->user()->id,
             'box_id' => $box,
@@ -67,16 +65,16 @@ class InviteController extends Controller
     }
 
     public function decline(Request $request){
-        dump($request);
+        $invite = Invite::where('id', $request->get('invite_id'))
+            ->where('email', auth()->user()->email)
+            ->first();
 
-        //TODO verify the invite belongs to this user
-        //TODO handle accept/decline
-        //TODO If its users first time with admin privileges take them to welcome page
-        //TODO otherwise, take them to the admin page
+        if(!$invite || $invite['token'] != $request->get('token')){
+            return redirect()->route('frontend.index')->withFlashWarning('You don\'t have access to do that.');
+        }
+        $invite->delete();
 
-        dump("Decline");
-
-        exit;
+        return redirect()->route('frontend.invites.view');
 
     }
 }
