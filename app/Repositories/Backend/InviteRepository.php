@@ -31,15 +31,11 @@ class InviteRepository extends BaseRepository
      * @param $email
      * @return bool|\Illuminate\Database\Eloquent\Model
      */
-    public function findInviteByToken($token, $email)
+    public function findInvitesByEmail($email)
     {
-        $invite = Invite::where('token', $token)->where('email', $email)->whereDate('expires', '>', Carbon::today()->toDateString())->first();
+        $invites = Invite::where('email', $email)->whereDate('expires', '>=', Carbon::today()->toDateString());
 
-        if($invite){
-            return $invite;
-        }
-
-        return false;
+        return $invites->get();
     }
 
     /**

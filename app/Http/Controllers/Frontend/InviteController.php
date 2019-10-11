@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Invite;
 use App\Repositories\Backend\InviteRepository;
+use Carbon\Carbon;
+use DB;
 use Illuminate\Http\Request;
 
 class InviteController extends Controller
@@ -22,46 +24,57 @@ class InviteController extends Controller
         $this->inviteRepository = $inviteRepository;
     }
 
-    public function view($token = null){
-        if(!$token){
-            return redirect()->route('frontend.index');
-        }
+    public function view(){
+        $invites = $this->inviteRepository->findInvitesByEmail(auth()->user()['email']);
 
-        $invite = $this->inviteRepository->findInviteByToken($token, auth()->user()['email']);
-
-        if(!$invite){
-            return redirect()->route('frontend.index')->withFlashWarning('This invite has expired');
-        }
-
-        return view('frontend.invite.invite')->withInvite($invite);
-
-        //TODO when user clicks the link in the email they get taken to the view page
-        //TODO since the link has a token, it will get passed to this function, can't be null
-        //TODO this function will check if token is valid, not expired, and hasn't been accepted
-        //TODO the token will get passed to the view and will be in the form as a hidden input
-        //TODO role that the user was invited to will be sent as well.
+        return view('frontend.invite.invites')->withInvites($invites);
     }
 
-    public function accept(Request $request, Invite $invite){
-        //TODO verify the invite belongs to this user
-        //TODO handle accept/decline
-        //TODO If its users first time with admin privileges take them to welcome page
-        //TODO otherwise, take them to the admin page
+    public function accept(Request $request){
+        $invite = Invite::where('id', $request->get('invite_id'))
+            ->where('email', auth()->user()->email)
+            ->first();
 
-        dump("Accept");
-        dump($invite);
+        if(!$invite || $invite['token'] != $request->get('token')){
+            return redirect()->route('frontend.index')->withFlashWarning('You don\'t have access to do that.');
+        }
 
-        exit;
+        $role = $invite->role;
+        $box = $invite->box_id;
+
+
+
+        $success = DB::table(__('validation.attributes.backend.invites.table.'.$role))->insert([
+            'user_id' => auth()->user()->id,
+            'box_id' => $box,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        if($success){
+            $invite->delete();
+        }
+
+        //TODO give the user the privileges
+
+        $boxes = auth()->user()->getAllBoxes();
+
+        if($boxes->count() == 1){
+            //First admin privileges redirect to info page
+        }
+
+        return redirect()->route('admin.dashboard');
     }
 
-    public function decline(Request $request, Invite $invite){
+    public function decline(Request $request){
+        dump($request);
+
         //TODO verify the invite belongs to this user
         //TODO handle accept/decline
         //TODO If its users first time with admin privileges take them to welcome page
         //TODO otherwise, take them to the admin page
 
         dump("Decline");
-        dump($invite);
 
         exit;
 

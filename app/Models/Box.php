@@ -28,5 +28,5 @@ class Box extends Model
         'is_active' => 'boolean',
     ];
 
-    protected $with = array('owners');
+    protected $with = ['owners'];
 }

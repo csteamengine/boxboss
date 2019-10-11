@@ -206,6 +206,14 @@ return [
                     'email' => "Email"
                 ]
             ],
+            'invites' => [
+                'table' => [
+                    'admin' => 'box_admins',
+                    'owner' => 'box_owners',
+                    'coach' => 'box_coaches',
+                    'member' => 'box_members',
+                ]
+            ]
         ],
 
         'frontend' => [
