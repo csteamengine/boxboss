@@ -49,11 +49,12 @@ class InviteController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
+
+        $result = auth()->user()->assignRole(__('validation.attributes.backend.invites.role.'.$role));
+
         if($success){
             $invite->delete();
         }
-
-        //TODO give the user the privileges
 
         $boxes = auth()->user()->getAllBoxes();
 

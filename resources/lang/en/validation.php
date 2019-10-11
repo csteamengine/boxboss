@@ -212,6 +212,12 @@ return [
                     'owner' => 'box_owners',
                     'coach' => 'box_coaches',
                     'member' => 'box_members',
+                ],
+                'role' => [
+                    'admin' => 'box_admin',
+                    'owner' => 'owner',
+                    'coach' => 'coach',
+                    'member' => 'member',
                 ]
             ]
         ],
