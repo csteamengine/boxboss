@@ -14,6 +14,15 @@ use PragmaRX\Countries\Package\Countries;
 
 class BoxController extends Controller
 {
+//    /**
+//     * Create a new token for the user.
+//     *
+//     * @return string
+//     */
+//    public function createNewToken()
+//    {
+//        return hash_hmac('sha256', Str::random(40), $this->hashKey);
+//    }
     /**
      * @var BoxRepository
      */
