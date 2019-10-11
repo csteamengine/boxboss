@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBoxUserInvitesTable extends Migration
+class CreateBoxMembersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateBoxUserInvitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('box_user_invites', function (Blueprint $table) {
+        Schema::create('box_members', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('box_id');
-            $table->string('role');
-            $table->string('email');
-            $table->string('token');
+            $table->integer('user_id');
             $table->boolean('is_active')->default(true);
-            $table->timestamp('expires')->default(\Carbon\Carbon::now()->addDays(30));
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +30,6 @@ class CreateBoxUserInvitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('box_user_invites');
+        Schema::dropIfExists('box_members');
     }
 }

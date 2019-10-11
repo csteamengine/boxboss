@@ -80,6 +80,6 @@ class RegisterController extends Controller
 
         event(new UserRegistered($user));
 
-        return redirect($this->redirectPath());
+        return redirect()->intended($this->redirectPath());
     }
 }

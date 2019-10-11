@@ -14,15 +14,7 @@ use PragmaRX\Countries\Package\Countries;
 
 class BoxController extends Controller
 {
-//    /**
-//     * Create a new token for the user.
-//     *
-//     * @return string
-//     */
-//    public function createNewToken()
-//    {
-//        return hash_hmac('sha256', Str::random(40), $this->hashKey);
-//    }
+
     /**
      * @var BoxRepository
      */
@@ -34,9 +26,6 @@ class BoxController extends Controller
     public function __construct(BoxRepository $boxRepository)
     {
         $this->boxRepository = $boxRepository;
-//        $this->middleware('permission:view box', ['only' => ['view', 'manage', 'index','updateActiveBox']]);
-//        $this->middleware('role:'.config('access.users.box_admin_role'), ['only' => 'destroy']);
-//        $this->middleware('permission:update box|edit box', ['only' => ['create', 'store', 'edit', 'update']]);
     }
 
     /**

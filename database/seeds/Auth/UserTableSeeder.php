@@ -99,6 +99,8 @@ class UserTableSeeder extends Seeder
             'confirmed' => true,
         ]);
 
+        factory(User::class, 6)->create();
+
         $this->enableForeignKeys();
     }
 }

@@ -201,6 +201,10 @@ return [
                 'zip' => 'Zip / Postal Code',
                 'country' => 'Select a Country',
                 'is_active' => 'Status',
+                'invite' => [
+                    'role' => "Role",
+                    'email' => "Email"
+                ]
             ],
         ],
 

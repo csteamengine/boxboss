@@ -18,6 +18,7 @@ class CreateBoxOwnersTable extends Migration
             $table->integer('box_id');
             $table->integer('user_id');
             $table->boolean('is_active')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Box;
+use App\Models\Invite;
 use Illuminate\Database\Seeder;
 
 class BoxesTableSeeder extends Seeder
@@ -12,6 +13,11 @@ class BoxesTableSeeder extends Seeder
      */
     public function run()
     {
+        $key = config('app.key');
+        if (Str::startsWith($key, 'base64:')) {
+            $key = base64_decode(substr($key, 7));
+        }
+
         factory(Box::class, 3)->create();
 
         DB::table('box_owners')->insert([
@@ -62,6 +68,40 @@ class BoxesTableSeeder extends Seeder
         DB::table('box_admins')->insert([
             'user_id' => 7,
             'box_id' => 3
+        ]);
+
+
+//        Box Members
+        DB::table('box_members')->insert([
+            'user_id' => 10,
+            'box_id' => 1
+        ]);
+        DB::table('box_members')->insert([
+            'user_id' => 11,
+            'box_id' => 1
+        ]);
+        DB::table('box_members')->insert([
+            'user_id' => 12,
+            'box_id' => 1
+        ]);
+        DB::table('box_members')->insert([
+            'user_id' => 13,
+            'box_id' => 2
+        ]);
+        DB::table('box_members')->insert([
+            'user_id' => 14,
+            'box_id' => 2
+        ]);
+        DB::table('box_members')->insert([
+            'user_id' => 15,
+            'box_id' => 1
+        ]);
+
+        Invite::create([
+            'box_id' => 1,
+            'role' => 'owner',
+            'email' => 'csteen1005@gmail.com',
+            'token' => hash_hmac('sha256', Str::random(40), $key),
         ]);
     }
 }

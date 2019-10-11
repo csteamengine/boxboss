@@ -2,12 +2,12 @@
 
 namespace App\Repositories\Backend;
 
+use App\Events\Backend\Invite\InviteCreated;
 use App\Models\Invite;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
-use App\Events\Backend\Box\BoxCreated;
-use App\Events\Backend\Box\BoxUpdated;
 use Str;
 
 /**
@@ -26,6 +26,23 @@ class InviteRepository extends BaseRepository
     }
 
     /**
+     * @param $token
+     *
+     * @param $email
+     * @return bool|\Illuminate\Database\Eloquent\Model
+     */
+    public function findInviteByToken($token, $email)
+    {
+        $invite = Invite::where('token', $token)->where('email', $email)->whereDate('expires', '>', Carbon::today()->toDateString())->first();
+
+        if($invite){
+            return $invite;
+        }
+
+        return false;
+    }
+
+    /**
      * @param array $data
      *
      * @throws GeneralException
@@ -34,17 +51,23 @@ class InviteRepository extends BaseRepository
      */
     public function create(array $data) : Invite
     {
-        $key = config('app.key');
-        if (Str::startsWith($key, 'base64:')) {
-            $key = base64_decode(substr($key, 7));
-        }
+        $existing = $this->model
+            ->where('email', $data['email'])
+            ->where('role', $data['role'])
+            ->where('box_id', $data['box_id'])
+            ->first();
 
         // Make sure it doesn't already exist
-        if ($this->inviteExists($data['email'], $data['role'])) {
-            throw new GeneralException('An Invite already exists with the email and role.');
+        if ($existing) {
+            $existing->delete();
         }
 
         return DB::transaction(function () use ($data) {
+            $key = config('app.key');
+            if (Str::startsWith($key, 'base64:')) {
+                $key = base64_decode(substr($key, 7));
+            }
+
             $invite = $this->model::create([
                 'box_id' => $data['box_id'],
                 'email' => $data['email'],
@@ -54,7 +77,7 @@ class InviteRepository extends BaseRepository
 
             if ($invite) {
 
-//                event(new InviteCreated($invite));
+                event(new InviteCreated($invite));
 
                 return $invite;
             }
@@ -63,16 +86,5 @@ class InviteRepository extends BaseRepository
         });
     }
 
-    /**
-     * @param $email
-     * @param $role
-     * @return bool
-     */
-    protected function inviteExists($email, $role) : bool
-    {
-        return $this->model
-            ->where('email', $email)
-            ->where('role', $role)
-            ->count() > 0;
-    }
+
 }

@@ -31,6 +31,15 @@ return [
             'updated' => 'The role was successfully updated.',
         ],
 
+        'invites' => [
+            'grammar' => [
+                'owner' => 'an owner',
+                'admin' => 'an admin',
+                'coach' => 'a coach',
+                'member' => 'a member'
+            ],
+        ],
+
         'users' => [
             'cant_resend_confirmation' => 'The application is currently set to manually approve users.',
             'confirmation_email' => 'A new confirmation e-mail has been sent to the address on file.',
