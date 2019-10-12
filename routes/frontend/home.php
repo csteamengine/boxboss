@@ -23,6 +23,7 @@ Route::post('contact/send', [ContactController::class, 'send'])->name('contact.s
  */
 Route::group(['middleware' => ['auth', 'password_expires']], function () {
     Route::get('invites', [InviteController::class, 'view'])->name('invites.view');
+    Route::get('admin-welcome', [HomeController::class, 'adminWelcome'])->name('admin-welcome');
     Route::post('invite/accept', [InviteController::class, 'accept'])->name('invites.accept');
     Route::post('invite/decline', [InviteController::class, 'decline'])->name('invites.decline');
     Route::group(['namespace' => 'User', 'as' => 'user.'], function () {

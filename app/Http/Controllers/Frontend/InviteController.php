@@ -58,8 +58,8 @@ class InviteController extends Controller
 
         $boxes = auth()->user()->getAllBoxes();
 
-        if($boxes->count() == 1){
-            //First admin privileges redirect to info page
+        if($boxes->count() == 1 && sizeof(explode(', ', $boxes->first()->permissions)) <= 1){
+            return redirect()->route('frontend.admin-welcome');
         }
 
         return redirect()->route('admin.dashboard');

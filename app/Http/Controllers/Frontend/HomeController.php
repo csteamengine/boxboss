@@ -16,4 +16,12 @@ class HomeController extends Controller
     {
         return view('frontend.index');
     }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function adminWelcome()
+    {
+        return view('frontend.admin-welcome');
+    }
 }
