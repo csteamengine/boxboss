@@ -27,7 +27,7 @@ class RoleController extends Controller
     protected $permissionRepository;
 
     /**
-     * @param RoleRepository       $roleRepository
+     * @param RoleRepository $roleRepository
      * @param PermissionRepository $permissionRepository
      */
     public function __construct(RoleRepository $roleRepository, PermissionRepository $permissionRepository)
@@ -45,9 +45,9 @@ class RoleController extends Controller
     {
         return view('backend.auth.role.index')
             ->withRoles($this->roleRepository
-            ->with('users', 'permissions')
-            ->orderBy('id')
-            ->paginate());
+                ->with('users', 'permissions')
+                ->orderBy('id')
+                ->paginate());
     }
 
     /**
@@ -62,7 +62,7 @@ class RoleController extends Controller
     }
 
     /**
-     * @param  StoreRoleRequest  $request
+     * @param StoreRoleRequest $request
      *
      * @return mixed
      * @throws \App\Exceptions\GeneralException
@@ -77,7 +77,7 @@ class RoleController extends Controller
 
     /**
      * @param ManageRoleRequest $request
-     * @param Role              $role
+     * @param Role $role
      *
      * @return mixed
      */
@@ -94,8 +94,8 @@ class RoleController extends Controller
     }
 
     /**
-     * @param  UpdateRoleRequest  $request
-     * @param  Role  $role
+     * @param UpdateRoleRequest $request
+     * @param Role $role
      *
      * @return mixed
      * @throws \App\Exceptions\GeneralException
@@ -110,10 +110,10 @@ class RoleController extends Controller
 
     /**
      * @param ManageRoleRequest $request
-     * @param Role              $role
+     * @param Role $role
      *
      * @return mixed
-     *@throws \Exception
+     * @throws \Exception
      */
     public function destroy(ManageRoleRequest $request, Role $role)
     {

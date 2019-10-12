@@ -11,35 +11,38 @@ class Feature extends Model
         'is_active' => 'boolean',
     ];
 
-    public function isActive($featureName){
-        if(auth()->user() != null && auth()->user()->isAdmin()){
+    public function isActive($featureName)
+    {
+        if (auth()->user() != null && auth()->user()->isAdmin()) {
             return true;
         }
 
         $feature = Feature::where('name', $featureName)->first();
 
-        if(!is_null($feature)){
+        if (!is_null($feature)) {
             return $feature->is_active;
         }
         return false;
     }
 
-    public function toggleOff($featureName){
+    public function toggleOff($featureName)
+    {
         $feature = Feature::where('name', $featureName)->first();
 
-        if(!is_null($feature)){
+        if (!is_null($feature)) {
             $feature->is_active = false;
-            if($feature->save()) return true;
+            if ($feature->save()) return true;
         }
         return false;
     }
 
-    public function toggleOn($featureName){
+    public function toggleOn($featureName)
+    {
         $feature = Feature::where('name', $featureName)->first();
 
-        if(!is_null($feature)){
+        if (!is_null($feature)) {
             $feature->is_active = true;
-            if($feature->save()) return true;
+            if ($feature->save()) return true;
         }
         return false;
     }

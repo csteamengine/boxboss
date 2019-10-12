@@ -97,7 +97,7 @@
                 <li class="nav-item nav-dropdown {{
                     active_class(Route::is('admin/log-viewer*'), 'open')
                 }}">
-                        <a class="nav-link nav-dropdown-toggle {{
+                    <a class="nav-link nav-dropdown-toggle {{
                             active_class(Route::is('admin/log-viewer*'))
                         }}" href="#">
                         <i class="nav-icon fas fa-list"></i> @lang('menus.backend.log-viewer.main')

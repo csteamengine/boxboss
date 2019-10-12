@@ -29,9 +29,10 @@ trait UserRelationship
         return $this->hasMany(PasswordHistory::class);
     }
 
-    public function getAllBoxes(){
+    public function getAllBoxes()
+    {
 
-        if($this->isAdmin()){
+        if ($this->isAdmin()) {
             return Box::all();
         }
 
@@ -42,15 +43,15 @@ trait UserRelationship
         $admin = $this->boxesAdmined();
 
         $boxes = collect();
-        foreach($oldArr as $box){
+        foreach ($oldArr as $box) {
             $permissions = array();
-            if($owned->contains('id', $box->id)){
+            if ($owned->contains('id', $box->id)) {
                 array_push($permissions, "Owner");
             }
-            if($coached->contains('id', $box->id)){
+            if ($coached->contains('id', $box->id)) {
                 array_push($permissions, "Coach");
             }
-            if($admin->contains('id', $box->id)){
+            if ($admin->contains('id', $box->id)) {
                 array_push($permissions, "Admin");
             }
             $box->permissions = implode(", ", $permissions);
@@ -60,7 +61,8 @@ trait UserRelationship
         return $boxes;
     }
 
-    public function allBoxes(){
+    public function allBoxes()
+    {
         $owned = $this->boxesOwned()->get();
         $coached = $this->boxesCoached()->get();
         $admin = $this->boxesAdmined();

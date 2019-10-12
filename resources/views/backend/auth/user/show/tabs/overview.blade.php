@@ -3,7 +3,7 @@
         <table class="table table-hover">
             <tr>
                 <th>@lang('labels.backend.access.users.tabs.content.overview.avatar')</th>
-                <td><img src="{{ $user->picture }}" class="user-profile-image" /></td>
+                <td><img src="{{ $user->picture }}" class="user-profile-image"/></td>
             </tr>
 
             <tr>

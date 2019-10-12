@@ -1,7 +1,7 @@
 <div class="btn-group btn-group-sm" role="group" aria-label="@lang('labels.backend.access.users.user_actions')">
-{{--        <a href="{{ route('admin.auth.role.edit', $role) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')">--}}
-{{--            <i class="fas fa-edit"></i>--}}
-{{--        </a>--}}
+    {{--        <a href="{{ route('admin.auth.role.edit', $role) }}" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="@lang('buttons.general.crud.edit')">--}}
+    {{--            <i class="fas fa-edit"></i>--}}
+    {{--        </a>--}}
 
     <a href="{{ route('admin.auth.features.destroy', $feature) }}"
        data-method="delete"

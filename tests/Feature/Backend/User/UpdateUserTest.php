@@ -20,12 +20,12 @@ class UpdateUserTest extends TestCase
         $this->loginAsAdmin();
         $user = factory(User::class)->create();
 
-        $response = $this->get('/admin/auth/user/'.$user->id.'/edit');
+        $response = $this->get('/admin/auth/user/' . $user->id . '/edit');
 
         $response->assertStatus(200);
     }
 
-    /** @test  */
+    /** @test */
     public function an_admin_can_resend_users_confirmation_email()
     {
         $this->loginAsAdmin();

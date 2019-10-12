@@ -11,7 +11,8 @@ use Tests\TestCase;
 class BoxManagementTest extends TestCase
 {
     use RefreshDatabase;
-    protected function setUp() : void
+
+    protected function setUp(): void
     {
         parent::setup();
     }
@@ -38,7 +39,8 @@ class BoxManagementTest extends TestCase
 //    }
 
     /** @test */
-    public function test_admin_can_view_all_boxes(){
+    public function test_admin_can_view_all_boxes()
+    {
         $this->loginAsAdmin();
         $numBoxes = 3;
         $boxes = factory(Box::class, $numBoxes)->create();
@@ -51,7 +53,8 @@ class BoxManagementTest extends TestCase
     }
 
     /** @test */
-    public function test_coach_can_view_coached_boxes(){
+    public function test_coach_can_view_coached_boxes()
+    {
         $this->loginAsCoach();
         $numBoxes = 3;
         $expected = 1;
@@ -69,7 +72,8 @@ class BoxManagementTest extends TestCase
     }
 
     /** @test */
-    public function test_box_admin_can_view_admin_boxes(){
+    public function test_box_admin_can_view_admin_boxes()
+    {
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
         $expected = 1;
@@ -87,7 +91,8 @@ class BoxManagementTest extends TestCase
     }
 
     /** @test */
-    public function test_owner_can_view_owned_boxes(){
+    public function test_owner_can_view_owned_boxes()
+    {
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
         $expected = 1;
@@ -110,7 +115,8 @@ class BoxManagementTest extends TestCase
     }
 
     /** @test */
-    public function test_user_can_view_all_boxes(){
+    public function test_user_can_view_all_boxes()
+    {
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
         $expectedAdmin = 1;
@@ -139,7 +145,8 @@ class BoxManagementTest extends TestCase
     }
 
     /** @test */
-    public function test_get_all_boxes_no_duplicates(){
+    public function test_get_all_boxes_no_duplicates()
+    {
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 

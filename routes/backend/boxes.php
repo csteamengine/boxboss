@@ -16,7 +16,7 @@ Route::group([
         Route::get('edit', [BoxController::class, 'edit'])->name('boxes.edit')->middleware('can:edit,box');
         Route::patch('/', [BoxController::class, 'update'])->name('boxes.update')->middleware('can:update,box');
         Route::delete('/', [BoxController::class, 'destroy'])->name('boxes.destroy')->middleware('can:destroy,box');
-        Route::post('/sendInvite', [InviteController::class, 'sendInvite'])->name('boxes.sendInvite')->middleware('can:update,box');
+        Route::post('/sendInvite', [InviteController::class, 'sendInvite'])->name('boxes.sendInvite')->middleware(['can:update,box', 'featureflags:invite_management']);
     });
 });
 

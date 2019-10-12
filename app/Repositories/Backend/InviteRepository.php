@@ -18,7 +18,7 @@ class InviteRepository extends BaseRepository
     /**
      * InviteRepository constructor.
      *
-     * @param  Invite  $model
+     * @param Invite $model
      */
     public function __construct(Invite $model)
     {
@@ -41,11 +41,11 @@ class InviteRepository extends BaseRepository
     /**
      * @param array $data
      *
-     * @throws GeneralException
-     * @throws \Throwable
      * @return Invite
+     * @throws \Throwable
+     * @throws GeneralException
      */
-    public function create(array $data) : Invite
+    public function create(array $data): Invite
     {
         $existing = $this->model
             ->where('email', $data['email'])

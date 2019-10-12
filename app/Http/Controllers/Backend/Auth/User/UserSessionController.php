@@ -13,7 +13,7 @@ class UserSessionController extends Controller
 {
     /**
      * @param ManageUserRequest $request
-     * @param User              $user
+     * @param User $user
      *
      * @return mixed
      */

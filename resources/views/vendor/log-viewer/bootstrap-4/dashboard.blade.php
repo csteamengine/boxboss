@@ -36,12 +36,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.min.js"></script>
     <script>
-        Chart.defaults.global.responsive      = true;
+        Chart.defaults.global.responsive = true;
         Chart.defaults.global.scaleFontFamily = "'Source Sans Pro'";
         Chart.defaults.global.animationEasing = "easeOutQuart";
     </script>
     <script>
-        $(function() {
+        $(function () {
             new Chart($('canvas#stats-doughnut-chart'), {
                 type: 'doughnut',
                 data: {!! $chartData !!},

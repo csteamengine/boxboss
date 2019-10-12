@@ -11,11 +11,13 @@ use App\Models\Invite;
  */
 trait InviteRelationship
 {
-    public function box(){
+    public function box()
+    {
         return $this->belongsTo(Box::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class, 'email', 'email');
     }
 }

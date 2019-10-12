@@ -7,11 +7,13 @@ namespace App\Models\Auth\Traits\Method;
  */
 trait UserMethod
 {
-    public function getActiveBox(){
+    public function getActiveBox()
+    {
         //TODO get the box that the user is currently viewing on the backend
     }
 
-    public function updateActiveBox(){
+    public function updateActiveBox()
+    {
         //TODO update the box that the user wants to edit on the backend
     }
 
@@ -28,27 +30,27 @@ trait UserMethod
      */
     public function canChangePassword()
     {
-        return ! app('session')->has(config('access.socialite_session_name'));
+        return !app('session')->has(config('access.socialite_session_name'));
     }
 
     /**
      * @param bool $size
      *
-     * @throws \Illuminate\Container\EntryNotFoundException
      * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string
+     * @throws \Illuminate\Container\EntryNotFoundException
      */
     public function getPicture($size = false)
     {
         switch ($this->avatar_type) {
             case 'gravatar':
-                if (! $size) {
+                if (!$size) {
                     $size = config('gravatar.default.size');
                 }
 
                 return gravatar()->get($this->email, ['size' => $size]);
 
             case 'storage':
-                return url('storage/'.$this->avatar_location);
+                return url('storage/' . $this->avatar_location);
         }
 
         $social_avatar = $this->providers()->where('provider', $this->avatar_type)->first();
@@ -105,6 +107,6 @@ trait UserMethod
      */
     public function isPending()
     {
-        return config('access.users.requires_approval') && ! $this->confirmed;
+        return config('access.users.requires_approval') && !$this->confirmed;
     }
 }

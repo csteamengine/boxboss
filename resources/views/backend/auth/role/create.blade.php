@@ -3,7 +3,7 @@
 @section('title', __('labels.backend.access.roles.management') . ' | ' . __('labels.backend.access.roles.create'))
 
 @section('content')
-{{ html()->form('POST', route('admin.auth.role.store'))->class('form-horizontal')->open() }}
+    {{ html()->form('POST', route('admin.auth.role.store'))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -72,5 +72,5 @@
             </div><!--row-->
         </div><!--card-footer-->
     </div><!--card-->
-{{ html()->form()->close() }}
+    {{ html()->form()->close() }}
 @endsection

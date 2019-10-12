@@ -23,7 +23,8 @@
                         <a href="{{ route('log-viewer::logs.download', [$log->date]) }}" class="btn btn-sm btn-success">
                             <i class="fa fa-download"></i> DOWNLOAD
                         </a>
-                        <a href="#delete-log-modal" class="btn btn-sm btn-danger" data-toggle="modal" data-backdrop="false">
+                        <a href="#delete-log-modal" class="btn btn-sm btn-danger" data-toggle="modal"
+                           data-backdrop="false">
                             <i class="fa fa-trash"></i> DELETE
                         </a>
                     </div>
@@ -108,7 +109,9 @@
                                     </td>
                                     <td class="text-right">
                                         @if($entry->hasStack())
-                                            <a class="btn btn-sm btn-outline-info" role="button" data-toggle="collapse" href="#log-stack-{{ $key }}" aria-expanded="false" aria-controls="log-stack-{{ $key }}">
+                                            <a class="btn btn-sm btn-outline-info" role="button" data-toggle="collapse"
+                                               href="#log-stack-{{ $key }}" aria-expanded="false"
+                                               aria-controls="log-stack-{{ $key }}">
                                                 <i class="fa fa-toggle-on"></i> Stack
                                             </a>
                                         @endif
@@ -124,7 +127,8 @@
                             @empty
                                 <tr>
                                     <td colspan="5" class="text-center">
-                                        <span class="badge badge-default">{{ __('log-viewer::general.empty-logs') }}</span>
+                                        <span
+                                            class="badge badge-default">{{ __('log-viewer::general.empty-logs') }}</span>
                                     </td>
                                 </tr>
                             @endforelse
@@ -164,11 +168,16 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure you want to <span class="badge badge-danger">DELETE</span> this log file <span class="badge badge-primary">{{ $log->date }}</span> ?</p>
+                        <p>Are you sure you want to <span class="badge badge-danger">DELETE</span> this log file <span
+                                class="badge badge-primary">{{ $log->date }}</span> ?</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;"><i class="fa fa-trash"></i> DELETE FILE</button>
-                        <button type="button" class="btn btn-sm btn-primary pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;"><i
+                                class="fa fa-trash"></i> DELETE FILE
+                        </button>
+                        <button type="button" class="btn btn-sm btn-primary pull-left" data-dismiss="modal"><i
+                                class="fa fa-times"></i> Cancel
+                        </button>
                     </div>
                 </div>
             </form>
@@ -180,29 +189,28 @@
     <script>
         $(function () {
             var deleteLogModal = $('#delete-log-modal'),
-                deleteLogForm  = $('#delete-log-form'),
-                submitBtn      = deleteLogForm.find('button[type=submit]');
+                deleteLogForm = $('#delete-log-form'),
+                submitBtn = deleteLogForm.find('button[type=submit]');
 
-            deleteLogForm.on('submit', function(event) {
+            deleteLogForm.on('submit', function (event) {
                 event.preventDefault();
                 submitBtn.button('loading');
 
                 $.ajax({
-                    url:      $(this).attr('action'),
-                    type:     $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
                     dataType: 'json',
-                    data:     $(this).serialize(),
-                    success: function(data) {
+                    data: $(this).serialize(),
+                    success: function (data) {
                         submitBtn.button('reset');
                         if (data.result === 'success') {
                             deleteLogModal.modal('hide');
                             location.replace("{{ route('log-viewer::logs.list') }}");
-                        }
-                        else {
+                        } else {
                             alert('OOPS ! This is a lack of coffee exception!')
                         }
                     },
-                    error: function(xhr, textStatus, errorThrown) {
+                    error: function (xhr, textStatus, errorThrown) {
                         alert('AJAX ERROR ! Check the console !');
                         console.error(errorThrown);
                         submitBtn.button('reset');
@@ -213,7 +221,7 @@
             });
 
             @unless(empty(log_styler()->toHighlight()))
-            $('.stack-content').each(function() {
+            $('.stack-content').each(function () {
                 var $this = $(this);
                 var html = $this.html().trim()
                     .replace(/({!! join(log_styler()->toHighlight(), '|') !!})/gm, '<strong>$1</strong>');

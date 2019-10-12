@@ -13,11 +13,11 @@ use App\Events\Backend\Auth\User\UserSocialDeleted;
 class SocialRepository
 {
     /**
-     * @param User        $user
+     * @param User $user
      * @param SocialAccount $social
      *
-     * @throws GeneralException
      * @return bool
+     * @throws GeneralException
      */
     public function delete(User $user, SocialAccount $social)
     {

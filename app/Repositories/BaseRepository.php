@@ -142,7 +142,7 @@ abstract class BaseRepository implements RepositoryContract
     /**
      * @param $item
      * @param $column
-     * @param  array  $columns
+     * @param array $columns
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model|object|null
      */
@@ -199,10 +199,10 @@ abstract class BaseRepository implements RepositoryContract
     }
 
     /**
-     * @param int    $limit
-     * @param array  $columns
+     * @param int $limit
+     * @param array $columns
      * @param string $pageName
-     * @param null   $page
+     * @param null $page
      *
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
@@ -237,7 +237,7 @@ abstract class BaseRepository implements RepositoryContract
      * Add a simple where in clause to the query.
      *
      * @param string $column
-     * @param mixed  $values
+     * @param mixed $values
      *
      * @return $this
      */
@@ -313,7 +313,7 @@ abstract class BaseRepository implements RepositoryContract
             $this->query->orderBy($orders['column'], $orders['direction']);
         }
 
-        if (isset($this->take) and ! is_null($this->take)) {
+        if (isset($this->take) and !is_null($this->take)) {
             $this->query->take($this->take);
         }
 

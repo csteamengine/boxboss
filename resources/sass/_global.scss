@@ -1,5 +1,4 @@
 // Plugins
-
 // FontAwesome 5
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/brands";
@@ -8,6 +7,6 @@
 
 // Header Styles
 .read-only, .logged-in-as {
-  margin: 0 !important;
-  border-radius: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
 }

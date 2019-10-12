@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-{{ html()->form('PATCH', route('admin.auth.user.change-password.post', $user))->class('form-horizontal')->open() }}
+    {{ html()->form('PATCH', route('admin.auth.user.change-password.post', $user))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -23,7 +23,7 @@
                 </div><!--col-->
             </div><!--row-->
 
-            <hr />
+            <hr/>
 
             <div class="row mt-4 mb-4">
                 <div class="col">
@@ -65,5 +65,5 @@
             </div><!--row-->
         </div><!--card-footer-->
     </div><!--card-->
-{{ html()->form()->close() }}
+    {{ html()->form()->close() }}
 @endsection

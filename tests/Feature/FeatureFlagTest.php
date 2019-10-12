@@ -77,7 +77,8 @@ class FeatureFlagTest extends TestCase
 
     }
 
-    public function test_admin_user_can_access_inactive_feature(){
+    public function test_admin_user_can_access_inactive_feature()
+    {
         $feature = FeatureFlag::create([
             'name' => 'test_feature',
             'is_active' => false

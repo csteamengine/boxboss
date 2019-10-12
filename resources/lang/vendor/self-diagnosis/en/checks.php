@@ -34,7 +34,7 @@ return [
         'name' => 'Debug mode is not enabled',
     ],
     'directories_have_correct_permissions' => [
-        'message' => 'The following directories are not writable:' . PHP_EOL .':directories',
+        'message' => 'The following directories are not writable:' . PHP_EOL . ':directories',
         'name' => 'All directories have the correct permissions',
     ],
     'env_file_exists' => [

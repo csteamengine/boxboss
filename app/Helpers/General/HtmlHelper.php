@@ -30,7 +30,7 @@ class HtmlHelper
     /**
      * @param       $url
      * @param array $attributes
-     * @param null  $secure
+     * @param null $secure
      *
      * @return mixed
      */
@@ -42,15 +42,15 @@ class HtmlHelper
 
         $attributes['href'] = $this->url->asset($url, $secure);
 
-        return $this->toHtmlString('<link'.$this->attributes($attributes).'>'.PHP_EOL);
+        return $this->toHtmlString('<link' . $this->attributes($attributes) . '>' . PHP_EOL);
     }
 
     /**
      * Generate a link to a JavaScript file.
      *
      * @param string $url
-     * @param array  $attributes
-     * @param bool   $secure
+     * @param array $attributes
+     * @param bool $secure
      *
      * @return \Illuminate\Support\HtmlString
      */
@@ -58,7 +58,7 @@ class HtmlHelper
     {
         $attributes['src'] = $this->url->asset($url, $secure);
 
-        return $this->toHtmlString('<script'.$this->attributes($attributes).'></script>'.PHP_EOL);
+        return $this->toHtmlString('<script' . $this->attributes($attributes) . '></script>' . PHP_EOL);
     }
 
     /**
@@ -95,15 +95,15 @@ class HtmlHelper
     {
         $html = [];
 
-        foreach ((array) $attributes as $key => $value) {
+        foreach ((array)$attributes as $key => $value) {
             $element = $this->attributeElement($key, $value);
 
-            if (! is_null($element)) {
+            if (!is_null($element)) {
                 $html[] = $element;
             }
         }
 
-        return count($html) > 0 ? ' '.implode(' ', $html) : '';
+        return count($html) > 0 ? ' ' . implode(' ', $html) : '';
     }
 
     /**
@@ -130,8 +130,8 @@ class HtmlHelper
             return $value ? $key : '';
         }
 
-        if (! is_null($value)) {
-            return $key.'="'.e($value).'"';
+        if (!is_null($value)) {
+            return $key . '="' . e($value) . '"';
         }
     }
 

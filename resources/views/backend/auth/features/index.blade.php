@@ -7,43 +7,43 @@
 @endpush
 
 @section('content')
-<div class="card">
-    <div class="card-body">
-        <div class="row">
-            <div class="col-sm-5">
-                <h4 class="card-title mb-0">
-                    @lang('labels.backend.access.features.flags')
-                </h4>
-            </div><!--col-->
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-5">
+                    <h4 class="card-title mb-0">
+                        @lang('labels.backend.access.features.flags')
+                    </h4>
+                </div><!--col-->
 
-            <div class="col-sm-7 pull-right">
-                @include('backend.auth.features.includes.header-buttons')
-            </div><!--col-->
-        </div><!--row-->
+                <div class="col-sm-7 pull-right">
+                    @include('backend.auth.features.includes.header-buttons')
+                </div><!--col-->
+            </div><!--row-->
 
-        <div class="row mt-4">
-            <div class="col">
-                <input type="hidden" value="{{csrf_token()}}" id="featureTableCSRF">
-                <div class="table-responsive">
-                    <table id="featuresTable" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
+            <div class="row mt-4">
+                <div class="col">
+                    <input type="hidden" value="{{csrf_token()}}" id="featureTableCSRF">
+                    <div class="table-responsive">
+                        <table id="featuresTable" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
                             <tr>
                                 <th>@lang('labels.backend.access.features.table.name')</th>
                                 <th>@lang('labels.backend.access.features.table.status')</th>
                                 <th>@lang('labels.general.actions')</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             @foreach($features as $feature)
                                 @include('backend.auth.features.includes.feature_row', ['feature' => $feature])
                             @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div><!--col-->
-        </div><!--row-->
-    </div><!--card-body-->
-</div><!--card-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div><!--col-->
+            </div><!--row-->
+        </div><!--card-body-->
+    </div><!--card-->
 @endsection
 @push('after-scripts')
     {!! script('https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js') !!}

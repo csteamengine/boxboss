@@ -24,58 +24,59 @@ class InviteController extends Controller
         $this->inviteRepository = $inviteRepository;
     }
 
-    public function view(){
+    public function view()
+    {
         $invites = $this->inviteRepository->findInvitesByEmail(auth()->user()['email']);
 
         return view('frontend.invite.invites')->withInvites($invites);
     }
 
-    public function accept(Request $request){
+    public function accept(Request $request)
+    {
         $invite = Invite::where('id', $request->get('invite_id'))
             ->where('email', auth()->user()->email)
             ->first();
 
-        if(!$invite || $invite['token'] != $request->get('token')){
+        if (!$invite || $invite['token'] != $request->get('token')) {
             return redirect()->route('frontend.index')->withFlashWarning('You don\'t have access to do that.');
         }
 
         $role = $invite->role;
         $box = $invite->box_id;
 
-        $success = DB::table(__('validation.attributes.backend.invites.table.'.$role))->insert([
+        $success = DB::table(__('validation.attributes.backend.invites.table.' . $role))->insert([
             'user_id' => auth()->user()->id,
             'box_id' => $box,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
+        $result = auth()->user()->assignRole(__('validation.attributes.backend.invites.role.' . $role));
 
-        $result = auth()->user()->assignRole(__('validation.attributes.backend.invites.role.'.$role));
-
-        if($success){
+        if ($success) {
             $invite->delete();
         }
 
         $boxes = auth()->user()->getAllBoxes();
 
-        if($boxes->count() == 1 && sizeof(explode(', ', $boxes->first()->permissions)) <= 1){
+        if ($boxes->count() == 1 && sizeof(explode(', ', $boxes->first()->permissions)) <= 1) {
             return redirect()->route('frontend.admin-welcome');
         }
 
         return redirect()->route('admin.dashboard');
     }
 
-    public function decline(Request $request){
+    public function decline(Request $request)
+    {
         $invite = Invite::where('id', $request->get('invite_id'))
             ->where('email', auth()->user()->email)
             ->first();
 
-        if(!$invite || $invite['token'] != $request->get('token')){
+        if (!$invite || $invite['token'] != $request->get('token')) {
             return redirect()->route('frontend.index')->withFlashWarning('You don\'t have access to do that.');
         }
         $invite->delete();
 
         return redirect()->route('frontend.invites.view');
-
     }
 }

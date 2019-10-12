@@ -29,8 +29,8 @@ class ConfirmAccountController extends Controller
     /**
      * @param $token
      *
-     * @throws \App\Exceptions\GeneralException
      * @return mixed
+     * @throws \App\Exceptions\GeneralException
      */
     public function confirm($token)
     {
@@ -42,8 +42,8 @@ class ConfirmAccountController extends Controller
     /**
      * @param $uuid
      *
-     * @throws \App\Exceptions\GeneralException
      * @return mixed
+     * @throws \App\Exceptions\GeneralException
      */
     public function sendConfirmationEmail($uuid)
     {

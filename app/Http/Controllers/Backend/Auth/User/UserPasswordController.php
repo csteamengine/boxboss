@@ -28,7 +28,7 @@ class UserPasswordController extends Controller
 
     /**
      * @param ManageUserRequest $request
-     * @param User              $user
+     * @param User $user
      *
      * @return mixed
      */
@@ -40,10 +40,10 @@ class UserPasswordController extends Controller
 
     /**
      * @param UpdateUserPasswordRequest $request
-     * @param User                      $user
+     * @param User $user
      *
-     * @throws \App\Exceptions\GeneralException
      * @return mixed
+     * @throws \App\Exceptions\GeneralException
      */
     public function update(UpdateUserPasswordRequest $request, User $user)
     {

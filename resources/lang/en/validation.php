@@ -217,7 +217,7 @@ return [
                     'admin' => 'box_admin',
                     'owner' => 'owner',
                     'coach' => 'coach',
-                    'member' => 'member',
+                    'member' => 'member'
                 ]
             ]
         ],

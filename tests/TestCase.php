@@ -14,7 +14,7 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setup();
         $this->artisan("db:seed --class=FeaturesTableSeeder");
@@ -26,9 +26,10 @@ abstract class TestCase extends BaseTestCase
      * @param $role
      * @param array $permissions
      */
-    protected function assignPermissions($role, $permissions){
-        foreach($permissions as $permission){
-            if(!$role->hasPermissionTo($this->getPermission($permission))){
+    protected function assignPermissions($role, $permissions)
+    {
+        foreach ($permissions as $permission) {
+            if (!$role->hasPermissionTo($this->getPermission($permission))) {
                 $role->givePermissionTo($this->getPermission($permission));
             }
         }
@@ -60,11 +61,11 @@ abstract class TestCase extends BaseTestCase
      */
     protected function getRole($role = "admin_role", $permission = "view backend")
     {
-        if ($existingRole = Role::whereName(config('access.users.'.$role))->first()) {
+        if ($existingRole = Role::whereName(config('access.users.' . $role))->first()) {
             return $existingRole;
         }
 
-        $newRole = factory(Role::class)->create(['name' => config('access.users.'.$role)]);
+        $newRole = factory(Role::class)->create(['name' => config('access.users.' . $role)]);
 
         return $newRole;
     }
@@ -128,7 +129,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function loginAsAdmin($admin = false)
     {
-        if (! $admin) {
+        if (!$admin) {
             $admin = $this->createAdmin();
         }
 
@@ -146,7 +147,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function loginAsCoach($coach = false)
     {
-        if (! $coach) {
+        if (!$coach) {
             $coach = $this->createCoach();
         }
 
@@ -163,7 +164,7 @@ abstract class TestCase extends BaseTestCase
      */
     protected function loginAsBoxAdmin($boxAdmin = false)
     {
-        if (! $boxAdmin) {
+        if (!$boxAdmin) {
             $boxAdmin = $this->createBoxAdmin();
         }
 

@@ -1,10 +1,10 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $('#boxesTable').DataTable();
     var reset = false;
-    $('.switch-input').on('click', function(event) {
-        if(reset){
+    $('.switch-input').on('click', function (event) {
+        if (reset) {
             reset = false;
-        }else{
+        } else {
             event.preventDefault();
             try {
                 var route = $(this).data('url');

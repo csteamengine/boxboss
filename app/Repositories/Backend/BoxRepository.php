@@ -17,7 +17,7 @@ class BoxRepository extends BaseRepository
     /**
      * RoleRepository constructor.
      *
-     * @param  Box  $model
+     * @param Box $model
      */
     public function __construct(Box $model)
     {
@@ -27,15 +27,15 @@ class BoxRepository extends BaseRepository
     /**
      * @param array $data
      *
-     * @throws GeneralException
-     * @throws \Throwable
      * @return Box
+     * @throws \Throwable
+     * @throws GeneralException
      */
-    public function create(array $data) : Box
+    public function create(array $data): Box
     {
         // Make sure it doesn't already exist
         if ($this->boxExists($data['name'])) {
-            throw new GeneralException('A box already exists with the name '.e($data['name']));
+            throw new GeneralException('A box already exists with the name ' . e($data['name']));
         }
 
         return DB::transaction(function () use ($data) {
@@ -76,7 +76,7 @@ class BoxRepository extends BaseRepository
         // If the name is changing make sure it doesn't already exist
         if (strtolower($box->name) !== strtolower($data['name'])) {
             if ($this->boxExists($data['name'])) {
-                throw new GeneralException('A box already exists with the name '.$data['name']);
+                throw new GeneralException('A box already exists with the name ' . $data['name']);
             }
         }
 
@@ -107,10 +107,10 @@ class BoxRepository extends BaseRepository
      *
      * @return bool
      */
-    protected function boxExists($name) : bool
+    protected function boxExists($name): bool
     {
         return $this->model
-            ->where('name', $name)
-            ->count() > 0;
+                ->where('name', $name)
+                ->count() > 0;
     }
 }

@@ -10,14 +10,14 @@ use App\Events\Backend\Auth\Feature\FeatureCreated;
 use App\Events\Backend\Auth\Feature\FeatureUpdated;
 
 /**
- * Class RoleRepository.
+ * Class FeatureRepository.
  */
 class FeatureRepository extends BaseRepository
 {
     /**
-     * RoleRepository constructor.
+     * FeatureRepository constructor.
      *
-     * @param  Feature  $model
+     * @param Feature $model
      */
     public function __construct(Feature $model)
     {
@@ -27,15 +27,15 @@ class FeatureRepository extends BaseRepository
     /**
      * @param array $data
      *
-     * @throws GeneralException
-     * @throws \Throwable
      * @return Feature
+     * @throws \Throwable
+     * @throws GeneralException
      */
-    public function create(array $data) : Feature
+    public function create(array $data): Feature
     {
         // Make sure it doesn't already exist
         if ($this->featureExists($data['name'])) {
-            throw new GeneralException('A feature already exists with the name '.e($data['name']));
+            throw new GeneralException('A feature already exists with the name ' . e($data['name']));
         }
 
         return DB::transaction(function () use ($data) {
@@ -43,7 +43,7 @@ class FeatureRepository extends BaseRepository
 
             if ($feature) {
 
-                event(new FeatureCreated($role));
+                event(new FeatureCreated($feature));
 
                 return $feature;
             }
@@ -65,7 +65,7 @@ class FeatureRepository extends BaseRepository
         // If the name is changing make sure it doesn't already exist
         if ($feature->name !== strtolower($data['name'])) {
             if ($this->featureExists($data['name'])) {
-                throw new GeneralException('A feature already exists with the name '.$data['name']);
+                throw new GeneralException('A feature already exists with the name ' . $data['name']);
             }
         }
 
@@ -88,10 +88,10 @@ class FeatureRepository extends BaseRepository
      *
      * @return bool
      */
-    protected function featureExists($name) : bool
+    protected function featureExists($name): bool
     {
         return $this->model
-            ->where('name', strtolower($name))
-            ->count() > 0;
+                ->where('name', strtolower($name))
+                ->count() > 0;
     }
 }

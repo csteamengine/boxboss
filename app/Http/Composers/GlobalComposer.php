@@ -16,8 +16,7 @@ class GlobalComposer
      */
     public function compose(View $view)
     {
-        if(!session()->has('active_box') && auth()->user())
-        {
+        if (!session()->has('active_box') && auth()->user()) {
             session(['active_box' => auth()->user()->allBoxes()->first()]);
         }
 

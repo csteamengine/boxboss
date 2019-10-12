@@ -48,7 +48,7 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return void
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -70,13 +70,13 @@ class LoginController extends Controller
      * @param Request $request
      * @param         $user
      *
-     * @throws GeneralException
      * @return \Illuminate\Http\RedirectResponse
+     * @throws GeneralException
      */
     protected function authenticated(Request $request, $user)
     {
         // Check to see if the users account is confirmed and active
-        if (! $user->isConfirmed()) {
+        if (!$user->isConfirmed()) {
             auth()->logout();
 
             // If the user is pending (account approval is on)
@@ -89,7 +89,7 @@ class LoginController extends Controller
             throw new GeneralException(__('exceptions.frontend.auth.confirmation.resend', ['url' => route('frontend.auth.account.confirm.resend', e($user->{$user->getUuidName()}))]));
         }
 
-        if (! $user->isActive()) {
+        if (!$user->isActive()) {
             auth()->logout();
 
             throw new GeneralException(__('exceptions.frontend.auth.deactivated'));

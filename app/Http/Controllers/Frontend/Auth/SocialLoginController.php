@@ -28,7 +28,7 @@ class SocialLoginController extends Controller
     /**
      * SocialLoginController constructor.
      *
-     * @param UserRepository  $userRepository
+     * @param UserRepository $userRepository
      * @param SocialiteHelper $socialiteHelper
      */
     public function __construct(UserRepository $userRepository, SocialiteHelper $socialiteHelper)
@@ -41,9 +41,9 @@ class SocialLoginController extends Controller
      * @param Request $request
      * @param $provider
      *
+     * @return \Illuminate\Http\RedirectResponse|mixed
      * @throws GeneralException
      *
-     * @return \Illuminate\Http\RedirectResponse|mixed
      */
     public function login(Request $request, $provider)
     {
@@ -51,7 +51,7 @@ class SocialLoginController extends Controller
         $user = null;
 
         // If the provider is not an acceptable third party than kick back
-        if (! in_array($provider, $this->socialiteHelper->getAcceptedProviders(), true)) {
+        if (!in_array($provider, $this->socialiteHelper->getAcceptedProviders(), true)) {
             return redirect()->route(home_route())->withFlashDanger(__('auth.socialite.unacceptable', ['provider' => e($provider)]));
         }
 
@@ -60,7 +60,7 @@ class SocialLoginController extends Controller
          * It's redirected to the provider and then back here, where request is populated
          * So it then continues creating the user
          */
-        if (! $request->all()) {
+        if (!$request->all()) {
             return $this->getAuthorizationFirst($provider);
         }
 
@@ -76,7 +76,7 @@ class SocialLoginController extends Controller
         }
 
         // Check to see if they are active.
-        if (! $user->isActive()) {
+        if (!$user->isActive()) {
             throw new GeneralException(__('exceptions.frontend.auth.deactivated'));
         }
 

@@ -49,30 +49,30 @@ class UserStatusController extends Controller
 
     /**
      * @param ManageUserRequest $request
-     * @param User              $user
+     * @param User $user
      * @param                   $status
      *
-     * @throws \App\Exceptions\GeneralException
      * @return mixed
+     * @throws \App\Exceptions\GeneralException
      */
     public function mark(ManageUserRequest $request, User $user, $status)
     {
-        $this->userRepository->mark($user, (int) $status);
+        $this->userRepository->mark($user, (int)$status);
 
         return redirect()->route(
-            (int) $status === 1 ?
-            'admin.auth.user.index' :
-            'admin.auth.user.deactivated'
+            (int)$status === 1 ?
+                'admin.auth.user.index' :
+                'admin.auth.user.deactivated'
         )->withFlashSuccess(__('alerts.backend.users.updated'));
     }
 
     /**
      * @param ManageUserRequest $request
-     * @param User              $deletedUser
+     * @param User $deletedUser
      *
-     * @throws \App\Exceptions\GeneralException
-     * @throws \Throwable
      * @return mixed
+     * @throws \Throwable
+     * @throws \App\Exceptions\GeneralException
      */
     public function delete(ManageUserRequest $request, User $deletedUser)
     {
@@ -83,10 +83,10 @@ class UserStatusController extends Controller
 
     /**
      * @param ManageUserRequest $request
-     * @param User              $deletedUser
+     * @param User $deletedUser
      *
-     * @throws \App\Exceptions\GeneralException
      * @return mixed
+     * @throws \App\Exceptions\GeneralException
      */
     public function restore(ManageUserRequest $request, User $deletedUser)
     {

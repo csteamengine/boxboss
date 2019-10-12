@@ -31,11 +31,13 @@ trait BoxRelationship
         return $this->belongsToMany(User::class, 'box_members', 'box_id', 'user_id');
     }
 
-    public function staff(){
+    public function staff()
+    {
         return $this->owners()->get()->merge($this->admins()->get()->merge($this->coaches()->get()));
     }
 
-    public function invites(){
+    public function invites()
+    {
         return $this->hasMany(Invite::class, 'box_id', '');
     }
 }

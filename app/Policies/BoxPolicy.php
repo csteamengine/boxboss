@@ -27,7 +27,7 @@ class BoxPolicy
     /**
      * Determine whether the user can view any boxes.
      *
-     * @param  \App\Models\Auth\User  $user
+     * @param \App\Models\Auth\User $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -35,15 +35,16 @@ class BoxPolicy
         //
     }
 
-    public function updateActiveBox(User $user, Box $box){
+    public function updateActiveBox(User $user, Box $box)
+    {
         return $this->view($user, $box);
     }
 
     /**
      * Determine whether the user can view the box.
      *
-     * @param  \App\Models\Auth\User  $user
-     * @param  \App\Box  $box
+     * @param \App\Models\Auth\User $user
+     * @param \App\Box $box
      * @return mixed
      */
     public function view(User $user, Box $box)
@@ -54,8 +55,8 @@ class BoxPolicy
     /**
      * Determine whether the user can view the box.
      *
-     * @param  \App\Models\Auth\User  $user
-     * @param  \App\Box  $box
+     * @param \App\Models\Auth\User $user
+     * @param \App\Box $box
      * @return mixed
      */
     public function edit(User $user, Box $box)
@@ -71,7 +72,7 @@ class BoxPolicy
      *
      * Same function is used to prevent store
      *
-     * @param  \App\Models\Auth\User  $user
+     * @param \App\Models\Auth\User $user
      * @return mixed
      */
     public function create(User $user)
@@ -82,8 +83,8 @@ class BoxPolicy
     /**
      * Determine whether the user can update the box.
      *
-     * @param  \App\Models\Auth\User  $user
-     * @param  \App\Box  $box
+     * @param \App\Models\Auth\User $user
+     * @param \App\Box $box
      * @return mixed
      */
     public function update(User $user, Box $box)
@@ -94,8 +95,8 @@ class BoxPolicy
     /**
      * Determine whether the user can delete the box.
      *
-     * @param  \App\Models\Auth\User  $user
-     * @param  \App\Box  $box
+     * @param \App\Models\Auth\User $user
+     * @param \App\Box $box
      * @return mixed
      */
     public function destroy(User $user, Box $box)
@@ -107,8 +108,8 @@ class BoxPolicy
     /**
      * Determine whether the user can restore the box.
      *
-     * @param  \App\Models\Auth\User  $user
-     * @param  \App\Box  $box
+     * @param \App\Models\Auth\User $user
+     * @param \App\Box $box
      * @return mixed
      */
     public function restore(User $user, Box $box)
@@ -119,8 +120,8 @@ class BoxPolicy
     /**
      * Determine whether the user can permanently delete the box.
      *
-     * @param  \App\Models\Auth\User  $user
-     * @param  \App\Box  $box
+     * @param \App\Models\Auth\User $user
+     * @param \App\Box $box
      * @return mixed
      */
     public function forceDelete(User $user, Box $box)

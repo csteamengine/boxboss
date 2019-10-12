@@ -24,6 +24,7 @@ class FeatureController extends Controller
     {
         $this->featureRepository = $featureRepository;
     }
+
     /**
      *
      * @return mixed
@@ -36,17 +37,18 @@ class FeatureController extends Controller
                 ->paginate());
     }
 
-    public function toggle($id){
+    public function toggle($id)
+    {
         $feature = Feature::where('id', $id)->first();
 
-        if(!is_null($feature)){
-            if($feature->is_active){
+        if (!is_null($feature)) {
+            if ($feature->is_active) {
                 $feature->toggleOff($feature->name);
-            }else{
+            } else {
                 $feature->toggleOn($feature->name);
             }
 
-            if($feature->save()){
+            if ($feature->save()) {
                 return response()->json([
                     'message' => "Successfully updated the feature status"
                 ], 200);
@@ -68,7 +70,7 @@ class FeatureController extends Controller
     }
 
     /**
-     * @param  StoreFeatureRequest  $request
+     * @param StoreFeatureRequest $request
      *
      * @return mixed
      * @throws \App\Exceptions\GeneralException
@@ -93,8 +95,8 @@ class FeatureController extends Controller
     }
 
     /**
-     * @param  UpdateFeatureRequest  $request
-     * @param  Feature  $feature
+     * @param UpdateFeatureRequest $request
+     * @param Feature $feature
      *
      * @return mixed
      * @throws \App\Exceptions\GeneralException
@@ -109,10 +111,10 @@ class FeatureController extends Controller
 
     /**
      * @param ManageFeatureRequest $request
-     * @param Feature              $feature
+     * @param Feature $feature
      *
-     * @throws \Exception
      * @return mixed
+     * @throws \Exception
      */
     public function destroy(ManageFeatureRequest $request, Feature $feature)
     {

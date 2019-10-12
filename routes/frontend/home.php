@@ -22,10 +22,10 @@ Route::post('contact/send', [ContactController::class, 'send'])->name('contact.s
  * These routes can not be hit if the password is expired
  */
 Route::group(['middleware' => ['auth', 'password_expires']], function () {
-    Route::get('invites', [InviteController::class, 'view'])->name('invites.view');
+    Route::get('invites', [InviteController::class, 'view'])->name('invites.view')->middleware('featureflags:invite_management');
     Route::get('admin-welcome', [HomeController::class, 'adminWelcome'])->name('admin-welcome');
-    Route::post('invite/accept', [InviteController::class, 'accept'])->name('invites.accept');
-    Route::post('invite/decline', [InviteController::class, 'decline'])->name('invites.decline');
+    Route::post('invite/accept', [InviteController::class, 'accept'])->name('invites.accept')->middleware('featureflags:invite_management');
+    Route::post('invite/decline', [InviteController::class, 'decline'])->name('invites.decline')->middleware('featureflags:invite_management');
     Route::group(['namespace' => 'User', 'as' => 'user.'], function () {
         // User Dashboard Specific
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');

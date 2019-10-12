@@ -34,7 +34,7 @@ return [
         'name' => 'Der Debugging-Modus ist deaktiviert',
     ],
     'directories_have_correct_permissions' => [
-        'message' => 'Folgende Verzeichnisse sind nicht beschreibbar:' . PHP_EOL .':directories',
+        'message' => 'Folgende Verzeichnisse sind nicht beschreibbar:' . PHP_EOL . ':directories',
         'name' => 'Alle Verzeichnisse haben die richtigen Berechtigungen',
     ],
     'env_file_exists' => [

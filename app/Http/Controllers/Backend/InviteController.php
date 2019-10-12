@@ -27,7 +27,8 @@ class InviteController extends Controller
         $this->inviteRepository = $inviteRepository;
     }
 
-    public function sendInvite(Request $request, Box $box){
+    public function sendInvite(Request $request, Box $box)
+    {
         $request->validate(['email' => 'required|email']);
 
         $email = $request->get('email');
@@ -42,8 +43,8 @@ class InviteController extends Controller
         ];
 
 //        Check if user is already in that role for this box
-        if($user && $boxRoles[$role]->contains($user)){
-            return redirect()->back()->withFlashWarning($email.' is already in the '.$role.' role.');
+        if ($user && $boxRoles[$role]->contains($user)) {
+            return redirect()->back()->withFlashWarning($email . ' is already in the ' . $role . ' role.');
         }
 
         $invite = $this->inviteRepository->create([
@@ -66,10 +67,11 @@ class InviteController extends Controller
 //        return (new InviteMail($invite))->render();
         Mail::to($email)->send(new InviteMail($invite));
 
-        return redirect()->back()->withFlashSuccess("An email has been sent, inviting ".$email." to become ".__('alerts.backend.invites.grammar.'.$role));
+        return redirect()->back()->withFlashSuccess("An email has been sent, inviting " . $email . " to become " . __('alerts.backend.invites.grammar.' . $role));
     }
 
-    public function deleteInvite(Request $request){
+    public function deleteInvite(Request $request)
+    {
         //TODO delete the invite
         //TODO Gym owner/admin can delete the invite
     }

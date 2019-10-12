@@ -3,7 +3,7 @@
 @section('title', __('labels.backend.access.features.flags') . ' | ' . __('labels.backend.access.features.edit'))
 
 @section('content')
-{{ html()->modelForm($feature, 'PATCH', route('admin.auth.features.update', $feature))->class('form-horizontal')->open() }}
+    {{ html()->modelForm($feature, 'PATCH', route('admin.auth.features.update', $feature))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -16,7 +16,7 @@
             </div><!--row-->
             <!--row-->
 
-            <hr />
+            <hr/>
 
             <div class="row mt-4">
                 <div class="col">
@@ -50,5 +50,5 @@
             </div><!--row-->
         </div><!--card-footer-->
     </div><!--card-->
-{{ html()->closeModelForm() }}
+    {{ html()->closeModelForm() }}
 @endsection

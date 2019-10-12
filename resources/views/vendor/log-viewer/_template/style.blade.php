@@ -35,7 +35,7 @@
     }
 
     .level-card .progress {
-        background: rgba(0,0,0,0.2);
+        background: rgba(0, 0, 0, 0.2);
         height: 2px;
         margin-top: 10px;
     }
@@ -179,5 +179,5 @@
         background-color: #eee;
         color: #777;
         cursor: not-allowed;
-}
+    }
 </style>

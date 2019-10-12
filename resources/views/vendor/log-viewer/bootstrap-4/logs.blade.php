@@ -6,7 +6,8 @@
 
 @section('page-header')
     <h5 class="mb-4">Log Viewer
-        <small class="text-muted">By <a href="https://github.com/ARCANEDEV/LogViewer" target="_blank">ARCANEDEV</a></small>
+        <small class="text-muted">By <a href="https://github.com/ARCANEDEV/LogViewer"
+                                        target="_blank">ARCANEDEV</a></small>
     </h5>
 @endsection
 
@@ -44,7 +45,8 @@
                                 @foreach($row as $key => $value)
                                     <td class="{{ $key == 'date' ? 'text-left' : 'text-center' }}">
                                         @if($key == 'date')
-                                            <a href="{{ route('log-viewer::logs.show', [$value]) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('log-viewer::logs.show', [$value]) }}"
+                                               class="btn btn-sm btn-primary">
                                                 {{ $value }}
                                             </a>
                                         @elseif($value == 0)
@@ -58,14 +60,18 @@
                                 @endforeach
                                 <td class="text-right">
                                     <div class="btn-group btn-group-sm" role="group" aria-label="Log Viewer Actions">
-                                        <a href="{{ route('log-viewer::logs.show', [$date]) }}" class="btn btn-sm btn-info">
+                                        <a href="{{ route('log-viewer::logs.show', [$date]) }}"
+                                           class="btn btn-sm btn-info">
                                             <i class="fa fa-search"></i>
                                         </a>
-                                        <a href="{{ route('log-viewer::logs.download', [$date]) }}" class="btn btn-sm btn-success">
+                                        <a href="{{ route('log-viewer::logs.download', [$date]) }}"
+                                           class="btn btn-sm btn-success">
                                             <i class="fa fa-download"></i>
                                         </a>
 
-                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-backdrop="false" data-target="#delete-log-modal" data-log-date="{{ $date }}">
+                                        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                                data-backdrop="false" data-target="#delete-log-modal"
+                                                data-log-date="{{ $date }}">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
@@ -87,7 +93,8 @@
 
     {!! $rows->render('log-viewer::_pagination.bootstrap-4') !!}
 
-    <div id="delete-log-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-log-modal-label" aria-hidden="true">
+    <div id="delete-log-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="delete-log-modal-label"
+         aria-hidden="true">
         <div class="modal-dialog">
             <form id="delete-log-form" action="{{ route('log-viewer::logs.delete') }}" method="POST">
                 <input type="hidden" name="_method" value="DELETE">
@@ -104,8 +111,12 @@
                         <p></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;"><i class="fa fa-trash"></i> DELETE FILE</button>
-                        <button type="button" class="btn btn-sm btn-primary pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-danger" data-loading-text="Loading&hellip;"><i
+                                class="fa fa-trash"></i> DELETE FILE
+                        </button>
+                        <button type="button" class="btn btn-sm btn-primary pull-left" data-dismiss="modal"><i
+                                class="fa fa-times"></i> Cancel
+                        </button>
                     </div>
                 </div>
             </form>
@@ -118,8 +129,8 @@
         $(function () {
 
             var deleteLogModal = $('#delete-log-modal'),
-                deleteLogForm  = $('#delete-log-form'),
-                submitBtn      = deleteLogForm.find('button[type=submit]');
+                deleteLogForm = $('#delete-log-form'),
+                submitBtn = deleteLogForm.find('button[type=submit]');
 
             deleteLogModal.on('show.bs.modal', function (event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
@@ -131,27 +142,26 @@
                 deleteLogForm.find('input[name=date]').val(logdate)
             });
 
-            deleteLogForm.on('submit', function(event) {
+            deleteLogForm.on('submit', function (event) {
                 event.preventDefault();
                 submitBtn.button('loading');
 
                 $.ajax({
-                    url:      $(this).attr('action'),
-                    type:     $(this).attr('method'),
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
                     dataType: 'json',
-                    data:     $(this).serialize(),
-                    success: function(data) {
+                    data: $(this).serialize(),
+                    success: function (data) {
                         submitBtn.button('reset');
                         if (data.result === 'success') {
                             deleteLogModal.modal('hide');
                             location.reload();
-                        }
-                        else {
+                        } else {
                             alert('AJAX ERROR ! Check the console !');
                             console.error(data);
                         }
                     },
-                    error: function(xhr, textStatus, errorThrown) {
+                    error: function (xhr, textStatus, errorThrown) {
                         alert('AJAX ERROR ! Check the console !');
                         console.error(errorThrown);
                         submitBtn.button('reset');
@@ -161,7 +171,7 @@
                 return false;
             });
 
-            deleteLogModal.on('hidden.bs.modal', function() {
+            deleteLogModal.on('hidden.bs.modal', function () {
                 deleteLogForm.find('input[name=date]').val('');
                 deleteLogModal.find('.modal-body p').html('');
             });

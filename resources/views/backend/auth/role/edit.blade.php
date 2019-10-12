@@ -3,7 +3,7 @@
 @section('title', __('labels.backend.access.roles.management') . ' | ' . __('labels.backend.access.roles.edit'))
 
 @section('content')
-{{ html()->modelForm($role, 'PATCH', route('admin.auth.role.update', $role))->class('form-horizontal')->open() }}
+    {{ html()->modelForm($role, 'PATCH', route('admin.auth.role.update', $role))->class('form-horizontal')->open() }}
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -16,7 +16,7 @@
             </div><!--row-->
             <!--row-->
 
-            <hr />
+            <hr/>
 
             <div class="row mt-4">
                 <div class="col">
@@ -72,5 +72,5 @@
             </div><!--row-->
         </div><!--card-footer-->
     </div><!--card-->
-{{ html()->closeModelForm() }}
+    {{ html()->closeModelForm() }}
 @endsection

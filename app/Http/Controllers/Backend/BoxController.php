@@ -32,14 +32,15 @@ class BoxController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function updateActiveBox(Request $request){
+    public function updateActiveBox(Request $request)
+    {
 
         $boxID = $request->input('active-box');
         $box = Box::find($boxID);
 
-        if(auth()->user()->getAllBoxes()->contains('id', $box->id)){
+        if (auth()->user()->getAllBoxes()->contains('id', $box->id)) {
             session(['active_box' => $box]);
-            if(fnmatch("*/admin/boxes/*/view",$request->headers->get('referer'))){
+            if (fnmatch("*/admin/boxes/*/view", $request->headers->get('referer'))) {
                 return redirect()->route('admin.boxes.view', $box)->withFlashSuccess("Updated Active Box");
             }
             return redirect()->back()->withFlashSuccess("Updated Active Box");
@@ -80,7 +81,7 @@ class BoxController extends Controller
     }
 
     /**
-     * @param  StoreBoxRequest  $request
+     * @param StoreBoxRequest $request
      *
      * @return mixed
      * @throws \App\Exceptions\GeneralException
@@ -116,8 +117,8 @@ class BoxController extends Controller
     }
 
     /**
-     * @param  UpdateBoxRequest  $request
-     * @param  Box  $box
+     * @param UpdateBoxRequest $request
+     * @param Box $box
      *
      * @return mixed
      * @throws \App\Exceptions\GeneralException
@@ -145,10 +146,10 @@ class BoxController extends Controller
 
     /**
      * @param ManageBoxRequest $request
-     * @param Box              $box
+     * @param Box $box
      *
-     * @throws \Exception
      * @return mixed
+     * @throws \Exception
      */
     public function destroy(ManageBoxRequest $request, Box $box)
     {

@@ -16,8 +16,7 @@ class FeatureServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        App::bind('feature', function()
-        {
+        App::bind('feature', function () {
             return new Feature();
         });
     }

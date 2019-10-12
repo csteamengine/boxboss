@@ -136,9 +136,9 @@
                 </div><!--form-group-->
                 <div class="form-group row">
                     <div class="col-md-12">
-                    {{ html()->label(__('validation.attributes.backend.boxes.long_description'))
-                        ->class('form-control-label')
-                        ->for('long_description') }}
+                        {{ html()->label(__('validation.attributes.backend.boxes.long_description'))
+                            ->class('form-control-label')
+                            ->for('long_description') }}
 
                         {{ html()->textarea('long_description')
                             ->class('form-control')

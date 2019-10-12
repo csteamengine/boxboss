@@ -22,7 +22,8 @@
                         <div class="text-value">15</div>
                         <small class="text-muted text-uppercase font-weight-bold">New Messages</small>
                         <div class="progress progress-xs mt-3 mb-0">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -34,7 +35,8 @@
                         <div class="text-value">350</div>
                         <small class="text-muted text-uppercase font-weight-bold">Members</small>
                         <div class="progress progress-xs mt-3 mb-0">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -46,7 +48,8 @@
                         <div class="text-value">5</div>
                         <small class="text-muted text-uppercase font-weight-bold">Coaches</small>
                         <div class="progress progress-xs mt-3 mb-0">
-                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
+                                 aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -58,7 +61,8 @@
                         <div class="text-value">15</div>
                         <small class="text-muted text-uppercase font-weight-bold">WOD Submissions</small>
                         <div class="progress progress-xs mt-3 mb-0">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -70,7 +74,8 @@
                         <div class="text-value">26</div>
                         <small class="text-muted text-uppercase font-weight-bold">Products sold</small>
                         <div class="progress progress-xs mt-3 mb-0">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%"
+                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -108,7 +113,7 @@
         </div>
     </div>
     <div class="card">
-{{--        <div class="card-header"></div>--}}
+        {{--        <div class="card-header"></div>--}}
         <div class="card-body">
             <div class="row mb-3">
                 <h4 class="col card-title m-auto">
@@ -169,9 +174,9 @@
                     </div>
                 </div>
             </div>
-{{--            TODO: Box Admin/Coaches/Owners Widget --}}
-{{--            TODO: Box Members Widget --}}
-{{--            TODO: Box Active Invites Widget --}}
+            {{--            TODO: Box Admin/Coaches/Owners Widget --}}
+            {{--            TODO: Box Members Widget --}}
+            {{--            TODO: Box Active Invites Widget --}}
         </div><!--card-body-->
     </div><!--card-->
 @endsection

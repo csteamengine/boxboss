@@ -23,10 +23,10 @@ class PasswordExpiredController extends Controller
 
     /**
      * @param UpdatePasswordRequest $request
-     * @param UserRepository        $userRepository
+     * @param UserRepository $userRepository
      *
-     * @throws \App\Exceptions\GeneralException
      * @return mixed
+     * @throws \App\Exceptions\GeneralException
      */
     public function update(UpdatePasswordRequest $request, UserRepository $userRepository)
     {

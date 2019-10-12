@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 @langrtl
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
 @else
     <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@endlangrtl
+    @endlangrtl
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,37 +11,37 @@
         <title>@yield('title', app_name())</title>
         <meta name="description" content="@yield('meta_description', 'Laravel Boilerplate')">
         <meta name="author" content="@yield('meta_author', 'Anthony Rappa')">
-        @yield('meta')
+    @yield('meta')
 
-        {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
-        @stack('before-styles')
+    {{-- See https://laravel.com/docs/5.5/blade#stacks for usage --}}
+    @stack('before-styles')
 
-        <!-- Check if the language is set to RTL, so apply the RTL layouts -->
+    <!-- Check if the language is set to RTL, so apply the RTL layouts -->
         <!-- Otherwise apply the normal LTR layouts -->
         {{ style(mix('css/frontend.css')) }}
 
         @stack('after-styles')
     </head>
     <body>
-        @include('includes.partials.read-only')
+    @include('includes.partials.read-only')
 
-        <div id="app">
-            @include('includes.partials.logged-in-as')
-            @include('frontend.includes.nav')
+    <div id="app">
+        @include('includes.partials.logged-in-as')
+        @include('frontend.includes.nav')
 
-            <div class="container">
-                @include('includes.partials.messages')
-                @yield('content')
-            </div><!-- container -->
-        </div><!-- #app -->
+        <div class="container">
+            @include('includes.partials.messages')
+            @yield('content')
+        </div><!-- container -->
+    </div><!-- #app -->
 
-        <!-- Scripts -->
-        @stack('before-scripts')
-        {!! script(mix('js/manifest.js')) !!}
-        {!! script(mix('js/vendor.js')) !!}
-        {!! script(mix('js/frontend.js')) !!}
-        @stack('after-scripts')
+    <!-- Scripts -->
+    @stack('before-scripts')
+    {!! script(mix('js/manifest.js')) !!}
+    {!! script(mix('js/vendor.js')) !!}
+    {!! script(mix('js/frontend.js')) !!}
+    @stack('after-scripts')
 
-        @include('includes.partials.ga')
+    @include('includes.partials.ga')
     </body>
-</html>
+    </html>

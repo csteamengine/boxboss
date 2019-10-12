@@ -1,4 +1,4 @@
-import { shallowMount } from '@vue/test-utils';
+import {shallowMount} from '@vue/test-utils';
 import Example from '@/frontend/components/ExampleComponent.vue';
 
 describe('Example', () => {

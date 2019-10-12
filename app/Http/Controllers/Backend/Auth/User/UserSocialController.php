@@ -15,12 +15,12 @@ class UserSocialController extends Controller
 {
     /**
      * @param ManageUserRequest $request
-     * @param SocialRepository  $socialRepository
-     * @param User              $user
-     * @param SocialAccount     $social
+     * @param SocialRepository $socialRepository
+     * @param User $user
+     * @param SocialAccount $social
      *
-     * @throws \App\Exceptions\GeneralException
      * @return mixed
+     * @throws \App\Exceptions\GeneralException
      */
     public function unlink(ManageUserRequest $request, SocialRepository $socialRepository, User $user, SocialAccount $social)
     {
