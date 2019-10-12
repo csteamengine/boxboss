@@ -53,18 +53,10 @@ class InviteController extends Controller
             'box_id' => $box->getAttribute('id')
         ]);
 
-        //TODO generate email to send to email address
-        //TODO Email will contain a link and will tell the user which role they were invited to be
-        //TODO e.g. http://homestead.wodboss/password/reset/6fa170c739bbcb3c4747dfd1f5c571efd1ee82a502d21d31d6474bb7ef0dd215
-
-
-//        dump($invite);
-//        dump($box);
-//        dump($user);
-//        dump($request);
-
         //Render the email in the browser for UI design
 //        return (new InviteMail($invite))->render();
+
+        //Or send the actual email
         Mail::to($email)->send(new InviteMail($invite));
 
         return redirect()->back()->withFlashSuccess("An email has been sent, inviting " . $email . " to become " . __('alerts.backend.invites.grammar.' . $role));

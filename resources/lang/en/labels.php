@@ -134,7 +134,14 @@ return [
                 'short_description' => 'Description',
                 'total' => 'box total|boxes total',
             ],
+            'user' => [
+                'name' => 'Name',
+                'email' => 'Email',
+                'role' => 'Role',
+                'expires' => 'Expires',
+            ]
         ],
+
     ],
 
     'frontend' => [

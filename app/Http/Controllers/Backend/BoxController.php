@@ -157,4 +157,26 @@ class BoxController extends Controller
 
         return redirect()->route('admin.boxes.index')->withFlashSuccess(__('alerts.backend.boxes.deleted'));
     }
+
+//    /**
+//     * @param Box $box
+//     * @return
+//     */
+//    public function manageMembers(Box $box){
+//        return view('admin.boxes.users')->withMembers($box->members())->withStaff($box->staff());
+//    }
+
+    /**
+     * @param Request $request
+     */
+    public function acceptMembership(Request $request){
+
+    }
+
+    /**
+     * @param Request $request
+     */
+    public function declineMembership(Request $request){
+
+    }
 }

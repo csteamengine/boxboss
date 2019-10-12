@@ -25,6 +25,16 @@ class InviteRepository extends BaseRepository
         $this->model = $model;
     }
 
+
+    /**
+     * Get all instances of model
+     * @return Invite[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function all()
+    {
+        return $this->model->all();
+    }
+
     /**
      * @param $token
      *

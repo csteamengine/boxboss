@@ -115,73 +115,45 @@
     <div class="card">
         {{--        <div class="card-header"></div>--}}
         <div class="card-body">
-            <div class="row mb-3">
-                <h4 class="col card-title m-auto">
-                    User Management
-                </h4>
 
-                <div class="col float-right">
-                    @include('backend.boxes.manage.box-header-buttons')
-                </div><!--col-->
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col m-auto">
-                                    <h4 class="card-title m-auto">
-                                        Members
-                                    </h4>
-                                </div><!--col-->
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            {{$box->members()->get()}}
-                        </div>
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#members" role="tab" aria-controls="home" aria-selected="true">Members</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#staff" role="tab" aria-controls="profile" aria-selected="false">Staff</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#invites" role="tab" aria-controls="contact" aria-selected="false">Invites</a>
+                </li>
+                @if(FeatureFlag::isActive('invite_management'))
+                    <div class="col float-right">
+                        @include('backend.boxes.manage.box-header-buttons')
+                    </div><!--col-->
+                @endif
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="members" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="col">
+                        @include('backend.boxes.includes.membersTable', ['members' => $box->members()->get()])
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col m-auto">
-                                    <h4 class="card-title  m-auto">
-                                        Staff
-                                    </h4>
-                                </div><!--col-->
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            {{$box->staff()}}
-                        </div>
+                <div class="tab-pane fade" id="staff" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="col">
+                        @include('backend.boxes.includes.staffTable', ['staff' => $box->staff()])
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col m-auto">
-                                    <h4 class="card-title  m-auto">
-                                        Active Invites
-                                    </h4>
-                                </div><!--col-->
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            {{$box->invites()->get()}}
-                        </div>
+                <div class="tab-pane fade" id="invites" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="col">
+                        @include('backend.boxes.includes.invitesTable', ['invites' => $box->invites()->get()])
                     </div>
                 </div>
             </div>
-            {{--            TODO: Box Admin/Coaches/Owners Widget --}}
-            {{--            TODO: Box Members Widget --}}
-            {{--            TODO: Box Active Invites Widget --}}
         </div><!--card-body-->
     </div><!--card-->
 @endsection
 @push('after-scripts')
     {!! script('https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js') !!}
     {!! script('https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js') !!}
-    {!! script(mix('js/backend/boxes/boxes.js')) !!}
+    {!! script(mix('js/backend/boxes/manage.js')) !!}
 @endpush
