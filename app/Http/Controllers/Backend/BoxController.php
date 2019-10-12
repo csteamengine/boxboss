@@ -8,6 +8,8 @@ use App\Http\Requests\Backend\Boxes\ManageBoxRequest;
 use App\Http\Requests\Backend\Boxes\StoreBoxRequest;
 use App\Http\Requests\Backend\Boxes\UpdateBoxRequest;
 use App\Models\Box;
+use App\Models\BoxMember;
+use App\Models\MembershipRequest;
 use App\Repositories\Backend\BoxRepository;
 use Illuminate\Http\Request;
 use PragmaRX\Countries\Package\Countries;
@@ -168,15 +170,50 @@ class BoxController extends Controller
 
     /**
      * @param Request $request
+     * @param $id
+     * @return
      */
-    public function acceptMembership(Request $request){
+    public function acceptRequest(Request $request, $id){
+        $memRequest = MembershipRequest::find($id);
 
+        //TODO ensure user is able to accept requests
+
+        if(!$memRequest){
+            return redirect()->back()->withFlashWarning('Failed to accepted the membership request');
+        }
+
+        $box = $memRequest->box();
+        $existing = $box->members()->where('user_id', $memRequest->user_id)->first();
+
+        if($existing){
+            return redirect()->back()->withFlashWarning("User is already a member of this box.");
+        }
+
+        $newMember = BoxMember::create([
+            'user_id' => $memRequest->user_id,
+            'box_id' => $memRequest->box_id
+        ]);
+
+        //TODO send email to requester
+
+        if($newMember && $memRequest->delete()){
+            return redirect()->back()->withFlashSuccess('Successfully accepted the membership request.');
+        }
+        return redirect()->back()->withFlashWarning('Failed to accepted the membership request');
     }
 
     /**
      * @param Request $request
+     * @param $id
      */
-    public function declineMembership(Request $request){
+    public function declineRequest(Request $request, $id){
+        //TODO ensure user is able to decline requests
+        $memRequest = MembershipRequest::find($id);
 
+//        TODO send email to the user saying the membership was declined.
+        if($memRequest && $memRequest->delete()){
+            return redirect()->back()->withFlashSuccess('Successfully declined the membership request.');
+        }
+        return redirect()->back()->withFlashWarning('Failed to decline the membership request');
     }
 }

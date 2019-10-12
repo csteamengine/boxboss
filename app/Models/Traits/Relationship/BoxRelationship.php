@@ -5,6 +5,7 @@ namespace App\Models\Traits\Relationship;
 use App\Models\Auth\User;
 use App\Models\Box;
 use App\Models\Invite;
+use App\Models\MembershipRequest;
 
 /**
  * Class BoxRelationship.
@@ -38,6 +39,11 @@ trait BoxRelationship
 
     public function invites()
     {
-        return $this->hasMany(Invite::class, 'box_id', '');
+        return $this->hasMany(Invite::class, 'box_id');
+    }
+
+    public function requests()
+    {
+        return $this->hasMany(MembershipRequest::class, 'box_id');
     }
 }

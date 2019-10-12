@@ -84,4 +84,8 @@ trait UserRelationship
     {
         return $this->isAdmin() ? Box::with('owner') : $this->belongsToMany(Box::class, 'box_admins', 'user_id', 'box_id')->get();
     }
+
+    public function boxMemberships(){
+        return $this->belongsToMany(Box::class, 'box_members', 'user_id', 'box_id');
+    }
 }

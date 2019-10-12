@@ -2,6 +2,7 @@
 
 use App\Models\Box;
 use App\Models\Invite;
+use App\Models\MembershipRequest;
 use Illuminate\Database\Seeder;
 
 class BoxesTableSeeder extends Seeder
@@ -102,6 +103,21 @@ class BoxesTableSeeder extends Seeder
             'role' => 'owner',
             'email' => 'csteen1005@gmail.com',
             'token' => hash_hmac('sha256', Str::random(40), $key),
+        ]);
+
+        MembershipRequest::create([
+            'box_id' => 1,
+            'user_id' => 13,
+        ]);
+
+        MembershipRequest::create([
+            'box_id' => 1,
+            'user_id' => 14,
+        ]);
+
+        MembershipRequest::create([
+            'box_id' => 2,
+            'user_id' => 13,
         ]);
     }
 }

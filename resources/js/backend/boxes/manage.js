@@ -1,7 +1,24 @@
 $(document).ready(function () {
-    $('#membersTable').DataTable();
-    $('#staffTable').DataTable();
-    $('#invites').DataTable();
+    $('#membersTable').DataTable({
+        "language": {
+            "emptyTable": "Your Box doesn't have any members yet."
+        }
+    });
+    $('#staffTable').DataTable({
+        "language": {
+            "emptyTable": "Your Box doesn't have any staff yet."
+        }
+    });
+    $('#invitesTable').DataTable({
+        "language": {
+            "emptyTable": "You don't have any active invites at the moment."
+        }
+    });
+    $('#membershipTable').DataTable({
+        "language": {
+            "emptyTable": "You don't have any active membership requests at the moment."
+        }
+    });
     // var reset = false;
     // $('.switch-input').on('click', function (event) {
     //     if (reset) {

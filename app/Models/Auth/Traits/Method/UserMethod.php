@@ -2,11 +2,40 @@
 
 namespace App\Models\Auth\Traits\Method;
 
+use App\Models\Box;
+
 /**
  * Trait UserMethod.
  */
 trait UserMethod
 {
+
+    /**
+     * @param Box $box
+     */
+    public function getBoxPermissions(Box $box){
+        $owned = $this->boxesOwned()->get();
+        $admin = $this->boxesAdmined();
+        $coached = $this->boxesCoached()->get();
+        $members = $this->boxMemberships()->get();
+        $permissions = [];
+
+        if($owned->contains($box)){
+            array_push($permissions, "Owner");
+        }
+        if($admin->contains($box)){
+            array_push($permissions, "Admin");
+        }
+        if($coached->contains($box)){
+            array_push($permissions, "Coach");
+        }
+        if($members->contains($box)){
+            array_push($permissions, "Member");
+        }
+
+        return implode(', ', $permissions);
+    }
+
     public function getActiveBox()
     {
         //TODO get the box that the user is currently viewing on the backend

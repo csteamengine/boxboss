@@ -18,6 +18,10 @@ Route::group([
         Route::delete('/', [BoxController::class, 'destroy'])->name('boxes.destroy')->middleware('can:destroy,box');
         Route::post('/sendInvite', [InviteController::class, 'sendInvite'])->name('boxes.sendInvite')->middleware(['can:update,box', 'featureflags:invite_management']);
     });
+    Route::group(['as' => 'boxes.requests.'], function(){
+        Route::get('{id}/accept', [BoxController::class, 'acceptRequest'])->name('accept');
+        Route::get('{id}/decline', [BoxController::class, 'declineRequest'])->name('decline');
+    });
 });
 
 Route::group([ 'middleware' => 'featureflags:active_box'], function () {

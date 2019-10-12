@@ -9,11 +9,11 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($staff as $user)
+        @foreach($members as $user)
             <tr>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>Permissions</td>
+                <td>{{$user->getBoxPermissions($box)}}</td>
                 <td>
                     TODO
                 </td>

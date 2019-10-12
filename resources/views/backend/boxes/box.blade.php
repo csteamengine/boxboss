@@ -113,40 +113,27 @@
         </div>
     </div>
     <div class="card">
-        {{--        <div class="card-header"></div>--}}
         <div class="card-body">
-
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <ul class="nav nav-tabs" id="boxTabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#members" role="tab" aria-controls="home" aria-selected="true">Members</a>
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#users" role="tab" aria-controls="home" aria-selected="true">Users</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#staff" role="tab" aria-controls="profile" aria-selected="false">Staff</a>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#wods" role="tab" aria-controls="profile" aria-selected="false">WODs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#invites" role="tab" aria-controls="contact" aria-selected="false">Invites</a>
+                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="contact" aria-selected="false">Calendar</a>
                 </li>
-                @if(FeatureFlag::isActive('invite_management'))
-                    <div class="col float-right">
-                        @include('backend.boxes.manage.box-header-buttons')
-                    </div><!--col-->
-                @endif
             </ul>
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="members" role="tabpanel" aria-labelledby="home-tab">
-                    <div class="col">
-                        @include('backend.boxes.includes.membersTable', ['members' => $box->members()->get()])
-                    </div>
+            <div class="tab-content" id="boxTabContent">
+                <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="home-tab">
+                    @include('backend.boxes.users.users')
                 </div>
-                <div class="tab-pane fade" id="staff" role="tabpanel" aria-labelledby="profile-tab">
-                    <div class="col">
-                        @include('backend.boxes.includes.staffTable', ['staff' => $box->staff()])
-                    </div>
+                <div class="tab-pane fade" id="wods" role="tabpanel" aria-labelledby="profile-tab">
+                    WOD Management
                 </div>
-                <div class="tab-pane fade" id="invites" role="tabpanel" aria-labelledby="contact-tab">
-                    <div class="col">
-                        @include('backend.boxes.includes.invitesTable', ['invites' => $box->invites()->get()])
-                    </div>
+                <div class="tab-pane fade" id="calendar" role="tabpanel" aria-labelledby="contact-tab">
+                    Calendar
                 </div>
             </div>
         </div><!--card-body-->

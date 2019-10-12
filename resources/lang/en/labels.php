@@ -58,6 +58,12 @@ return [
                     'sort' => 'Sort',
                     'total' => 'role total|roles total',
                 ],
+                'names' => [
+                    'admin' => 'Admin',
+                    'coach' => 'Coach',
+                    'member' => 'Member',
+                    'owner' => 'Owner',
+                ]
             ],
 
             'users' => [
@@ -127,6 +133,7 @@ return [
             'edit' => 'Edit Box',
             'main' => 'Boxes',
             'box_actions' => 'Actions',
+            'users' => 'User Management',
             'table' => [
                 'name' => 'Box',
                 'status' => 'Status',
