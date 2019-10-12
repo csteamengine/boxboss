@@ -61,9 +61,11 @@ class BoxPolicy
      */
     public function edit(User $user, Box $box)
     {
+
         $owned = $user->boxesOwned()->get();
         $admin = $user->boxesAdmined();
         //TODO check if user is owner or box admin of box
+
         return $owned->merge($admin)->contains($box->id);
     }
 

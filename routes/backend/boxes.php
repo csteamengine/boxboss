@@ -17,9 +17,9 @@ Route::group([
         Route::patch('/', [BoxController::class, 'update'])->name('boxes.update')->middleware('can:update,box');
         Route::delete('/', [BoxController::class, 'destroy'])->name('boxes.destroy')->middleware('can:destroy,box');
         Route::post('/sendInvite', [InviteController::class, 'sendInvite'])->name('boxes.sendInvite')->middleware(['can:update,box', 'featureflags:invite_management']);
-        Route::group(['prefix' => 'requests', 'as' => 'requests.'], function(){
-            Route::get('{id}/accept', [BoxController::class, 'acceptRequest'])->name('accept')->middleware('can:edit,box');
-            Route::get('{id}/decline', [BoxController::class, 'declineRequest'])->name('decline')->middleware('can:edit,box');
+        Route::group(['prefix' => 'requests', 'as' => 'requests.', 'middleware' => 'can:edit,box'], function(){
+            Route::get('{memRequest}/accept', [BoxController::class, 'acceptRequest'])->name('accept');
+            Route::get('{memRequest}/decline', [BoxController::class, 'declineRequest'])->name('decline');
         });
     });
 
