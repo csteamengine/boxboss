@@ -103,7 +103,6 @@ class BoxPolicy
      */
     public function destroy(User $user, Box $box)
     {
-        //TODO check if user is owner of box
         return $user->boxesOwned()->get()->contains($box->id);
     }
 

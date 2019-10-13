@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Box;
+use App\Models\Invite;
 use App\Policies\BoxPolicy;
+use App\Policies\InvitePolicy;
 use Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -20,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         // 'App\Model' => 'App\Policies\ModelPolicy',
         Box::class => BoxPolicy::class,
+        Invite::class => InvitePolicy::class,
     ];
 
     /**

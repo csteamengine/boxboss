@@ -23,18 +23,16 @@
                     <td>{{$invite->expires}}</td>
                     <td>
                         <div class="row">
-                            {{ html()->modelForm($invite, "POST", route('frontend.invites.accept'))->class('form-horizontal')->open() }}
-                            {{html()->hidden('token', $invite->token)}}
-                            {{html()->hidden('invite_id', $invite->id)}}
-                            {{--                TODO add accept button--}}
-                            {{ form_submit('Accept', ['btn btn-success']) }}
+                            {{ html()->modelForm($invite, "POST", route('frontend.invites.accept', ['invite'=>$invite]))->class('form-horizontal')->open() }}
+                                {{html()->hidden('token', $invite->token)}}
+                                {{html()->hidden('invite_id', $invite->id)}}
+                                {{ form_submit('Accept', ['btn btn-success']) }}
                             {{ html()->closeModelForm()}}
 
-                            {{ html()->modelForm($invite, "POST", route('frontend.invites.decline'))->class('form-horizontal')->open() }}
-                            {{html()->hidden('token', $invite->token)}}
-                            {{html()->hidden('invite_id', $invite->id)}}
-                            {{--                TODO add accept button--}}
-                            {{ form_submit('Decline', ['btn btn-danger']) }}
+                            {{ html()->modelForm($invite, "POST", route('frontend.invites.decline', ['invite'=>$invite]))->class('form-horizontal')->open() }}
+                                {{html()->hidden('token', $invite->token)}}
+                                {{html()->hidden('invite_id', $invite->id)}}
+                                {{ form_submit('Decline', ['btn btn-danger']) }}
                             {{ html()->closeModelForm()}}
                         </div>
                     </td>

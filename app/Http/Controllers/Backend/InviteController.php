@@ -27,6 +27,13 @@ class InviteController extends Controller
         $this->inviteRepository = $inviteRepository;
     }
 
+    /**
+     * @param Request $request
+     * @param Box $box
+     * @return mixed
+     * @throws \App\Exceptions\GeneralException
+     * @throws \Throwable
+     */
     public function sendInvite(Request $request, Box $box)
     {
         $request->validate(['email' => 'required|email']);
@@ -62,9 +69,21 @@ class InviteController extends Controller
         return redirect()->back()->withFlashSuccess("An email has been sent, inviting " . $email . " to become " . __('alerts.backend.invites.grammar.' . $role));
     }
 
-    public function deleteInvite(Request $request)
+    /**
+     * @param Request $request
+     * @param Box $box
+     * @param Invite $invite
+     * @return mixed
+     * @throws \Exception
+     */
+    public function deleteInvite(Request $request, Box $box, Invite $invite)
     {
-        //TODO delete the invite
-        //TODO Gym owner/admin can delete the invite
+        //User has been authorized to delete the invite through the invite policy
+
+        if($invite->delete()){
+            return redirect()->back()->withFlashSuccess('Successfully deleted the invite to '.$invite->email);
+        }
+
+        return redirect()->back()->withFlashDanger('Failed to delete the invite to '.$invite->email);
     }
 }

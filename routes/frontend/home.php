@@ -24,8 +24,8 @@ Route::post('contact/send', [ContactController::class, 'send'])->name('contact.s
 Route::group(['middleware' => ['auth', 'password_expires']], function () {
     Route::get('invites', [InviteController::class, 'view'])->name('invites.view')->middleware('featureflags:invite_management');
     Route::get('admin-welcome', [HomeController::class, 'adminWelcome'])->name('admin-welcome');
-    Route::post('invite/accept', [InviteController::class, 'accept'])->name('invites.accept')->middleware('featureflags:invite_management');
-    Route::post('invite/decline', [InviteController::class, 'decline'])->name('invites.decline')->middleware('featureflags:invite_management');
+    Route::post('invites/{invite}/accept', [InviteController::class, 'accept'])->name('invites.accept')->middleware('featureflags:invite_management', 'can:accept,invite');
+    Route::post('invites/{invite}/decline', [InviteController::class, 'decline'])->name('invites.decline')->middleware(['featureflags:invite_management', 'can:accept,invite']);
     Route::group(['namespace' => 'User', 'as' => 'user.'], function () {
         // User Dashboard Specific
         Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');

@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                {{ html()->form('POST', route('admin.boxes.sendInvite', $box))->class('form-horizontal')->id('addUserForm')->open() }}
+                {{ html()->form('POST', route('admin.boxes.invites.send', $box))->class('form-horizontal')->id('addUserForm')->open() }}
                 @csrf
                 <div class="row">
                     <div class="col">

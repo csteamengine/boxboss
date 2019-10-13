@@ -15,7 +15,7 @@
                 <td>{{$invite->expires}}</td>
                 <td>@lang('labels.backend.access.roles.names.'.$invite->role)</td>
                 <td>
-                    TODO
+                    @include('backend.boxes.manage.invite-actions', ['invite' => $invite, 'box' => $box])
                 </td>
             </tr>
         @endforeach

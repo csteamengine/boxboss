@@ -44,5 +44,20 @@ class FeaturesTableSeeder extends Seeder
             'is_active' => true
         ]);
 
+        //Invite Management
+        Feature::create([
+            'name' => 'invite_management',
+            'short_description' => 'Toggle the ability to manage invites',
+            'description' => 'This allows box admins, owners and coaches to manage invites.',
+            'is_active' => true
+        ]);
+
+        //Request Management
+        Feature::create([
+            'name' => 'request_management',
+            'short_description' => 'Toggle the ability to manage membership request',
+            'description' => 'This allows box admins, owners and coaches to manage membership requests.',
+            'is_active' => true
+        ]);
     }
 }

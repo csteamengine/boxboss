@@ -16,8 +16,14 @@ Route::group([
         Route::get('edit', [BoxController::class, 'edit'])->name('boxes.edit')->middleware('can:edit,box');
         Route::patch('/', [BoxController::class, 'update'])->name('boxes.update')->middleware('can:update,box');
         Route::delete('/', [BoxController::class, 'destroy'])->name('boxes.destroy')->middleware('can:destroy,box');
-        Route::post('/sendInvite', [InviteController::class, 'sendInvite'])->name('boxes.sendInvite')->middleware(['can:update,box', 'featureflags:invite_management']);
-        Route::group(['prefix' => 'requests', 'as' => 'requests.', 'middleware' => 'can:edit,box'], function(){
+
+        //TODO decide on update/edit/view permission here
+        Route::group(['prefix' => 'invites/', 'middleware' => ['can:update,box', 'featureflags:invite_management']], function(){
+            Route::post('/sendInvite', [InviteController::class, 'sendInvite'])->name('boxes.invites.send');
+            Route::post('{invite}/delete', [InviteController::class, 'deleteInvite'])->name('boxes.invites.delete')->middleware('can:delete,invite');
+        });
+
+        Route::group(['prefix' => 'requests', 'as' => 'requests.', 'middleware' => ['can:edit,box', 'featureflags:request_management']], function(){
             Route::get('{memRequest}/accept', [BoxController::class, 'acceptRequest'])->name('accept');
             Route::get('{memRequest}/decline', [BoxController::class, 'declineRequest'])->name('decline');
         });

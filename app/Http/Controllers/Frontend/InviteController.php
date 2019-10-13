@@ -31,19 +31,17 @@ class InviteController extends Controller
         return view('frontend.invite.invites')->withInvites($invites);
     }
 
-    public function accept(Request $request)
+    public function accept(Request $request, Invite $invite)
     {
-        $invite = Invite::where('id', $request->get('invite_id'))
-            ->where('email', auth()->user()->email)
-            ->first();
 
-        if (!$invite || $invite['token'] != $request->get('token')) {
+        if (!$invite) {
             return redirect()->route('frontend.index')->withFlashWarning('You don\'t have access to do that.');
         }
 
         $role = $invite->role;
         $box = $invite->box_id;
 
+        //TODO might need to handle membership invites differently
         $success = DB::table(__('validation.attributes.backend.invites.table.' . $role))->insert([
             'user_id' => auth()->user()->id,
             'box_id' => $box,
@@ -59,7 +57,10 @@ class InviteController extends Controller
 
         $boxes = auth()->user()->getAllBoxes();
 
-        if ($boxes->count() == 1 && sizeof(explode(', ', $boxes->first()->permissions)) <= 1) {
+
+        if(auth()->user()->email != $invite->email){
+            return redirect()->back()->withFlashSuccess('Successfully accepted invite for '.$invite->email);
+        }else if ($boxes->count() == 1 && sizeof(explode(', ', $boxes->first()->permissions)) <= 1) {
             return redirect()->route('frontend.admin-welcome');
         }
 
