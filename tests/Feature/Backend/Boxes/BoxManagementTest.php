@@ -17,6 +17,7 @@ class BoxManagementTest extends TestCase
         parent::setup();
     }
 
+    // TODO box admin can't view invites
 
 //    public function test_box_admin_cannot_view_not_their_box()
 //    {
