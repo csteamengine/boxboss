@@ -31,7 +31,8 @@
                             ->class('form-control-label')
                             ->for('role') }}
 
-                        {{ html()->select('role', array('member' => 'Member', 'owner' => 'Owner', 'admin' => 'Admin', 'coach' => 'Coach'))
+{{--                        TODO decide whether or not to include member here--}}
+                        {{ html()->select('role', array( 'owner' => 'Owner', 'admin' => 'Admin', 'coach' => 'Coach'))
                             ->class('form-control selectpicker')
                             ->required()
                             }}

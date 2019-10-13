@@ -35,9 +35,22 @@ class InvitePolicy
         return $box->staff()->contains($user);
     }
 
+    /**
+     * @param User $user
+     * @param Invite $invite
+     * @return bool
+     */
     public function accept(User $user, Invite $invite){
-        //TODO check if user is an owner, or the email address in the invite
-        $box = $invite->box()->first();
-        return $box->staff()->contains($user) || $invite->email == $user->email;
+        //TODO allow owner/admin/coach to accept the invite for the user
+        return $invite->email == $user->email;
+    }
+
+    /**
+     * @param User $user
+     * @param Invite $invite
+     * @return bool
+     */
+    public function decline(User $user, Invite $invite){
+        return $this->accept($user, $invite);
     }
 }

@@ -34,6 +34,8 @@ class InviteController extends Controller
     public function accept(Request $request, Invite $invite)
     {
 
+        //TODO allow admins to accept invites for user
+
         if (!$invite) {
             return redirect()->route('frontend.index')->withFlashWarning('You don\'t have access to do that.');
         }
@@ -57,17 +59,14 @@ class InviteController extends Controller
 
         $boxes = auth()->user()->getAllBoxes();
 
-
-        if(auth()->user()->email != $invite->email){
-            return redirect()->back()->withFlashSuccess('Successfully accepted invite for '.$invite->email);
-        }else if ($boxes->count() == 1 && sizeof(explode(', ', $boxes->first()->permissions)) <= 1) {
+        if ($boxes->count() == 1 && sizeof(explode(', ', $boxes->first()->permissions)) <= 1) {
             return redirect()->route('frontend.admin-welcome');
         }
 
         return redirect()->route('admin.dashboard');
     }
 
-    public function decline(Request $request)
+    public function decline(Request $request, Invite $invite)
     {
         $invite = Invite::where('id', $request->get('invite_id'))
             ->where('email', auth()->user()->email)
@@ -76,8 +75,10 @@ class InviteController extends Controller
         if (!$invite || $invite['token'] != $request->get('token')) {
             return redirect()->route('frontend.index')->withFlashWarning('You don\'t have access to do that.');
         }
-        $invite->delete();
+        if($invite->delete()){
+            return redirect()->back()->withFlashSuccess('Successfully declined the invite.');
+        }
 
-        return redirect()->route('frontend.invites.view');
+        return redirect()->route('frontend.invites.view')->withFlashDanger('Failed to decline the invite.');
     }
 }
