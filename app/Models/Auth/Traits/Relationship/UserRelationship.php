@@ -5,6 +5,7 @@ namespace App\Models\Auth\Traits\Relationship;
 use App\Models\Auth\SocialAccount;
 use App\Models\Auth\PasswordHistory;
 use App\Models\Box;
+use App\Models\Invite;
 use Illuminate\Support\Collection;
 use Spatie\Html\Helpers\Arr;
 
@@ -87,5 +88,9 @@ trait UserRelationship
 
     public function boxMemberships(){
         return $this->belongsToMany(Box::class, 'box_members', 'user_id', 'box_id');
+    }
+
+    public function invites(){
+        return $this->hasMany(Invite::class, 'email', 'email');
     }
 }
