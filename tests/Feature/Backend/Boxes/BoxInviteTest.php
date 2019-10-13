@@ -27,11 +27,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_admin_can_send_invite()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -57,7 +52,6 @@ class BoxInviteTest extends TestCase
         $inviteCount = $box->invites()->count();
 
         $this->assertNotEquals($numInvites, $inviteCount);
-
     }
 
     /**
@@ -65,11 +59,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_admin_cant_send_invite_for_not_their_box()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -97,6 +86,7 @@ class BoxInviteTest extends TestCase
 
         //Invite wasn't sent
         $this->assertEquals($numInvites, $inviteCount);
+
     }
 
     /**
@@ -104,11 +94,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_owner_can_send_invite()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -141,11 +126,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_owner_cant_send_invite_to_not_their_box()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -178,11 +158,6 @@ class BoxInviteTest extends TestCase
 //    TODO decide if coaches should be able to send invites
 //    public function test_coach_can_send_an_invite()
 //    {
-//        Mail::fake();
-//
-//        // Assert that no mailables were sent...
-//        Mail::assertNothingSent();
-//
 //        $this->loginAsBoxAdmin();
 //        $numBoxes = 3;
 //
@@ -211,11 +186,6 @@ class BoxInviteTest extends TestCase
 //    }
 //    public function test_box_coach_cant_send_invite_not_their_box()
 //    {
-//        Mail::fake();
-//
-//        // Assert that no mailables were sent...
-//        Mail::assertNothingSent();
-//
 //        $this->loginAsBoxAdmin();
 //        $numBoxes = 3;
 //
@@ -251,11 +221,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_admin_can_delete_an_invite()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -295,11 +260,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_admin_cant_delete_not_their_box()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -339,11 +299,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_owner_can_delete_an_invite()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -383,11 +338,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_owner_cant_delete_not_their_box()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -428,11 +378,6 @@ class BoxInviteTest extends TestCase
 //     */
 //    public function test_box_coach_can_delete_an_invite()
 //    {
-//        Mail::fake();
-//
-//        // Assert that no mailables were sent...
-//        Mail::assertNothingSent();
-//
 //        $this->loginAsBoxAdmin();
 //        $numBoxes = 3;
 //
@@ -472,11 +417,6 @@ class BoxInviteTest extends TestCase
 //     */
 //    public function test_box_coach_cant_delete_not_their_box()
 //    {
-//        Mail::fake();
-//
-//        // Assert that no mailables were sent...
-//        Mail::assertNothingSent();
-//
 //        $this->loginAsBoxAdmin();
 //        $numBoxes = 3;
 //
@@ -516,11 +456,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_duplicate_invite_cant_be_sent()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -566,11 +501,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_duplicate_invite_cant_be_sent_for_user_in_role()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $testUser = User::create([
             'first_name' => 'fake',
             'last_name' => 'F',
@@ -617,11 +547,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_admins_can_view_only_their_invites()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -666,11 +591,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_owners_can_view_only_their_invites()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsBoxAdmin();
         $numBoxes = 3;
 
@@ -715,11 +635,6 @@ class BoxInviteTest extends TestCase
      */
     public function test_box_coaches_can_view_only_their_invites()
     {
-        Mail::fake();
-
-        // Assert that no mailables were sent...
-        Mail::assertNothingSent();
-
         $this->loginAsCoach();
         $numBoxes = 3;
 
