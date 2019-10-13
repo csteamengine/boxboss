@@ -34,7 +34,9 @@ class AdminDashboardTest extends TestCase
     {
         $this->loginAsAdmin();
 
-        $this->get('/admin/dashboard')->assertStatus(200);
+        $request = $this->get('/admin/dashboard');
+
+        $request->assertStatus(200);
     }
 
     public function coach_can_access_admin_dashboard()

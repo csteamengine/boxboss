@@ -33,13 +33,14 @@
                                 @lang('menus.backend.boxes.boxes')
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{
-                                active_class(Route::is('admin/boxes/*'))
-                            }}" href="{{ route('admin.boxes.view', session('active_box'))}}">
-                                @lang('menus.backend.boxes.manage')
-                            </a>
-                        </li>
+                        @if(session('active_box'))
+                            <li class="nav-item">
+                                <a class="nav-link {{active_class(Route::is('admin/boxes/*'))}}"
+                                   href="{{ route('admin.boxes.view', session('active_box'))}}">
+                                    @lang('menus.backend.boxes.manage')
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </li>
             @endif

@@ -2,6 +2,7 @@
 
 namespace App\Http\Composers;
 
+use App\Models\Box;
 use Illuminate\View\View;
 
 /**
@@ -18,6 +19,10 @@ class GlobalComposer
     {
         if (!session()->has('active_box') && auth()->user()) {
             session(['active_box' => auth()->user()->allBoxes()->first()]);
+        }
+
+        if(!session('active_box')){
+            session('active_box', new Box());
         }
 
         $view->with('logged_in_user', auth()->user());

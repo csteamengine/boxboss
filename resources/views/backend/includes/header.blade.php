@@ -52,10 +52,12 @@
                 </form>
             </li>
             <li class="nav-item m-auto d-none d-sm-block">
-                <a class="nav-link" href="{{ route('admin.boxes.view', session('active_box')) }}" data-toggle="tooltip"
-                   data-placement="top" title="Manage Box">
-                    <i class="fas fa-tasks"></i>
-                </a>
+                @if(session('active_box'))
+                    <a class="nav-link" href="{{ route('admin.boxes.view', session('active_box')) }}" data-toggle="tooltip"
+                       data-placement="top" title="Manage Box">
+                        <i class="fas fa-tasks"></i>
+                    </a>
+                @endif
             </li>
         </ul>
     @endif
