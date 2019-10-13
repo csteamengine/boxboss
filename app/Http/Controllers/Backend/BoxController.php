@@ -32,22 +32,23 @@ class BoxController extends Controller
 
     /**
      * @param Request $request
+     * @param Box $box
      * @return mixed
      */
-    public function updateActiveBox(Request $request)
+    public function updateActiveBox(Request $request, Box $box)
     {
-
         $boxID = $request->input('active-box');
         $box = Box::find($boxID);
 
-        if (auth()->user()->getAllBoxes()->contains('id', $box->id)) {
+        //Checks the box policy to see if the user is allowed to view this box.
+        if (auth()->user()->can('view', $box)) {
             session(['active_box' => $box]);
             if (fnmatch("*/admin/boxes/*/view", $request->headers->get('referer'))) {
                 return redirect()->route('admin.boxes.view', $box)->withFlashSuccess("Updated Active Box");
             }
             return redirect()->back()->withFlashSuccess("Updated Active Box");
         }
-        return redirect()->back()->withFlashWarning("You don\'t have permission to do that.");
+        return redirect()->back()->withFlashWarning("You don't have permission to do that.");
     }
 
     /**

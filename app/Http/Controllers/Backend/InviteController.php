@@ -54,6 +54,12 @@ class InviteController extends Controller
             return redirect()->back()->withFlashWarning($email . ' is already in the ' . $role . ' role.');
         }
 
+        $existing = Invite::where('email', $email)->where('role', $role);
+
+        if ($existing->count()) {
+            return redirect()->back()->withFlashWarning("There is already an invite for that user in that role.");
+        }
+
         $invite = $this->inviteRepository->create([
             'email' => $email,
             'role' => $role,
