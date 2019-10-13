@@ -39,7 +39,7 @@ class FeatureRepository extends BaseRepository
         }
 
         return DB::transaction(function () use ($data) {
-            $feature = $this->model::create(['name' => strtolower($data['name']), 'is_active' => true]);
+            $feature = $this->model::create(['name' => strtolower(str_replace(' ', '_', $data['name'])), 'is_active' => true]);
 
             if ($feature) {
 
@@ -63,8 +63,8 @@ class FeatureRepository extends BaseRepository
     public function update(Feature $feature, array $data)
     {
         // If the name is changing make sure it doesn't already exist
-        if ($feature->name !== strtolower($data['name'])) {
-            if ($this->featureExists($data['name'])) {
+        if ($feature->name !== strtolower(str_replace(' ', '_', $data['name']))) {
+            if ($this->featureExists(str_replace(' ', '_', $data['name']))) {
                 throw new GeneralException('A feature already exists with the name ' . $data['name']);
             }
         }
