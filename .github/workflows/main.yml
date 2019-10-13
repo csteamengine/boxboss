@@ -1,4 +1,4 @@
-name: CI for Laravel Boilerplate
+name: CI for WodBoss
 
 on:
   push:
