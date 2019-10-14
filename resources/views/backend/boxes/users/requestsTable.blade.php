@@ -12,7 +12,7 @@
                 <tr>
                     <td>{{$request->user()->name}}</td>
                     <td>{{$request->user()->email}}</td>
-                    <td class="text-center">
+                    <td>
                         @include('backend.boxes.manage.request-actions', ['request' => $request])
                     </td>
                 </tr>
