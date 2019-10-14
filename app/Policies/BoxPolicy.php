@@ -66,6 +66,9 @@ class BoxPolicy
         $admin = $user->boxesAdmined();
         //TODO check if user is owner or box admin of box
 
+//        dump($owned->merge($admin)->contains($box->id));
+//        exit;
+
         return $owned->merge($admin)->contains($box->id);
     }
 

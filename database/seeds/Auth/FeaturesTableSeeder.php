@@ -55,7 +55,7 @@ class FeaturesTableSeeder extends Seeder
         //Request Management
         Feature::create([
             'name' => 'request_management',
-            'short_description' => 'Toggle the ability to manage membership request',
+            'short_description' => 'Toggle the ability to manage membership requests',
             'description' => 'This allows box admins, owners and coaches to manage membership requests.',
             'is_active' => true
         ]);

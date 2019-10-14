@@ -10,4 +10,6 @@ class MembershipRequest extends Model
     use MembershipRequestRelationship;
 
     protected $table = 'membership_requests';
+
+    protected $fillable = ['user_id', 'box_id'];
 }

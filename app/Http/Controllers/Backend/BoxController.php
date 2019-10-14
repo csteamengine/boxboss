@@ -178,8 +178,8 @@ class BoxController extends Controller
      */
     public function acceptRequest(Request $request, Box $box, MembershipRequest $memRequest){
 
-        if(!$memRequest){
-            return redirect()->back()->withFlashWarning('Failed to accepted the membership request');
+        if(!$memRequest || !$box->requests()->get()->contains($memRequest)){
+            return redirect()->back()->withFlashWarning('Failed to accept the membership request');
         }
 
         $existing = $box->members()->where('user_id', $memRequest->user_id)->first();
@@ -210,7 +210,7 @@ class BoxController extends Controller
      */
     public function declineRequest(Request $request, Box $box, MembershipRequest $memRequest){
 //        TODO send email to the user saying the membership was declined.
-        if($memRequest && $memRequest->delete()){
+        if($box->requests()->get()->contains($memRequest) && $memRequest && $memRequest->delete()){
             return redirect()->back()->withFlashSuccess('Successfully declined the membership request.');
         }
         return redirect()->back()->withFlashWarning('Failed to decline the membership request');
