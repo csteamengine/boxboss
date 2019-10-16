@@ -59,5 +59,21 @@ class FeaturesTableSeeder extends Seeder
             'description' => 'This allows box admins, owners and coaches to manage membership requests.',
             'is_active' => true
         ]);
+
+        //Member Management
+        Feature::create([
+            'name' => 'member_management',
+            'short_description' => 'Toggle the ability to manage members on the admin page.',
+            'description' => 'This allows box admins, owners and coaches to manage members.',
+            'is_active' => true
+        ]);
+
+        //Staff Management
+        Feature::create([
+            'name' => 'request_management',
+            'short_description' => 'Toggle the ability to manage the staff of their box.',
+            'description' => 'This allows box admins, owners and coaches to manage the staff of their box',
+            'is_active' => true
+        ]);
     }
 }

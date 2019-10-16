@@ -7,7 +7,8 @@
 @endpush
 
 @section('content')
-    @include('backend.boxes.manage.add-user-modal')
+    @include('backend.boxes.manage.add-staff-modal')
+    @include('backend.boxes.manage.add-member-modal')
     <span class="display-4">
         {{$box->name}}
     </span>
@@ -19,11 +20,9 @@
                         <div class="h1 text-muted text-right mb-4">
                             <i class="fa fa-mail-bulk"></i>
                         </div>
-                        <div class="text-value">15</div>
-                        <small class="text-muted text-uppercase font-weight-bold">New Messages</small>
-                        <div class="progress progress-xs mt-3 mb-0">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="row">
+                            <div class="text-value mt-auto mb-auto">{{$box->requests()->count()}}</div>
+                            <small class="text-muted text-uppercase font-weight-bold mt-auto mb-auto ml-2">Membership Requests</small>
                         </div>
                     </div>
                 </div>
@@ -32,11 +31,9 @@
                         <div class="h1 text-muted text-right mb-4">
                             <i class="fa fa-users"></i>
                         </div>
-                        <div class="text-value">350</div>
-                        <small class="text-muted text-uppercase font-weight-bold">Members</small>
-                        <div class="progress progress-xs mt-3 mb-0">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="row">
+                            <div class="text-value mt-auto mb-auto">{{$box->members()->count()}}</div>
+                            <small class="text-muted text-uppercase font-weight-bold mt-auto mb-auto ml-2">Members</small>
                         </div>
                     </div>
                 </div>
@@ -45,11 +42,9 @@
                         <div class="h1 text-muted text-right mb-4">
                             <i class="fa fa-user-ninja"></i>
                         </div>
-                        <div class="text-value">5</div>
-                        <small class="text-muted text-uppercase font-weight-bold">Coaches</small>
-                        <div class="progress progress-xs mt-3 mb-0">
-                            <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="row">
+                            <div class="text-value mt-auto mb-auto">{{$box->coaches()->count()}}</div>
+                            <small class="text-muted text-uppercase font-weight-bold mt-auto mb-auto ml-2">Coaches</small>
                         </div>
                     </div>
                 </div>
@@ -58,11 +53,9 @@
                         <div class="h1 text-muted text-right mb-4">
                             <i class="fa fa-running"></i>
                         </div>
-                        <div class="text-value">15</div>
-                        <small class="text-muted text-uppercase font-weight-bold">WOD Submissions</small>
-                        <div class="progress progress-xs mt-3 mb-0">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
-                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="row">
+                            <div class="text-value mt-auto mb-auto">15</div>
+                            <small class="text-muted text-uppercase font-weight-bold mt-auto mb-auto ml-2">WOD Submissions</small>
                         </div>
                     </div>
                 </div>
@@ -71,11 +64,9 @@
                         <div class="h1 text-muted text-right mb-4">
                             <i class="fa fa-cash-register"></i>
                         </div>
-                        <div class="text-value">26</div>
-                        <small class="text-muted text-uppercase font-weight-bold">Products sold</small>
-                        <div class="progress progress-xs mt-3 mb-0">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 25%"
-                                 aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="row">
+                            <div class="text-value mt-auto mb-auto">26</div>
+                            <small class="text-muted text-uppercase font-weight-bold mt-auto mb-auto ml-2">Sales</small>
                         </div>
                     </div>
                 </div>
@@ -116,24 +107,30 @@
         <div class="card-body">
             <ul class="nav nav-tabs" id="boxTabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#users" role="tab" aria-controls="home" aria-selected="true">Users</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#wods" role="tab" aria-controls="profile" aria-selected="false">WODs</a>
+                    <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#wods" role="tab" aria-controls="profile" aria-selected="false">WODs</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#calendar" role="tab" aria-controls="contact" aria-selected="false">Calendar</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#members" role="tab" aria-controls="home" aria-selected="true">Members</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="home-tab" data-toggle="tab" href="#staff" role="tab" aria-controls="home" aria-selected="true">Staff</a>
+                </li>
             </ul>
             <div class="tab-content" id="boxTabContent">
-                <div class="tab-pane fade show active" id="users" role="tabpanel" aria-labelledby="home-tab">
-                    @include('backend.boxes.users.users')
-                </div>
-                <div class="tab-pane fade" id="wods" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tab-pane fade show active" id="wods" role="tabpanel" aria-labelledby="profile-tab">
                     WOD Management
                 </div>
                 <div class="tab-pane fade" id="calendar" role="tabpanel" aria-labelledby="contact-tab">
                     Calendar
+                </div>
+                <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="home-tab">
+                    @include('backend.boxes.users.members')
+                </div>
+                <div class="tab-pane fade" id="staff" role="tabpanel" aria-labelledby="home-tab">
+                    @include('backend.boxes.staff.staff')
                 </div>
             </div>
         </div><!--card-body-->

@@ -7,13 +7,21 @@ use App\Http\Requests\Backend\Boxes\EditBoxRequest;
 use App\Http\Requests\Backend\Boxes\ManageBoxRequest;
 use App\Http\Requests\Backend\Boxes\StoreBoxRequest;
 use App\Http\Requests\Backend\Boxes\UpdateBoxRequest;
+use App\Models\Auth\User;
 use App\Models\Box;
+use App\Models\BoxAdmin;
+use App\Models\BoxCoach;
 use App\Models\BoxMember;
+use App\Models\BoxOwner;
 use App\Models\MembershipRequest;
 use App\Repositories\Backend\BoxRepository;
 use Illuminate\Http\Request;
 use PragmaRX\Countries\Package\Countries;
 
+/**
+ * Class BoxController
+ * @package App\Http\Controllers\Backend
+ */
 class BoxController extends Controller
 {
 
@@ -161,14 +169,6 @@ class BoxController extends Controller
         return redirect()->route('admin.boxes.index')->withFlashSuccess(__('alerts.backend.boxes.deleted'));
     }
 
-//    /**
-//     * @param Box $box
-//     * @return
-//     */
-//    public function manageMembers(Box $box){
-//        return view('admin.boxes.users')->withMembers($box->members())->withStaff($box->staff());
-//    }
-
     /**
      * @param Request $request
      * @param Box $box
@@ -214,5 +214,67 @@ class BoxController extends Controller
             return redirect()->back()->withFlashSuccess('Successfully declined the membership request.');
         }
         return redirect()->back()->withFlashWarning('Failed to decline the membership request');
+    }
+
+
+    /**
+     * @param Request $request
+     * @param Box $box
+     * @param User $user
+     * @return mixed
+     */
+    public function removeCoach(Request $request, Box $box, User $user){
+        $coach = BoxCoach::where('box_id', $box->id)->where('user_id', $user->id)->first();
+
+        if($coach->delete()){
+            return redirect()->back()->withFlashSuccess('Successfully removed '.$user->email." as a coach.");
+        }
+        return redirect()->back()->withFlashWarning('Failed to remove that user as a coach');
+    }
+
+    /**
+     * @param Request $request
+     * @param Box $box
+     * @param User $user
+     * @return mixed
+     */
+    public function removeOwner(Request $request, Box $box, User $user){
+        $owners = $box->owners()->get();
+        if($owners->count() <= 1){
+            return redirect()->back()->withFlashWarning("You can't remove that owner until you add another owner.");
+        }
+
+        $coach = BoxOwner::where('box_id', $box->id)->where('user_id', $user->id)->first();
+
+        if($coach->delete()){
+            return redirect()->back()->withFlashSuccess('Successfully removed '.$user->email." as an owner.");
+        }
+        return redirect()->back()->withFlashWarning('Failed to remove that user as an owner');
+    }
+
+    /**
+     * @param Request $request
+     * @param Box $box
+     * @param User $user
+     * @return mixed
+     */
+    public function removeAdmin(Request $request, Box $box, User $user){
+        $admin = BoxAdmin::where('box_id', $box->id)->where('user_id', $user->id)->first();
+
+        if($admin->delete()){
+            return redirect()->back()->withFlashSuccess('Successfully removed '.$user->email." as an admin.");
+        }
+        return redirect()->back()->withFlashWarning('Failed to remove that user as an admin');
+    }
+
+    public function removeMember(Request $request, Box $box, User $user){
+        //TODO cancel membership subscription
+        //TODO send cancellation email to the user?
+        $member = BoxMember::where('box_id', $box->id)->where('user_id', $user->id)->first();
+
+        if($member->delete()){
+            return redirect()->back()->withFlashSuccess('Successfully removed '.$user->email." as a member.");
+        }
+        return redirect()->back()->withFlashWarning('Failed to remove that user as a member');
     }
 }

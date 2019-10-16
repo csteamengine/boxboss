@@ -1,16 +1,16 @@
 <!-- Modal -->
-<div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
+<div class="modal fade" id="addStaffModal" tabindex="-1" role="dialog" aria-labelledby="addStaffModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addUserModalLabel">Invite New User</h5>
+                <h5 class="modal-title" id="addStaffModalLabel">Invite New User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                {{ html()->form('POST', route('admin.boxes.invites.send', $box))->class('form-horizontal')->id('addUserForm')->open() }}
+                {{ html()->form('POST', route('admin.boxes.invites.send', $box))->class('form-horizontal')->id('addStaffForm')->open() }}
                 @csrf
                 <div class="row">
                     <div class="col">
@@ -38,12 +38,11 @@
                             }}
                     </div><!--col-->
                 </div>
-
                 {{ html()->form()->close() }}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-success" form="addUserForm">Invite User</button>
+                <button type="submit" class="btn btn-success" form="addStaffForm">Invite User</button>
             </div>
         </div>
     </div>

@@ -33,9 +33,6 @@ class InviteController extends Controller
 
     public function accept(Request $request, Invite $invite)
     {
-
-        //TODO allow admins to accept invites for user
-
         if (!$invite) {
             return redirect()->route('frontend.index')->withFlashWarning('You don\'t have access to do that.');
         }
@@ -43,6 +40,7 @@ class InviteController extends Controller
         $role = $invite->role;
         $box = $invite->box_id;
 
+        //TODO check for existing
         //TODO might need to handle membership invites differently
         $success = DB::table(__('validation.attributes.backend.invites.table.' . $role))->insert([
             'user_id' => auth()->user()->id,
@@ -51,10 +49,15 @@ class InviteController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
-        $result = auth()->user()->assignRole(__('validation.attributes.backend.invites.role.' . $role));
-
         if ($success) {
             $invite->delete();
+        }
+
+        if($role != 'member'){
+            $result = auth()->user()->assignRole(__('validation.attributes.backend.invites.role.' . $role));
+        }else{
+            //TODO handle member specific stuff
+            return redirect()->route('frontend.index');
         }
 
         $boxes = auth()->user()->getAllBoxes();

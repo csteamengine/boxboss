@@ -15,7 +15,7 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->getBoxPermissions($box)}}</td>
                 <td>
-                    TODO
+                    @include('backend.boxes.manage.member-actions', ['user' => $user])
                 </td>
             </tr>
         @endforeach

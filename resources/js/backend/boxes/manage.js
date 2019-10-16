@@ -4,9 +4,19 @@ $(document).ready(function () {
             "emptyTable": "Your Box doesn't have any members yet."
         }
     });
-    $('#staffTable').DataTable({
+    $('#ownersTable').DataTable({
         "language": {
-            "emptyTable": "Your Box doesn't have any staff yet."
+            "emptyTable": "You are the only owner for this box so far."
+        }
+    });
+    $('#adminsTable').DataTable({
+        "language": {
+            "emptyTable": "Your Box doesn't have any admins yet."
+        }
+    });
+    $('#coachesTable').DataTable({
+        "language": {
+            "emptyTable": "Your Box doesn't have any coaches yet."
         }
     });
     $('#invitesTable').DataTable({

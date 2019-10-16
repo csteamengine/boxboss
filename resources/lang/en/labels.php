@@ -133,7 +133,8 @@ return [
             'edit' => 'Edit Box',
             'main' => 'Boxes',
             'box_actions' => 'Actions',
-            'users' => 'User Management',
+            'members' => 'Member Management',
+            'staff' => 'Staff Management',
             'table' => [
                 'name' => 'Box',
                 'status' => 'Status',
