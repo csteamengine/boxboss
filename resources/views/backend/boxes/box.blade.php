@@ -4,6 +4,8 @@
 
 @push('after-styles')
     {!! style('https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css') !!}
+    <link href='/css/fullcalendar/fullcalendar.css' rel='stylesheet' />
+
 @endpush
 
 @section('content')
@@ -124,7 +126,7 @@
                     WOD Management
                 </div>
                 <div class="tab-pane fade" id="calendar" role="tabpanel" aria-labelledby="contact-tab">
-                    Calendar
+                    @include('backend.boxes.calendar.calendar')
                 </div>
                 <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="home-tab">
                     @include('backend.boxes.users.members')

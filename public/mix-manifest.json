@@ -9,5 +9,6 @@
     "/js/manifest.js": "/js/manifest.js",
     "/js/snapappointments/bootstrap-select.min.js": "/js/snapappointments/bootstrap-select.min.js",
     "/js/vendor.js": "/js/vendor.js",
-    "/css/snapappointments/bootstrap-select.css": "/css/snapappointments/bootstrap-select.css"
+    "/css/snapappointments/bootstrap-select.css": "/css/snapappointments/bootstrap-select.css",
+    "/css/fullcalendar/fullcalendar.css": "/css/fullcalendar/fullcalendar.css"
 }

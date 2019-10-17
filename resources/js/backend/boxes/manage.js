@@ -1,4 +1,39 @@
+import { Calendar } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+import bootstrap from '@fullcalendar/bootstrap';
+
+
+
 $(document).ready(function () {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new Calendar(calendarEl, {
+        plugins: [
+            dayGridPlugin,
+            timeGridPlugin,
+            listPlugin,
+            bootstrap
+        ],
+        header: {
+            left: 'dayGridMonth,timeGridWeek,timeGridDay',
+            center: 'title',
+            right: 'prevYear,prev,next,nextYear'
+        },
+        businessHours: {
+            // days of week. an array of zero-based day of week integers (0=Sunday)
+            daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6], // Monday - Thursday
+
+            startTime: '10:00', // a start time (10am in this example)
+            endTime: '18:00', // an end time (6pm in this example)
+        }
+    });
+
+    $('.nav-tabs a[href="#calendar"]').on('shown.bs.tab', function(e){
+        calendar.render();
+    });
+
     $('#membersTable').DataTable({
         "language": {
             "emptyTable": "Your Box doesn't have any members yet."

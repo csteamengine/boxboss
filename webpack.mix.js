@@ -19,6 +19,11 @@ mix.setPublicPath('public')
     .sass('resources/sass/frontend/app.scss', 'css/frontend.css')
     .sass('resources/sass/backend/app.scss', 'css/backend.css')
     .styles(['vendor/snapappointments/bootstrap-select/dist/css/bootstrap-select.css'], 'public/css/snapappointments/bootstrap-select.css')
+    .styles(['node_modules/@fullcalendar/core/main.css',
+        'node_modules/@fullcalendar/bootstrap/main.css',
+        'node_modules/@fullcalendar/daygrid/main.css',
+        'node_modules/@fullcalendar/list/main.css'
+    ], 'public/css/fullcalendar/fullcalendar.css')
     .js('resources/js/frontend/app.js', 'js/frontend.js')
     .js('resources/js/backend/features/features.js', 'js/backend/features/features.js')
     .js('resources/js/backend/boxes/boxes.js', 'js/backend/boxes/boxes.js')
@@ -36,9 +41,16 @@ mix.setPublicPath('public')
         'popper.js',
         'axios',
         'sweetalert2',
-        'lodash'
+        'lodash',
+        'fullcalendar'
     ])
     .sourceMaps();
+
+module.exports = {
+    entry: [
+        'fullcalendar',
+    ]
+};
 
 if (mix.inProduction()) {
     mix.version()
