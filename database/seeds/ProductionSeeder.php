@@ -13,5 +13,7 @@ class ProductionSeeder extends Seeder
     {
         //TODO add seeds that need to run in production
         //E.g. all the features.
+        $this->call(PermissionRoleTableSeeder::class);
+        $this->call(FeaturesTableSeeder::class);
     }
 }
