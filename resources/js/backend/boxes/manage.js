@@ -1,12 +1,13 @@
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import listPlugin from '@fullcalendar/list';
 import bootstrap from '@fullcalendar/bootstrap';
+import listPlugin from '@fullcalendar/list';
 
 
 
 $(document).ready(function () {
+
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new Calendar(calendarEl, {
@@ -16,18 +17,20 @@ $(document).ready(function () {
             listPlugin,
             bootstrap
         ],
+        defaultView: 'timeGridWeek',
         header: {
-            left: 'dayGridMonth,timeGridWeek,timeGridDay',
+            left: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
             center: 'title',
             right: 'prevYear,prev,next,nextYear'
         },
-        businessHours: {
-            // days of week. an array of zero-based day of week integers (0=Sunday)
-            daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6], // Monday - Thursday
-
-            startTime: '10:00', // a start time (10am in this example)
-            endTime: '18:00', // an end time (6pm in this example)
-        }
+        // businessHours: {
+        //     // days of week. an array of zero-based day of week integers (0=Sunday)
+        //     // daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6], // Monday - Thursday
+        //     //
+        //     // startTime: '10:00', // a start time (10am in this example)
+        //     // endTime: '18:00', // an end time (6pm in this example)
+        // },
+        events: 'https://fullcalendar.io/demo-events.json'
     });
 
     $('.nav-tabs a[href="#calendar"]').on('shown.bs.tab', function(e){
